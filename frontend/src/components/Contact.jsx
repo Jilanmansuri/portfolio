@@ -9,22 +9,48 @@ const Contact = () => {
     const [isSending, setIsSending] = useState(false);
     const form = useRef();
 
-    const handleContactSubmit = (e) => {
+    const handleContactSubmit = async (e) => {
         e.preventDefault();
         setIsSending(true);
 
-        emailjs.sendForm('service_108623', 'template_5t1zekx', form.current, 'd7XlPrJpcnXHA9SHK')
-            .then((result) => {
-                console.log("SUCCESS!", result.text);
-                setShowToast(true);
-                setIsSending(false);
-                e.target.reset();
-                setTimeout(() => setShowToast(false), 3000);
-            }, (error) => {
-                console.log("FAILED...", error.text);
-                setIsSending(false);
-                alert(`Failed to send message: ${error.text}. Please check your internet connection or try again later.`);
-            });
+        const formElement = form.current;
+        const formData = new FormData(formElement);
+
+        const payload = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            subject: formData.get('subject'),
+            message: formData.get('message'),
+        };
+
+        try {
+            const [emailResult, apiResponse] = await Promise.all([
+                emailjs.sendForm('service_108623', 'template_5t1zekx', formElement, 'd7XlPrJpcnXHA9SHK'),
+                fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                }),
+            ]);
+
+            console.log("SUCCESS!", emailResult.text);
+
+            if (!apiResponse.ok) {
+                const errorData = await apiResponse.json().catch(() => ({}));
+                console.error('Failed to save message:', errorData);
+            }
+
+            setShowToast(true);
+            e.target.reset();
+            setTimeout(() => setShowToast(false), 3000);
+        } catch (error) {
+            console.log("FAILED...", error);
+            alert(`Failed to send message. Please check your internet connection or try again later.`);
+        } finally {
+            setIsSending(false);
+        }
     };
 
     return (
