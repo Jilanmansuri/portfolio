@@ -32,7 +32,7 @@ const Certificates = () => {
                                 />
                             </div>
                             <div className="cert-details-large !p-2 flex flex-col">
-                                <div className="flex flex-row items-center justify-between w-full gap-2">
+                                <div className="cert-row flex flex-row items-center justify-between w-full gap-2">
                                     <div className="flex flex-col gap-0.5 min-w-0">
                                         <div className="cert-header flex items-center gap-1.5 font-bold text-white">
                                             <Award size={14} className="text-[#38bdf8] shrink-0" />
@@ -42,7 +42,7 @@ const Certificates = () => {
                                             <p className="cert-issuer text-[9px] font-medium text-gray-400 uppercase tracking-wider">HackerRank • Dec 2025</p>
                                         </div>
                                     </div>
-                                    <a href="https://www.hackerrank.com/certificates/c85612d20bee" target="_blank" rel="noopener noreferrer" className="btn-link !py-1 !px-2.5 !text-[9px] !w-auto !min-w-0 !rounded-lg shrink-0">Verify <ExternalLink size={10} /></a>
+                                    <a href="https://www.hackerrank.com/certificates/c85612d20bee" target="_blank" rel="noopener noreferrer" className="btn-link cert-verify-btn">Verify <ExternalLink size={14} /></a>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@ const Certificates = () => {
                                 />
                             </div>
                             <div className="cert-details-large !p-2 flex flex-col">
-                                <div className="flex flex-row items-center justify-between w-full gap-2">
+                                <div className="cert-row flex flex-row items-center justify-between w-full gap-2">
                                     <div className="flex flex-col gap-0.5 min-w-0">
                                         <div className="cert-header flex items-center gap-1.5 font-bold text-white">
                                             <Award size={14} className="text-[#f97316] shrink-0" />
@@ -71,7 +71,7 @@ const Certificates = () => {
                                             <p className="cert-issuer text-[9px] font-medium text-gray-400 uppercase tracking-wider">HackerRank • Dec 2025</p>
                                         </div>
                                     </div>
-                                    <a href="https://www.hackerrank.com/certificates/c6d54d0abd5f" target="_blank" rel="noopener noreferrer" className="btn-link !py-1 !px-2.5 !text-[9px] !w-auto !min-w-0 !rounded-lg shrink-0">Verify <ExternalLink size={10} /></a>
+                                    <a href="https://www.hackerrank.com/certificates/c6d54d0abd5f" target="_blank" rel="noopener noreferrer" className="btn-link cert-verify-btn">Verify <ExternalLink size={14} /></a>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@ const Certificates = () => {
                                 />
                             </div>
                             <div className="cert-details-large !p-2 flex flex-col">
-                                <div className="flex flex-row items-center justify-between w-full gap-2">
+                                <div className="cert-row flex flex-row items-center justify-between w-full gap-2">
                                     <div className="flex flex-col gap-0.5 min-w-0">
                                         <div className="cert-header flex items-center gap-1.5 font-bold text-white">
                                             <Award size={14} className="text-[#0071ce] shrink-0" />
@@ -100,7 +100,7 @@ const Certificates = () => {
                                             <p className="cert-issuer text-[9px] font-medium text-gray-400 uppercase tracking-wider">Walmart Global Tech • March 2026</p>
                                         </div>
                                     </div>
-                                    <button className="btn-link !py-1 !px-2.5 !text-[9px] !w-auto !min-w-0 !rounded-lg shrink-0">Verify <ExternalLink size={10} /></button>
+                                    <button className="btn-link cert-verify-btn">Verify <ExternalLink size={14} /></button>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@ const Certificates = () => {
                                 />
                             </div>
                             <div className="cert-details-large !p-2 flex flex-col">
-                                <div className="flex flex-row items-center justify-between w-full gap-2">
+                                <div className="cert-row flex flex-row items-center justify-between w-full gap-2">
                                     <div className="flex flex-col gap-0.5 min-w-0">
                                         <div className="cert-header flex items-center gap-1.5 font-bold text-white">
                                             <Award size={14} className="text-[#ec4899] shrink-0" />
@@ -132,7 +132,7 @@ const Certificates = () => {
                                             <p className="cert-issuer text-[9px] font-medium text-gray-400 uppercase tracking-wider">OpenPools • March 2026</p>
                                         </div>
                                     </div>
-                                    <a href="https://www.openpools.in" target="_blank" rel="noopener noreferrer" className="btn-link !py-1 !px-2.5 !text-[9px] !w-auto !min-w-0 !rounded-lg shrink-0">Verify <ExternalLink size={10} /></a>
+                                    <a href="https://www.openpools.in" target="_blank" rel="noopener noreferrer" className="btn-link cert-verify-btn">Verify <ExternalLink size={14} /></a>
                                 </div>
                             </div>
                         </div>
