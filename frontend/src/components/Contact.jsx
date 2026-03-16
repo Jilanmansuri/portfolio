@@ -23,10 +23,12 @@ const Contact = () => {
             message: formData.get('message'),
         };
 
+        const API_URL = import.meta.env.VITE_API_URL;
+
         try {
             const [emailResult, apiResponse] = await Promise.all([
                 emailjs.sendForm('service_108623', 'template_5t1zekx', formElement, 'd7XlPrJpcnXHA9SHK'),
-                fetch('/api/contact', {
+                fetch(`${API_URL}/api/contact`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
