@@ -12,23 +12,7 @@ const MONGODB_URI =
   process.env.MONGODB_URI ||
   'mongodb://127.0.0.1:27017/portfolio-contacts';
 
-const allowedOrigins = (process.env.CORS_ORIGINS || '')
-  .split(',')
-  .map((s) => s.trim())
-  .filter(Boolean);
-
-app.use(
-  cors({
-    origin: (origin, cb) => {
-      // allow same-origin / server-to-server / curl / postman
-      if (!origin) return cb(null, true);
-      if (allowedOrigins.length === 0) return cb(null, true);
-      if (allowedOrigins.includes(origin)) return cb(null, true);
-      return cb(new Error(`CORS blocked for origin: ${origin}`));
-    },
-    credentials: true,
-  }),
-);
+app.use(cors());
 app.use(express.json());
 
 mongoose

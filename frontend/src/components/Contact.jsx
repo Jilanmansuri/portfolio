@@ -23,7 +23,7 @@ const Contact = () => {
             message: formData.get('message'),
         };
 
-        const API_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+        const API_URL = import.meta.env.VITE_API_URL;
 
         try {
             const [emailResult, apiResponse] = await Promise.all([
