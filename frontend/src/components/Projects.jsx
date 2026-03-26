@@ -4,6 +4,15 @@ import { motion } from 'framer-motion';
 
 const mainProjects = [
     {
+        title: "ScamShield",
+        description: "AI-powered scam detection and analytics platform.",
+        tags: ["React", "AI", "Analytics"],
+        img: "/scamshield.png",
+        link: "https://scamshield-xjip.vercel.app/",
+        github: "https://github.com/Jilanmansuri/scamshield",
+        color: "#4f46e5"
+    },
+    {
         title: "Github Finder",
         description: "Search GitHub users and view their profiles and repositories.",
         tags: ["React", "API", "Tailwind"],
