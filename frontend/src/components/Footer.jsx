@@ -24,43 +24,6 @@ const Footer = () => {
     return (
         <footer className="footer">
             <Reveal width="100%">
-                <div className="footer-content">
-
-                    <div className="footer-brand-col">
-                        <div className="logo-container">
-                            <div className="logo-icon small">
-                                <Code2 size={16} color="white" />
-                            </div>
-                            <span className="brand">DevPortfolio</span>
-                        </div>
-                        <p className="footer-bio">
-                            Building digital experiences with passion and precision.
-                        </p>
-                    </div>
-
-                    <div className="footer-links-col">
-                        <h4>Navigation</h4>
-                        <a href="#home">Home</a>
-                        <a href="#about">About Me</a>
-                        <a href="#work">My Projects</a>
-                        <a href="#contact">Get in Touch</a>
-                    </div>
-
-                    <div className="footer-links-col">
-                        <h4>Socials</h4>
-                        <a href="https://www.linkedin.com/in/jilan-mansuri-235b38392/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                        <a href="https://github.com/Jilanmansuri" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <a href="https://x.com/jilan_24" target="_blank" rel="noopener noreferrer">Twitter</a>
-                        <a href="https://www.youtube.com/@JilanMansuri-b3c" target="_blank" rel="noopener noreferrer">YouTube</a>
-                    </div>
-
-                    <div className="footer-action-col">
-                        <h4>Let's Chat</h4>
-                        <button className="btn-small">rdev@example.com</button>
-                    </div>
-
-                </div>
-
                 <div className="footer-bottom">
                     <p>© 2025 Developer. All rights reserved.</p>
                     <div className="footer-social-icons">
