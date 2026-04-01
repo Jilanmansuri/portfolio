@@ -735,31 +735,31 @@ body {
 }
 
 #about h2 {
-  background-image: linear-gradient(90deg, #06b6d4, #3b82f6, #06b6d4);
+  background-image: linear-gradient(90deg, #3b82f6, #22d3ee, #0ea5e9);
 }
 
 #skills h2 {
-  background-image: linear-gradient(90deg, #a855f7, #ec4899, #a855f7);
+  background-image: linear-gradient(90deg, #4ade80, #10b981, #14b8a6);
 }
 
 #work h2 {
-  background-image: linear-gradient(90deg, #3b82f6, #818cf8, #3b82f6);
+  background-image: linear-gradient(90deg, #facc15, #f59e0b, #f97316);
 }
 
 #demo h2 {
-  background-image: linear-gradient(90deg, #10b981, #34d399, #10b981);
+  background-image: linear-gradient(90deg, #ef4444, #f43f5e, #ec4899);
 }
 
 #certificates h2 {
-  background-image: linear-gradient(90deg, #f59e0b, #eab308, #f59e0b);
+  background-image: linear-gradient(90deg, #a3e635, #22c55e, #65a30d);
 }
 
 #education h2 {
-  background-image: linear-gradient(90deg, #f97316, #db2777, #f97316);
+  background-image: linear-gradient(90deg, #f97316, #ef4444, #ea580c);
 }
 
 #contact h2 {
-  background-image: linear-gradient(90deg, #f43f5e, #fb923c, #f43f5e);
+  background-image: linear-gradient(90deg, #9ca3af, #64748b, #4b5563);
 }
 
 @keyframes shine {
@@ -4328,4 +4328,8 @@ html {
   background: rgba(239, 68, 68, 0.2);
   transform: translateY(-2px);
 }
+
+
+
+
 

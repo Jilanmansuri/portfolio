@@ -180,6 +180,38 @@ const hackathons = [
 ];
 
 const Projects = () => {
+    const renderProjectCard = (project, index) => (
+        <motion.div
+            key={project.title}
+            className="project-card"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
+            style={{ '--theme-color': project.color }}
+        >
+            <div className="card-image-container">
+                <img
+                    src={project.img}
+                    alt={project.title}
+                    className="project-img"
+                />
+            </div>
+            <div className="card-content">
+                <h3 style={{ color: project.color }}>{project.title}</h3>
+                <p>{project.description}</p>
+                <div className="card-actions">
+                    <a href={project.link || '#'} target="_blank" rel="noopener noreferrer" className="link-text">
+                        <ExternalLink size={16} /> Live Demo
+                    </a>
+                    <a href={project.github || '#'} target="_blank" rel="noopener noreferrer" className="link-text github-link">
+                        <Github size={16} /> Source Code
+                    </a>
+                </div>
+            </div>
+        </motion.div>
+    );
+
     return (
         <section className="section" id="work">
             <motion.h2
@@ -188,41 +220,28 @@ const Projects = () => {
                 viewport={{ once: true }}
                 className="section-title text-center"
             >
-                Projects
+                Featured Projects
             </motion.h2>
 
-            <div className="projects-grid">
-                {mainProjects.map((project, index) => (
-                    <motion.div
-                        key={index}
-                        className="project-card"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ delay: index * 0.1, duration: 0.5 }}
-                        style={{ '--theme-color': project.color }}
-                    >
-                        <div className="card-image-container">
-                            <img
-                                src={project.img}
-                                alt={project.title}
-                                className="project-img"
-                            />
-                        </div>
-                        <div className="card-content">
-                            <h3 style={{ color: project.color }}>{project.title}</h3>
-                            <p>{project.description}</p>
-                            <div className="card-actions">
-                                <a href={project.link || '#'} target="_blank" rel="noopener noreferrer" className="link-text">
-                                    <ExternalLink size={16} /> Live Demo
-                                </a>
-                                <a href={project.github || '#'} target="_blank" rel="noopener noreferrer" className="link-text github-link">
-                                    <Github size={16} /> Source Code
-                                </a>
-                            </div>
-                        </div>
-                    </motion.div>
-                ))}
+            <div className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+                {mainProjects.slice(0, 3).map((project, index) => renderProjectCard(project, index))}
+            </div>
+
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                style={{ marginTop: '80px', marginBottom: '40px' }}
+            >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <h2 className="section-title text-center" style={{ marginBottom: 0, fontSize: '28px', backgroundImage: 'linear-gradient(90deg, #6366f1, #2563eb, #4338ca)' }}>
+                        More Projects
+                    </h2>
+                </div>
+            </motion.div>
+
+            <div className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+                {mainProjects.slice(3).map((project, index) => renderProjectCard(project, index))}
             </div>
 
             {/* GAMES SECTION */}
@@ -233,7 +252,7 @@ const Projects = () => {
                 style={{ marginTop: '80px' }}
             >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', gap: '15px' }}>
-                    <h2 className="section-title text-center" style={{ marginBottom: 0 }}>Games</h2>
+                    <h2 className="section-title text-center" style={{ marginBottom: 0, backgroundImage: 'linear-gradient(90deg, #a855f7, #7c3aed, #6b21a8)' }}>Games</h2>
                 </div>
 
                 <div className="games-row">
@@ -277,7 +296,7 @@ const Projects = () => {
                 style={{ marginTop: '100px' }}
             >
                 <div style={{ display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', marginBottom: '50px' }}>
-                    <h2 className="section-title text-center" style={{ marginBottom: 0, backgroundSize: '150% auto', backgroundImage: 'linear-gradient(90deg, #ec4899, #8b5cf6, #ec4899)' }}>Mini Hackathon Projects</h2>
+                    <h2 className="section-title text-center" style={{ marginBottom: 0, backgroundSize: '150% auto', backgroundImage: 'linear-gradient(90deg, #ef4444, #f43f5e, #ec4899)' }}>Mini Hackathon Projects</h2>
                 </div>
 
                 <div className="hackathon-grid">
