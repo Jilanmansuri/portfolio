@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ExternalLink, Youtube, Users, Target, Lightbulb, Trophy } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const mainProjects = [
@@ -152,6 +152,33 @@ const games = [
     }
 ];
 
+const hackathons = [
+    {
+        title: "Smart Waste Management System",
+        problem: "Inefficient waste segregation leading to environmental hazards and low recycling rates.",
+        solution: "AI-based tracking and automated segregation system optimizing waste processing.",
+        techStack: ["React", "Python", "AI/ML", "Node.js"],
+        role: "Team Project",
+        result: "Finalist",
+        github: "#",
+        demo: "#",
+        color: "#10b981",
+        gradientId: "hack-grad-1"
+    },
+    {
+        title: "Leave Management System",
+        problem: "Manual, paper-based tracking of student/employee leaves causing delays and data loss.",
+        solution: "A streamlined web app for requesting, approving, and tracking leaves efficiently.",
+        techStack: ["React", "Tailwind", "Firebase", "Express"],
+        role: "Solo Project",
+        result: "Practice Project",
+        github: "#",
+        demo: "#",
+        color: "#6366f1",
+        gradientId: "hack-grad-2"
+    }
+];
+
 const Projects = () => {
     return (
         <section className="section" id="work">
@@ -236,6 +263,78 @@ const Projects = () => {
                                         <ExternalLink size={14} /> Play
                                     </a>
                                 </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+            </motion.div>
+
+            {/* HACKATHON SECTION */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                style={{ marginTop: '100px' }}
+            >
+                <div style={{ display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', marginBottom: '50px' }}>
+                    <h2 className="section-title text-center" style={{ marginBottom: 0, backgroundSize: '150% auto', backgroundImage: 'linear-gradient(90deg, #ec4899, #8b5cf6, #ec4899)' }}>Mini Hackathon Projects</h2>
+                </div>
+
+                <div className="hackathon-grid">
+                    {hackathons.map((hack, index) => (
+                        <motion.div
+                            key={index}
+                            className={`hackathon-card ${hack.gradientId}`}
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.2, duration: 0.5, ease: "easeOut" }}
+                            style={{ '--theme-color': hack.color }}
+                        >
+                            <div className="hack-header">
+                                <h3 style={{ color: hack.color }}>{hack.title}</h3>
+                                <div className={`hack-badge ${hack.result === 'Finalist' ? 'badge-gold' : 'badge-blue'}`}>
+                                    <Trophy size={14} /> <span>{hack.result}</span>
+                                </div>
+                            </div>
+
+                            <div className="hack-body">
+                                <div className="hack-item" style={{ marginTop: '15px' }}>
+                                    <Target size={18} className="hack-icon text-muted" />
+                                    <div>
+                                        <strong>Problem:</strong>
+                                        <p>{hack.problem}</p>
+                                    </div>
+                                </div>
+                                <div className="hack-item">
+                                    <Lightbulb size={18} className="hack-icon text-muted" />
+                                    <div>
+                                        <strong>Solution:</strong>
+                                        <p>{hack.solution}</p>
+                                    </div>
+                                </div>
+                                
+                                <div className="hack-meta">
+                                    <div className="hack-meta-item">
+                                        <Users size={16} style={{color: hack.color}} />
+                                        <span>{hack.role}</span>
+                                    </div>
+                                </div>
+
+                                <div className="hack-tech">
+                                    {hack.techStack.map((tech, i) => (
+                                        <span key={i} className="tech-badge">{tech}</span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="hack-footer">
+                                <a href={hack.github || '#'} target="_blank" rel="noopener noreferrer" className="btn-hack btn-github">
+                                    <Github size={18} /> GitHub
+                                </a>
+                                <a href={hack.demo || '#'} target="_blank" rel="noopener noreferrer" className="btn-hack btn-demo">
+                                    <Youtube size={18} /> Demo
+                                </a>
                             </div>
                         </motion.div>
                     ))}
