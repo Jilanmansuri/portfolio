@@ -162,12 +162,12 @@ const hackathons = [
     {
         title: "ArtPark CodeForge",
         subtitle: "IISc, Bangalore",
-        year: "2025",
+        year: "2026",
         description: "Prototype Development Round of the ArtPark CodeForge Hackathon, organized by the Indian Institute of Science (IISc), Bangalore.",
         certificateImg: "/iis-cert.png",
         projectTitle: "SkillForge AI",
         projectDesc: "An AI-powered skill development platform designed to streamline learning paths through intelligent analysis and personalized roadmaps.",
-        techStack: ["React", "Node.js", "AI/ML", "Tailwind"],
+        techStack: ["React", "Node.js", "AI API", "Tailwind"],
         github: "https://github.com/Jilanmansuri/Hack-Titans",
         demo: "https://skill-forge-ai-o8j4.vercel.app/",
         video: "https://youtu.be/1tZeN9hGZRo",
@@ -181,7 +181,7 @@ const hackathons = [
         certificateImg: "/openpools-cert.png",
         projectTitle: "FreelanceX",
         projectDesc: "A robust freelance marketplace and networking platform built with a focus on seamless connectivity and modern vector-based interactions.",
-        techStack: ["React", "Express", "Vite", "MySQL"],
+        techStack: ["React", "Express", "Node.js", "MongoDB" , "AI API"],
         github: "https://github.com/abdulhaque2005/vector-minds",
         demo: "https://vector-minds.vercel.app/",
         video: "https://youtu.be/isdwJFdwx0Q?si=V8fTLB0OYzy6Zs9J",
@@ -267,7 +267,7 @@ const Projects = () => {
                 style={{ marginTop: '80px' }}
             >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', gap: '15px' }}>
-                    <h2 className="section-title text-center" style={{ marginBottom: 0, backgroundImage: 'linear-gradient(90deg, #a855f7, #7c3aed, #6b21a8)' }}>Games</h2>
+                    <h2 className="section-title text-center" style={{ marginBottom: 0, backgroundImage: 'linear-gradient(90deg, #a855f7, #7c3aed, #6b21a8)' }}>Mini Games</h2>
                 </div>
 
                 <div className="games-row">
@@ -357,13 +357,13 @@ const Projects = () => {
                                     </div>
                                     
                                     <div className="premium-hack-links">
-                                        <a href={hack.github} target="_blank" rel="noopener noreferrer" className="hack-link">
+                                        <a href={hack.github} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-code">
                                             <Github size={18} /> Code
                                         </a>
-                                        <a href={hack.demo} target="_blank" rel="noopener noreferrer" className="hack-link">
+                                        <a href={hack.demo} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-demo">
                                             <ExternalLink size={18} /> Live Demo
                                         </a>
-                                        <a href={hack.video} target="_blank" rel="noopener noreferrer" className="hack-link">
+                                        <a href={hack.video} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-video">
                                             <Youtube size={18} /> Demo Video
                                         </a>
                                     </div>

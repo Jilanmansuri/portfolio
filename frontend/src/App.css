@@ -2801,20 +2801,22 @@ body {
 .card-actions {
   margin-top: auto;
   display: flex;
-  gap: 20px;
+  gap: 12px;
   padding-top: 15px;
+  flex-wrap: nowrap;
 }
 
 .link-text {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 14px;
+  gap: 5px;
+  font-size: 12.5px;
   font-weight: 500;
   text-decoration: none;
   color: #22d3ee;
   /* Default Cyan */
   transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .link-text:hover {
@@ -4495,15 +4497,49 @@ html {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
-  transition: color 0.3s;
+  transition: color 0.3s, opacity 0.3s;
 }
 
-.hack-link:hover {
-  color: #fff;
+/* Code button — black/charcoal */
+.hack-link-code {
+  color: #9ca3af;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.hack-link-code:hover {
+  color: #e5e7eb;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Live Demo button — light blue-green / teal */
+.hack-link-demo {
+  color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.08);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(45, 212, 191, 0.25);
+}
+.hack-link-demo:hover {
+  color: #5eead4;
+  background: rgba(45, 212, 191, 0.18);
+}
+
+/* Demo Video button — red */
+.hack-link-video {
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.08);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+.hack-link-video:hover {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.18);
 }
 
 
