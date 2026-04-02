@@ -13,13 +13,14 @@ const mainProjects = [
         color: "#4f46e5"
     },
     {
-        title: "Github Finder",
-        description: "Search GitHub users and view their profiles and repositories.",
-        tags: ["React", "API", "Tailwind"],
-        img: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&q=80&w=800", // Github/Code flavored image
-        link: "https://github-finder-7655.netlify.app/",
-        github: "https://github.com/Jilanmansuri/Projects/tree/main/github-finder",
-        color: "#f0f6fc" // Github Light (White-ish)
+        title: "FreelanceX",
+        description: "A robust freelance marketplace and networking platform with seamless connectivity and modern vector-based interactions.",
+        tags: ["React", "Node.js", "MongoDB", "AI API"],
+        img: "/freelancex.png",
+        link: "https://vector-minds.vercel.app/",
+        github: "https://github.com/Jilanmansuri/FreelanceX",
+        video: "https://youtu.be/isdwJFdwx0Q?si=V8fTLB0OYzy6Zs9J",
+        color: "#3b82f6"
     },
     {
         title: "DreamGames Clone",
@@ -30,6 +31,15 @@ const mainProjects = [
         github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
         video: "https://youtu.be/OsPK9A-OZRU",
         color: "#3b82f6"
+    },
+    {
+        title: "Github Finder",
+        description: "Search GitHub users and view their profiles and repositories.",
+        tags: ["React", "API", "Tailwind"],
+        img: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?auto=format&fit=crop&q=80&w=800",
+        link: "https://github-finder-7655.netlify.app/",
+        github: "https://github.com/Jilanmansuri/Projects/tree/main/github-finder",
+        color: "#f0f6fc"
     },
     {
         title: "Cronos Clone",

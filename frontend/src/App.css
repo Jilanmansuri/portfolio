@@ -4009,6 +4009,7 @@ body {
 
 .project-card:hover {
   transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+  scale: calc(1.02);
   box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.3);
 }
 
@@ -4548,3 +4549,90 @@ html {
   /* Red for YouTube */
 }
 
+/* Light Theme: Premium Hackathon Card */
+.light-theme .premium-hackathon-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.light-theme .premium-hackathon-card:hover {
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .premium-hack-header h3 {
+  color: #0f172a;
+}
+
+.light-theme .year-badge {
+  background: rgba(0, 0, 0, 0.04);
+  color: #475569;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .hack-main-desc {
+  color: #475569;
+}
+
+.light-theme .premium-hack-body {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.light-theme .premium-hack-image-frame {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.light-theme .project-built-tag span {
+  color: #334155;
+}
+
+.light-theme .premium-hack-project-info h4 {
+  color: #0f172a;
+}
+
+.light-theme .premium-hack-project-info p {
+  color: #475569;
+}
+
+.light-theme .tech-tag {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #475569;
+}
+
+.light-theme .premium-hack-links {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Light theme variants for hackathon buttons */
+.light-theme .hack-link-code {
+  color: #334155;
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.light-theme .hack-link-code:hover {
+  color: #0f172a;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .hack-link-demo {
+  color: #0d9488;
+  background: rgba(13, 148, 136, 0.08);
+  border-color: rgba(13, 148, 136, 0.25);
+}
+.light-theme .hack-link-demo:hover {
+  color: #0f766e;
+  background: rgba(13, 148, 136, 0.15);
+}
+
+.light-theme .hack-link-video {
+  color: #e11d48;
+  background: rgba(225, 29, 72, 0.08);
+  border-color: rgba(225, 29, 72, 0.25);
+}
+.light-theme .hack-link-video:hover {
+  color: #be123c;
+  background: rgba(225, 29, 72, 0.15);
+}
