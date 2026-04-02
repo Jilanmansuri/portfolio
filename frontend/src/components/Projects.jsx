@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, ExternalLink, Youtube, Users, Target, Lightbulb, Trophy } from 'lucide-react';
+import { Github, ExternalLink, Youtube, Users, Target, Lightbulb, Trophy, Calendar, Code } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const mainProjects = [
@@ -28,7 +28,8 @@ const mainProjects = [
         img: "/dreams.png",
         link: "#",
         github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
-        color: "#3b82f6" // Bright Blue
+        video: "https://youtu.be/OsPK9A-OZRU",
+        color: "#3b82f6"
     },
     {
         title: "Cronos Clone",
@@ -37,7 +38,8 @@ const mainProjects = [
         img: "/cronos.png",
         link: "#",
         github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
-        color: "#60a5fa" // Lighter Blue for visibility
+        video: "https://youtu.be/igXTN2i9gVU",
+        color: "#60a5fa"
     },
     {
         title: "News App",
@@ -46,7 +48,7 @@ const mainProjects = [
         img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=800",
         link: "https://jilan-108623-apiproject.netlify.app/",
         github: "#",
-        color: "#ef4444" // Red
+        color: "#ef4444"
     },
     {
         title: "Barista Clone",
@@ -55,7 +57,8 @@ const mainProjects = [
         img: "/barista.png",
         link: "https://barista-web-clone-108623.netlify.app/",
         github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
-        color: "#d97706" // Coffee Brown
+        video: "https://youtu.be/MaxuwgmfpDA",
+        color: "#d97706"
     },
     {
         title: "JioTV Clone",
@@ -64,7 +67,8 @@ const mainProjects = [
         img: "/jiotv-mockup.png",
         link: "https://jiotv-web2-clone.netlify.app/",
         github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
-        color: "#0078d7" // Jio Blue
+        video: "https://youtu.be/q0Vrh8M2Yp0",
+        color: "#0078d7"
     },
     {
         title: "Glean Clone",
@@ -73,7 +77,8 @@ const mainProjects = [
         img: "/glean.png",
         link: "https://glean-clone-web5-108623.netlify.app/",
         github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
-        color: "#6366f1" // Indigo
+        video: "https://youtu.be/ePT3Pho75ic",
+        color: "#6366f1"
     },
     {
         title: "Paxos Gold Clone",
@@ -82,7 +87,8 @@ const mainProjects = [
         img: "/paxos.png",
         link: "https://paxos-clone-web4.netlify.app/",
         github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
-        color: "#facc15" // Gold
+        video: "https://youtu.be/fCNuwqJAkJ0",
+        color: "#facc15"
     }
 ];
 
@@ -154,28 +160,32 @@ const games = [
 
 const hackathons = [
     {
-        title: "Smart Waste Management System",
-        problem: "Inefficient waste segregation leading to environmental hazards and low recycling rates.",
-        solution: "AI-based tracking and automated segregation system optimizing waste processing.",
-        techStack: ["React", "Python", "AI/ML", "Node.js"],
-        role: "Team Project",
-        result: "Finalist",
-        github: "#",
-        demo: "#",
-        color: "#10b981",
-        gradientId: "hack-grad-1"
+        title: "ArtPark CodeForge",
+        subtitle: "IISc, Bangalore",
+        year: "2025",
+        description: "Prototype Development Round of the ArtPark CodeForge Hackathon, organized by the Indian Institute of Science (IISc), Bangalore.",
+        certificateImg: "/iis-cert.png",
+        projectTitle: "SkillForge AI",
+        projectDesc: "An AI-powered skill development platform designed to streamline learning paths through intelligent analysis and personalized roadmaps.",
+        techStack: ["React", "Node.js", "AI/ML", "Tailwind"],
+        github: "https://github.com/Jilanmansuri/Hack-Titans",
+        demo: "https://skill-forge-ai-o8j4.vercel.app/",
+        video: "https://youtu.be/1tZeN9hGZRo",
+        color: "#10b981"
     },
     {
-        title: "Leave Management System",
-        problem: "Manual, paper-based tracking of student/employee leaves causing delays and data loss.",
-        solution: "A streamlined web app for requesting, approving, and tracking leaves efficiently.",
-        techStack: ["React", "Tailwind", "Firebase", "Express"],
-        role: "Solo Project",
-        result: "Practice Project",
-        github: "#",
-        demo: "#",
-        color: "#6366f1",
-        gradientId: "hack-grad-2"
+        title: "Doppleganger",
+        subtitle: "OpenPools",
+        year: "2026",
+        description: "A collaborative 30-hour build sprint where teams transformed professional DNA into real-world solutions hosted on OpenPools.",
+        certificateImg: "/openpools-cert.png",
+        projectTitle: "FreelanceX",
+        projectDesc: "A robust freelance marketplace and networking platform built with a focus on seamless connectivity and modern vector-based interactions.",
+        techStack: ["React", "Express", "Vite", "MySQL"],
+        github: "https://github.com/abdulhaque2005/vector-minds",
+        demo: "https://vector-minds.vercel.app/",
+        video: "https://youtu.be/isdwJFdwx0Q?si=V8fTLB0OYzy6Zs9J",
+        color: "#3b82f6"
     }
 ];
 
@@ -207,6 +217,11 @@ const Projects = () => {
                     <a href={project.github || '#'} target="_blank" rel="noopener noreferrer" className="link-text github-link">
                         <Github size={16} /> Source Code
                     </a>
+                    {project.video && (
+                        <a href={project.video} target="_blank" rel="noopener noreferrer" className="link-text video-link">
+                            <Youtube size={16} /> Video
+                        </a>
+                    )}
                 </div>
             </div>
         </motion.div>
@@ -295,65 +310,64 @@ const Projects = () => {
                 viewport={{ once: true }}
                 style={{ marginTop: '100px' }}
             >
-                <div style={{ display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', marginBottom: '50px' }}>
-                    <h2 className="section-title text-center" style={{ marginBottom: 0, backgroundSize: '150% auto', backgroundImage: 'linear-gradient(90deg, #ef4444, #f43f5e, #ec4899)' }}>Mini Hackathon Projects</h2>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '50px' }}>
+                    <h2 className="section-title text-center" style={{ marginBottom: 0, backgroundImage: 'linear-gradient(90deg, #ef4444, #f43f5e, #ec4899)' }}>Hackathon Participation</h2>
                 </div>
 
-                <div className="hackathon-grid">
+                <div className="premium-hackathon-grid">
                     {hackathons.map((hack, index) => (
                         <motion.div
                             key={index}
-                            className={`hackathon-card ${hack.gradientId}`}
-                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                            className="premium-hackathon-card"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 1 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.2, duration: 0.5, ease: "easeOut" }}
-                            style={{ '--theme-color': hack.color }}
+                            transition={{ delay: index * 0.2, duration: 0.5 }}
                         >
-                            <div className="hack-header">
-                                <h3 style={{ color: hack.color }}>{hack.title}</h3>
-                                <div className={`hack-badge ${hack.result === 'Finalist' ? 'badge-gold' : 'badge-blue'}`}>
-                                    <Trophy size={14} /> <span>{hack.result}</span>
+                            <div className="premium-hack-header">
+                                <div className="header-left">
+                                    <h3>{hack.title}</h3>
+                                    <span className="subtitle" style={{ color: hack.color }}>{hack.subtitle}</span>
+                                </div>
+                                <div className="year-badge">
+                                    <Calendar size={14} /> <span>{hack.year}</span>
                                 </div>
                             </div>
+                            
+                            <p className="hack-main-desc">{hack.description}</p>
 
-                            <div className="hack-body">
-                                <div className="hack-item" style={{ marginTop: '15px' }}>
-                                    <Target size={18} className="hack-icon text-muted" />
-                                    <div>
-                                        <strong>Problem:</strong>
-                                        <p>{hack.problem}</p>
-                                    </div>
-                                </div>
-                                <div className="hack-item">
-                                    <Lightbulb size={18} className="hack-icon text-muted" />
-                                    <div>
-                                        <strong>Solution:</strong>
-                                        <p>{hack.solution}</p>
-                                    </div>
+                            <div className="premium-hack-body">
+                                <div className="premium-hack-image-frame">
+                                    <img src={hack.certificateImg} alt="Certificate" />
                                 </div>
                                 
-                                <div className="hack-meta">
-                                    <div className="hack-meta-item">
-                                        <Users size={16} style={{color: hack.color}} />
-                                        <span>{hack.role}</span>
+                                <div className="premium-hack-project-info">
+                                    <div className="project-built-tag">
+                                        <Code size={16} color={hack.color} />
+                                        <span>PROJECT BUILT</span>
+                                    </div>
+                                    
+                                    <h4>{hack.projectTitle}</h4>
+                                    <p>{hack.projectDesc}</p>
+                                    
+                                    <div className="premium-hack-tech">
+                                        {hack.techStack.map((tech, i) => (
+                                            <span key={i} className="tech-tag">{tech}</span>
+                                        ))}
+                                    </div>
+                                    
+                                    <div className="premium-hack-links">
+                                        <a href={hack.github} target="_blank" rel="noopener noreferrer" className="hack-link">
+                                            <Github size={18} /> Code
+                                        </a>
+                                        <a href={hack.demo} target="_blank" rel="noopener noreferrer" className="hack-link">
+                                            <ExternalLink size={18} /> Live Demo
+                                        </a>
+                                        <a href={hack.video} target="_blank" rel="noopener noreferrer" className="hack-link">
+                                            <Youtube size={18} /> Demo Video
+                                        </a>
                                     </div>
                                 </div>
-
-                                <div className="hack-tech">
-                                    {hack.techStack.map((tech, i) => (
-                                        <span key={i} className="tech-badge">{tech}</span>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="hack-footer">
-                                <a href={hack.github || '#'} target="_blank" rel="noopener noreferrer" className="btn-hack btn-github">
-                                    <Github size={18} /> GitHub
-                                </a>
-                                <a href={hack.demo || '#'} target="_blank" rel="noopener noreferrer" className="btn-hack btn-demo">
-                                    <Youtube size={18} /> Demo
-                                </a>
                             </div>
                         </motion.div>
                     ))}
