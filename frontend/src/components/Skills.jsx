@@ -80,7 +80,7 @@ const Skills = () => {
                                 exit={{ opacity: 0, scale: 0.8 }}
                                 className={`inventory-slot rarity-${skill.rarity} ${selectedSkill?.name === skill.name ? 'selected' : ''}`}
                                 onClick={() => setSelectedSkill(skill)}
-                                whileHover={{ scale: 1.3, borderColor: rarityColors[skill.rarity] }}
+                                whileHover={{ scale: 1.2, borderColor: rarityColors[skill.rarity] }}
                                 whileTap={{ scale: 0.95 }}
                             >
                                 <div className="slot-corner-tl"></div>
