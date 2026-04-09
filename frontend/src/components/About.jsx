@@ -7,14 +7,14 @@ const About = () => {
     return (
         <section className="section" id="about">
             <motion.h2
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -50, y: 0 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true }}
                 className="section-title text-center"
             >
                 About Me
             </motion.h2>
-            <Reveal>
+            <Reveal direction="right">
                 <div className="about-content">
                     <p className="about-text">
                         I am a driven <span className="text-highlight">1st Year Computer Engineering Student</span> at <strong className="text-primary">Coding Gita x Swaminarayan University</strong>, passionate about translating logic into creative digital experiences.

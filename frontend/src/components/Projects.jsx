@@ -204,8 +204,8 @@ const Projects = () => {
         <motion.div
             key={project.title}
             className="project-card"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 30 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ delay: index * 0.1, duration: 0.5 }}
             style={{ '--theme-color': project.color }}
@@ -240,8 +240,8 @@ const Projects = () => {
     return (
         <section className="section" id="work">
             <motion.h2
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -50, y: 0 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true }}
                 className="section-title text-center"
             >

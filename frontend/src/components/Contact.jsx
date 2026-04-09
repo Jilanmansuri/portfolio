@@ -59,17 +59,17 @@ const Contact = () => {
         <>
             <section className="section contact-section" id="contact">
                 <motion.h2
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -50, y: 0 }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
                     viewport={{ once: true }}
                     className="section-title text-center"
                 >
                     Contact Me
                 </motion.h2>
-                <Reveal width="100%">
-                    <div className="contact-wrapper">
+                <div className="contact-wrapper">
 
-                        {/* Left: Contact Info */}
+                    {/* Left: Contact Info */}
+                    <Reveal direction="left" width="100%">
                         <div className="contact-info">
                             <div className="contact-header-left">
                                 <div className="icon-box">
@@ -93,8 +93,10 @@ const Contact = () => {
                                 </div>
                             </div>
                         </div>
+                    </Reveal>
 
-                        {/* Right: Form */}
+                    {/* Right: Form */}
+                    <Reveal direction="right" width="100%" delay={0.4}>
                         <form ref={form} className="contact-form" onSubmit={handleContactSubmit}>
                             <div className="input-row">
                                 <div className="input-group">
@@ -120,9 +122,9 @@ const Contact = () => {
                                 {isSending ? 'Sending...' : <>Send Message <ChevronRight size={18} /></>}
                             </button>
                         </form>
+                    </Reveal>
 
-                    </div>
-                </Reveal>
+                </div>
             </section>
 
             {/* Toast Notification */}

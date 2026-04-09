@@ -1,48 +1,39 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from "react";
+import { motion, useInView, useAnimation } from "framer-motion";
 
-/**
- * ScrollReveal component for section animations
- * Uses IntersectionObserver for performance-optimized scroll reveals
- */
-export default function ScrollReveal({ children, className = '', delay = 0 }) {
-    const [isVisible, setIsVisible] = useState(false);
+export default function ScrollReveal({ children, width = "100%", overflow = "hidden", direction = "up" }) {
     const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const mainControls = useAnimation();
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true);
-                    // Optionally unobserve after revealing once
-                    observer.unobserve(entry.target);
-                }
-            },
-            {
-                threshold: 0.1, // Trigger when 10% visible
-                rootMargin: '-50px' // Start animation slightly before element enters viewport
-            }
-        );
-
-        if (ref.current) {
-            observer.observe(ref.current);
+        if (isInView) {
+            mainControls.start("visible");
         }
+    }, [isInView, mainControls]);
 
-        return () => {
-            if (ref.current) {
-                observer.unobserve(ref.current);
-            }
-        };
-    }, []);
+    const variants = {
+        hidden: { 
+            opacity: 0, 
+            y: direction === "up" ? 40 : direction === "down" ? -40 : 0,
+            x: direction === "left" ? 40 : direction === "right" ? -40 : 0
+        },
+        visible: { opacity: 1, y: 0, x: 0 },
+    };
 
     return (
         <div
             ref={ref}
-            className={`scroll-reveal ${isVisible ? 'is-visible' : ''} ${className}`}
-            style={{
-                transitionDelay: `${delay}ms`
-            }}
+            style={{ position: "relative", width, overflow }}
         >
-            {children}
+            <motion.div
+                variants={variants}
+                initial="hidden"
+                animate={mainControls}
+                transition={{ duration: 0.5, delay: 0.2 }}
+            >
+                {children}
+            </motion.div>
         </div>
     );
 }

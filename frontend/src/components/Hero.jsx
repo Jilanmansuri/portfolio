@@ -6,9 +6,9 @@ import { Reveal } from './Reveal';
 const Hero = () => {
     return (
         <section className="hero" id="home">
-            <Reveal width="100%" overflow="visible">
                 <div className="hero-content">
-                    <div className="profile-container">
+                    <Reveal direction="left" width="auto" overflow="visible">
+                        <div className="profile-container">
                         <div className="profile-img-wrapper">
                             <img
                                 src="/profile.png"
@@ -22,10 +22,12 @@ const Hero = () => {
                                 </svg>
                             </div>
                         </div>
-                    </div>
+                        </div>
+                    </Reveal>
 
-                    <div className="hero-text-content">
-                        <span className="welcome-tag">WELCOME TO MY PORTFOLIO</span>
+                    <Reveal direction="right" width="auto" delay={0.4}>
+                        <div className="hero-text-content">
+                            <span className="welcome-tag">WELCOME TO MY PORTFOLIO</span>
                         <h1 className="hero-title">
                             <Typewriter
                                 onInit={(typewriter) => {
@@ -66,8 +68,8 @@ const Hero = () => {
                             </button>
                         </div>
                     </div>
+                    </Reveal>
                 </div>
-            </Reveal>
         </section>
     );
 };

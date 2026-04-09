@@ -7,8 +7,8 @@ const Certificates = () => {
     return (
         <section className="section" id="certificates">
             <motion.h2
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -50, y: 0 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
                 viewport={{ once: true }}
                 className="section-title text-center"
             >
@@ -22,7 +22,7 @@ const Certificates = () => {
 
 
                 <div className="cert-col w-full max-w-[350px] flex">
-                    <Reveal>
+                    <Reveal direction="left">
                         <div className="cert-card-large shadow-xl flex flex-col w-full h-full">
                             <div className="cert-image-wrapper h-[180px] md:h-[200px] bg-black/40 flex items-center justify-center p-2 pb-1">
                                 <img
@@ -51,7 +51,7 @@ const Certificates = () => {
 
                 {/* Cert 2 */}
                 <div className="cert-col w-full max-w-[350px] flex">
-                    <Reveal>
+                    <Reveal direction="right" delay={0.4}>
                         <div className="cert-card-large shadow-xl flex flex-col w-full h-full">
                             <div className="cert-image-wrapper h-[180px] md:h-[200px] bg-black/40 flex items-center justify-center p-2 pb-1">
                                 <img
@@ -80,7 +80,7 @@ const Certificates = () => {
 
                 {/* Cert 3 — centered below */}
                 <div className="cert-col w-full max-w-[350px] flex">
-                    <Reveal>
+                    <Reveal direction="left">
                         <div className="cert-card-large shadow-xl flex flex-col w-full h-full">
                             <div className="cert-image-wrapper h-[180px] md:h-[200px] bg-black/40 flex items-center justify-center p-2 pb-1">
                                 <img
@@ -112,7 +112,7 @@ const Certificates = () => {
 
 
                 <div className="cert-col w-full max-w-[350px] flex">
-                    <Reveal>
+                    <Reveal direction="right" delay={0.4}>
                         <div className="cert-card-large shadow-xl flex flex-col w-full h-full">
                             <div className="cert-image-wrapper h-[180px] md:h-[200px] bg-black/40 flex items-center justify-center p-2 pb-1">
                                 <img

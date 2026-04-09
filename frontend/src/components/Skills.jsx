@@ -71,13 +71,14 @@ const Skills = () => {
                     layout
                 >
                     <AnimatePresence>
-                        {filteredSkills.map((skill) => (
+                        {filteredSkills.map((skill, index) => (
                             <motion.div
                                 layout
                                 key={skill.name}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
+                                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
                                 exit={{ opacity: 0, scale: 0.8 }}
+                                transition={{ duration: 0.3, delay: index * 0.1 }}
                                 className={`inventory-slot rarity-${skill.rarity} ${selectedSkill?.name === skill.name ? 'selected' : ''}`}
                                 onClick={() => setSelectedSkill(skill)}
                                 whileHover={{ scale: 1.2, borderColor: rarityColors[skill.rarity] }}
