@@ -371,7 +371,7 @@ const Projects = () => {
                                             <Github size={18} /> Code
                                         </a>
                                         <a href={hack.demo} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-demo">
-                                            <ExternalLink size={18} /> Live Demo
+                                            <ExternalLink size={18} /> Live
                                         </a>
                                         <a href={hack.video} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-video">
                                             <Youtube size={18} /> Demo Video

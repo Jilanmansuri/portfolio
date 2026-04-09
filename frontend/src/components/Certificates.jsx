@@ -31,10 +31,10 @@ const Certificates = () => {
                                     className="cert-img-large object-contain max-h-full"
                                 />
                             </div>
-                            <div className="cert-details-large !p-2 flex flex-col">
-                                <div className="cert-row flex flex-row items-center justify-between w-full gap-2">
-                                    <div className="flex flex-col gap-0.5 min-w-0">
-                                        <div className="cert-header flex items-center gap-1.5 font-bold text-white">
+                            <div className="cert-details-large flex flex-col">
+                                <div className="cert-row flex flex-col items-start w-full">
+                                    <div className="flex flex-col gap-1.5 min-w-0">
+                                        <div className="cert-header flex items-center gap-2 font-bold text-white">
                                             <Award size={14} className="text-[#38bdf8] shrink-0" />
                                             <h3 className="text-[13px] leading-tight truncate">JavaScript (Basic)</h3>
                                         </div>
@@ -60,10 +60,10 @@ const Certificates = () => {
                                     className="cert-img-large object-contain max-h-full"
                                 />
                             </div>
-                            <div className="cert-details-large !p-2 flex flex-col">
-                                <div className="cert-row flex flex-row items-center justify-between w-full gap-2">
-                                    <div className="flex flex-col gap-0.5 min-w-0">
-                                        <div className="cert-header flex items-center gap-1.5 font-bold text-white">
+                            <div className="cert-details-large flex flex-col">
+                                <div className="cert-row flex flex-col items-start w-full">
+                                    <div className="flex flex-col gap-1.5 min-w-0">
+                                        <div className="cert-header flex items-center gap-2 font-bold text-white">
                                             <Award size={14} className="text-[#f97316] shrink-0" />
                                             <h3 className="text-[13px] leading-tight truncate">CSS</h3>
                                         </div>
@@ -89,10 +89,10 @@ const Certificates = () => {
                                     className="cert-img-large object-contain max-h-full"
                                 />
                             </div>
-                            <div className="cert-details-large !p-2 flex flex-col">
-                                <div className="cert-row flex flex-row items-center justify-between w-full gap-2">
-                                    <div className="flex flex-col gap-0.5 min-w-0">
-                                        <div className="cert-header flex items-center gap-1.5 font-bold text-white">
+                            <div className="cert-details-large flex flex-col">
+                                <div className="cert-row flex flex-col items-start w-full">
+                                    <div className="flex flex-col gap-1.5 min-w-0">
+                                        <div className="cert-header flex items-center gap-2 font-bold text-white">
                                             <Award size={14} className="text-[#0071ce] shrink-0" />
                                             <h3 className="text-[13px] leading-tight truncate">Advanced SWE</h3>
                                         </div>
@@ -121,10 +121,10 @@ const Certificates = () => {
                                     className="cert-img-large object-contain max-h-full"
                                 />
                             </div>
-                            <div className="cert-details-large !p-2 flex flex-col">
-                                <div className="cert-row flex flex-row items-center justify-between w-full gap-2">
-                                    <div className="flex flex-col gap-0.5 min-w-0">
-                                        <div className="cert-header flex items-center gap-1.5 font-bold text-white">
+                            <div className="cert-details-large flex flex-col">
+                                <div className="cert-row flex flex-col items-start w-full">
+                                    <div className="flex flex-col gap-1.5 min-w-0">
+                                        <div className="cert-header flex items-center gap-2 font-bold text-white">
                                             <Award size={14} className="text-[#ec4899] shrink-0" />
                                             <h3 className="text-[13px] leading-tight truncate">Doppelganger Participation</h3>
                                         </div>
