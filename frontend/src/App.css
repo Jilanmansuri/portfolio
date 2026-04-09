@@ -2425,7 +2425,7 @@ body {
 
 @media (max-width: 768px) {
   .back-to-top {
-    bottom: 90px;
+    bottom: 75px;
     right: 20px;
   }
 }
