@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { Home, User, Briefcase, Mail, FileText } from 'lucide-react';
 
-const BottomNav = () => {
+const BottomNav = memo(() => {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -47,6 +47,9 @@ const BottomNav = () => {
             </a>
         </nav>
     );
-};
+});
+
+BottomNav.displayName = 'BottomNav';
 
 export default BottomNav;
+

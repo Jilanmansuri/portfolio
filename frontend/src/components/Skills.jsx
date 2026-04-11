@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const skillsData = [
@@ -32,7 +32,7 @@ const rarityColors = {
     legendary: "#eab308" // Gold
 };
 
-const Skills = () => {
+const Skills = memo(() => {
     const [activeCategory, setActiveCategory] = useState("All");
     const [selectedSkill, setSelectedSkill] = useState(null);
 
@@ -128,6 +128,9 @@ const Skills = () => {
             </div>
         </section>
     );
-};
+});
+
+Skills.displayName = 'Skills';
 
 export default Skills;
+

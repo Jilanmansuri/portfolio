@@ -1,19 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy, useCallback } from "react";
 import "./App.css";
-import UniverseBackground from "./components/UniverseBackground";
-// import CustomCursor from "./components/CustomCursor";
+
+// Lazy load sections that are not immediately visible above-the-fold
+const UniverseBackground = lazy(() => import("./components/UniverseBackground"));
+const About = lazy(() => import("./components/About"));
+const Skills = lazy(() => import("./components/Skills"));
+const Education = lazy(() => import("./components/Education"));
+const Projects = lazy(() => import("./components/Projects"));
+const Certificates = lazy(() => import("./components/Certificates"));
+const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
+const BottomNav = lazy(() => import("./components/BottomNav"));
+const ScrollToTop = lazy(() => import("./components/ScrollToTop"));
+
+// Keep Hero and Navbar eager for immediate LCP (Largest Contentful Paint)
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Education from "./components/Education";
-import Projects from "./components/Projects";
-import Resume from "./components/Resume";
-import Certificates from "./components/Certificates";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import BottomNav from "./components/BottomNav";
-import ScrollToTop from "./components/ScrollToTop";
+
+// Lightweight loading placeholder for lazy components
+const SectionLoader = () => (
+  <div style={{ 
+    height: '100px', 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center',
+    color: 'var(--text-muted)',
+    fontSize: '0.9rem',
+    opacity: 0.5
+  }}>
+    <span>Loading...</span>
+  </div>
+);
 
 export default function App() {
   const [theme, setTheme] = useState('dark');
@@ -28,53 +45,60 @@ export default function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => {
+  // Memoize toggle function to prevent Navbar re-renders
+  const toggleTheme = useCallback(() => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-  };
-
-
+  }, []);
 
   return (
     <div className="app">
-      {/* <CustomCursor /> */}
-      {/* Background Animation */}
-      <UniverseBackground theme={theme} />
+      {/* Background Animation - Lazy loaded to push Three.js out of the main bundle */}
+      <Suspense fallback={null}>
+        <UniverseBackground theme={theme} />
+      </Suspense>
 
       {/* ===== HEADER ===== */}
       <Navbar theme={theme} toggleTheme={toggleTheme} />
 
       <main>
-        {/* ===== HERO ===== */}
+        {/* ===== HERO - Core content, kept eager for performance ===== */}
         <Hero />
 
-        {/* ===== ABOUT ME ===== */}
-        <About />
+        <Suspense fallback={<SectionLoader />}>
+          {/* ===== ABOUT ME ===== */}
+          <About />
 
-        {/* ===== EDUCATION ===== */}
-        <Education />
+          {/* ===== EDUCATION ===== */}
+          <Education />
 
-        {/* ===== SKILLS & TOOLS ===== */}
-        <Skills />
+          {/* ===== SKILLS & TOOLS ===== */}
+          <Skills />
 
-        {/* ===== PROJECTS ===== */}
-        <Projects />
+          {/* ===== PROJECTS ===== */}
+          <Projects />
 
-        {/* ===== CERTIFICATES ===== */}
-        <Certificates />
+          {/* ===== CERTIFICATES ===== */}
+          <Certificates />
 
-        {/* ===== CONTACT Form ===== */}
-        <Contact />
+          {/* ===== CONTACT Form ===== */}
+          <Contact />
 
-        {/* ===== EXPANDED FOOTER ===== */}
-        <Footer />
+          {/* ===== EXPANDED FOOTER ===== */}
+          <Footer />
+        </Suspense>
       </main>
 
       {/* ===== BOTTOM NAVIGATION (Mobile Only) ===== */}
-      <BottomNav />
+      <Suspense fallback={null}>
+        <BottomNav />
+      </Suspense>
 
       {/* Back to Top Button */}
-      <ScrollToTop />
+      <Suspense fallback={null}>
+        <ScrollToTop />
+      </Suspense>
 
     </div>
   );
 }
+

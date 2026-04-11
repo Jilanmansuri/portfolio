@@ -1,9 +1,27 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, memo } from "react";
 import { GraduationCap, Calendar, MapPin, Award } from "lucide-react";
 import { motion, useInView, useAnimation } from "framer-motion";
 
+const educationData = [
+    {
+        id: 1,
+        title: "Computer Engineering",
+        institution: "Swaminaryan University",
+        location: "Kalol, Gujarat, India",
+        date: "2025 - 2029",
+        grade: "9.33",
+        description: [
+            "Pursuing Bachelor of Engineering in Computer Science",
+            "Building a strong foundation in full-stack development and software engineering",
+            "Proficient in HTML, CSS, JavaScript, React, Node.js, and MongoDB",
+            "Focusing on advanced web technologies and problem-solving skills"
+        ],
+        icon: <GraduationCap size={20} />,
+        color: "var(--primary)" // Orange
+    }
+];
 
-const Education = () => {
+const Education = memo(() => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
     const controls = useAnimation();
@@ -13,25 +31,6 @@ const Education = () => {
             controls.start("visible");
         }
     }, [isInView, controls]);
-
-    const educationData = [
-        {
-            id: 1,
-            title: "Computer Engineering",
-            institution: "Swaminaryan University",
-            location: "Kalol, Gujarat, India",
-            date: "2025 - 2029",
-            grade: "9.33",
-            description: [
-                "Pursuing Bachelor of Engineering in Computer Science",
-                "Building a strong foundation in full-stack development and software engineering",
-                "Proficient in HTML, CSS, JavaScript, React, Node.js, and MongoDB",
-                "Focusing on advanced web technologies and problem-solving skills"
-            ],
-            icon: <GraduationCap size={20} />,
-            color: "var(--primary)" // Orange
-        }
-    ];
 
     return (
         <section className="section education-section" id="education" ref={ref}>
@@ -120,6 +119,9 @@ const Education = () => {
             </div>
         </section>
     );
-};
+});
+
+Education.displayName = 'Education';
 
 export default Education;
+

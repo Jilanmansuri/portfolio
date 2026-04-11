@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Code2, Linkedin, Github, Youtube } from 'lucide-react';
 import { Reveal } from './Reveal';
 
@@ -20,7 +20,7 @@ const XPlatformIcon = ({ size = 24, color = "currentColor", ...props }) => (
     </svg>
 );
 
-const Footer = () => {
+const Footer = memo(() => {
     return (
         <footer className="footer">
             <Reveal width="100%">
@@ -36,6 +36,9 @@ const Footer = () => {
             </Reveal>
         </footer>
     );
-};
+});
+
+Footer.displayName = 'Footer';
 
 export default Footer;
+

@@ -1,16 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, memo } from "react";
 import { motion, useInView, useAnimation } from "framer-motion";
 
-export const Reveal = ({ children, width = "100%", overflow = "hidden", direction = "up", delay = 0.25 }) => {
+export const Reveal = memo(({ children, width = "100%", overflow = "hidden", direction = "up", delay = 0.25 }) => {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: false });
+    // Intersection observer set to trigger once for better performance
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
     const mainControls = useAnimation();
 
     useEffect(() => {
         if (isInView) {
             mainControls.start("visible");
-        } else {
-            mainControls.start("hidden");
         }
     }, [isInView, mainControls]);
 
@@ -42,4 +41,7 @@ export const Reveal = ({ children, width = "100%", overflow = "hidden", directio
             </motion.div>
         </div>
     );
-};
+});
+
+Reveal.displayName = "Reveal";
+

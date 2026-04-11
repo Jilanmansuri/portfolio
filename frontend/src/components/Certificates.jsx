@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Award, ExternalLink } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { motion } from 'framer-motion';
 
-const Certificates = () => {
+const Certificates = memo(() => {
     return (
         <section className="section" id="certificates">
             <motion.h2
@@ -18,9 +18,6 @@ const Certificates = () => {
             <div className="certificates-list flex flex-wrap justify-center gap-6 md:gap-8 max-w-[1000px] mx-auto">
 
                 {/* Cert 1 */}
-
-
-
                 <div className="cert-col w-full max-w-[350px] flex">
                     <Reveal direction="left">
                         <div className="cert-card-large shadow-xl flex flex-col w-full h-full">
@@ -29,6 +26,7 @@ const Certificates = () => {
                                     src="/cert-js.png"
                                     alt="JavaScript (Basic) Certificate"
                                     className="cert-img-large object-contain max-h-full"
+                                    loading="lazy"
                                 />
                             </div>
                             <div className="cert-details-large flex flex-col">
@@ -58,6 +56,7 @@ const Certificates = () => {
                                     src="/cert-css.png"
                                     alt="HackerRank CSS Certificate"
                                     className="cert-img-large object-contain max-h-full"
+                                    loading="lazy"
                                 />
                             </div>
                             <div className="cert-details-large flex flex-col">
@@ -87,6 +86,7 @@ const Certificates = () => {
                                     src="/walmart certificate.jpg"
                                     alt="Walmart Advanced Software Engineering"
                                     className="cert-img-large object-contain max-h-full"
+                                    loading="lazy"
                                 />
                             </div>
                             <div className="cert-details-large flex flex-col">
@@ -108,9 +108,6 @@ const Certificates = () => {
                 </div>
 
                 {/* Cert 5 */}
-
-
-
                 <div className="cert-col w-full max-w-[350px] flex">
                     <Reveal direction="right" delay={0.4}>
                         <div className="cert-card-large shadow-xl flex flex-col w-full h-full">
@@ -119,6 +116,7 @@ const Certificates = () => {
                                     src="/openpools-cert.png"
                                     alt="OpenPools Doppelganger Build Sprint"
                                     className="cert-img-large object-contain max-h-full"
+                                    loading="lazy"
                                 />
                             </div>
                             <div className="cert-details-large flex flex-col">
@@ -142,6 +140,9 @@ const Certificates = () => {
             </div>
         </section>
     );
-};
+});
+
+Certificates.displayName = 'Certificates';
 
 export default Certificates;
+

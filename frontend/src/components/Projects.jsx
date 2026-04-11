@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Github, ExternalLink, Youtube, Users, Target, Lightbulb, Trophy, Calendar, Code } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -199,44 +199,47 @@ const hackathons = [
     }
 ];
 
-const Projects = () => {
-    const renderProjectCard = (project, index) => (
-        <motion.div
-            key={project.title}
-            className="project-card"
-            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 30 }}
-            whileInView={{ opacity: 1, x: 0, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
-            style={{ '--theme-color': project.color }}
-        >
-            <div className="card-image-container">
-                <img
-                    src={project.img}
-                    alt={project.title}
-                    className="project-img"
-                />
-            </div>
-            <div className="card-content">
-                <h3 style={{ color: project.color }}>{project.title}</h3>
-                <p>{project.description}</p>
-                <div className="card-actions">
-                    <a href={project.link || '#'} target="_blank" rel="noopener noreferrer" className="link-text">
-                        <ExternalLink size={16} /> Live Demo
+// Memoized Project Card for better performance in lists
+const ProjectCard = memo(({ project, index }) => (
+    <motion.div
+        className="project-card"
+        initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 30 }}
+        whileInView={{ opacity: 1, x: 0, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ delay: index * 0.1, duration: 0.5 }}
+        style={{ '--theme-color': project.color }}
+    >
+        <div className="card-image-container">
+            <img
+                src={project.img}
+                alt={project.title}
+                className="project-img"
+                loading="lazy"
+            />
+        </div>
+        <div className="card-content">
+            <h3 style={{ color: project.color }}>{project.title}</h3>
+            <p>{project.description}</p>
+            <div className="card-actions">
+                <a href={project.link || '#'} target="_blank" rel="noopener noreferrer" className="link-text">
+                    <ExternalLink size={16} /> Live Demo
+                </a>
+                <a href={project.github || '#'} target="_blank" rel="noopener noreferrer" className="link-text github-link">
+                    <Github size={16} /> Source Code
+                </a>
+                {project.video && (
+                    <a href={project.video} target="_blank" rel="noopener noreferrer" className="link-text video-link">
+                        <Youtube size={16} /> Video
                     </a>
-                    <a href={project.github || '#'} target="_blank" rel="noopener noreferrer" className="link-text github-link">
-                        <Github size={16} /> Source Code
-                    </a>
-                    {project.video && (
-                        <a href={project.video} target="_blank" rel="noopener noreferrer" className="link-text video-link">
-                            <Youtube size={16} /> Video
-                        </a>
-                    )}
-                </div>
+                )}
             </div>
-        </motion.div>
-    );
+        </div>
+    </motion.div>
+));
 
+ProjectCard.displayName = 'ProjectCard';
+
+const Projects = memo(() => {
     return (
         <section className="section" id="work">
             <motion.h2
@@ -249,7 +252,9 @@ const Projects = () => {
             </motion.h2>
 
             <div className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-                {mainProjects.slice(0, 3).map((project, index) => renderProjectCard(project, index))}
+                {mainProjects.slice(0, 3).map((project, index) => (
+                    <ProjectCard key={project.title} project={project} index={index} />
+                ))}
             </div>
 
             <motion.div
@@ -266,7 +271,9 @@ const Projects = () => {
             </motion.div>
 
             <div className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-                {mainProjects.slice(3).map((project, index) => renderProjectCard(project, index))}
+                {mainProjects.slice(3).map((project, index) => (
+                    <ProjectCard key={project.title} project={project} index={index} />
+                ))}
             </div>
 
             {/* GAMES SECTION */}
@@ -296,6 +303,7 @@ const Projects = () => {
                                     src={game.img}
                                     alt={game.title}
                                     className="project-img"
+                                    loading="lazy"
                                     onError={(e) => { e.target.src = 'https://placehold.co/600x400?text=Game+Ref' }}
                                 />
                             </div>
@@ -348,7 +356,7 @@ const Projects = () => {
 
                             <div className="premium-hack-body">
                                 <div className="premium-hack-image-frame">
-                                    <img src={hack.certificateImg} alt="Certificate" />
+                                    <img src={hack.certificateImg} alt="Certificate" loading="lazy" />
                                 </div>
                                 
                                 <div className="premium-hack-project-info">
@@ -385,6 +393,9 @@ const Projects = () => {
             </motion.div>
         </section>
     );
-};
+});
+
+Projects.displayName = 'Projects';
 
 export default Projects;
+
