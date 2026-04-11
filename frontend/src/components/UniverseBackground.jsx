@@ -66,10 +66,10 @@ function CelestialBody({ theme }) {
     const isLight = theme === 'light';
     const mainColor = isLight ? '#f97316' : '#ec4899'; // Orange in Light, Pink in Dark
     const emissiveColor = isLight ? '#ea580c' : '#f97316';
-    const opacityVal = isLight ? 0.08 : 0.15;
+    const opacityVal = isLight ? 0.05 : 0.08; // Reduced opacity (was 0.08/0.15)
 
     return (
-        <mesh ref={meshRef} position={[2, 0, -3]}>
+        <mesh ref={meshRef} position={[3.5, 0, -3]}>
             {/* Slightly larger sphere to serve as a backdrop body */}
             <Sphere args={[2, 64, 64]}>
                 <MeshDistortMaterial
@@ -82,7 +82,7 @@ function CelestialBody({ theme }) {
                     transparent
                     opacity={opacityVal}
                     emissive={emissiveColor}
-                    emissiveIntensity={0.2}
+                    emissiveIntensity={0.1} // Reduced intensity (was 0.2)
                     wireframe={isLight} // Wireframe structure in light mode for minimal look
                 />
             </Sphere>

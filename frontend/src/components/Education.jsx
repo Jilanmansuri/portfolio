@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { GraduationCap, Calendar, MapPin } from "lucide-react";
+import { GraduationCap, Calendar, MapPin, Award } from "lucide-react";
 import { motion, useInView, useAnimation } from "framer-motion";
 
 
@@ -21,6 +21,7 @@ const Education = () => {
             institution: "Swaminaryan University",
             location: "Kalol, Gujarat, India",
             date: "2025 - 2029",
+            grade: "9.33",
             description: [
                 "Pursuing Bachelor of Engineering in Computer Science",
                 "Building a strong foundation in full-stack development and software engineering",
@@ -73,16 +74,36 @@ const Education = () => {
                                 <div className="edu-header">
                                     <h3 style={{ color: item.color }}>{item.title}</h3>
                                     <div className="edu-institution">
-                                        <MapPin size={14} className="edu-icon" />
                                         <span>{item.institution}</span>
                                     </div>
-                                    <div className="edu-meta">
-                                        <div className="edu-location-wrapper">
-                                            <span className="edu-location">{item.location}</span>
+                                    
+                                    <div className="edu-card-layout">
+                                        <div className="edu-loc-box">
+                                            <MapPin size={24} className="edu-icon-main" />
+                                            <span className="edu-loc-text">{item.location}</span>
                                         </div>
-                                        <div className="edu-date">
-                                            <Calendar size={14} className="edu-icon" />
-                                            <span>{item.date}</span>
+                                        
+                                        <div className="edu-info-divider"></div>
+                                        
+                                        <div className="edu-stats-grid">
+                                            <div className="edu-stat-box">
+                                                <Calendar size={22} className="edu-icon-sub" />
+                                                <div className="edu-stat-details">
+                                                    <span className="edu-stat-val">{item.date}</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="edu-v-divider"></div>
+                                            
+                                            <div className="edu-stat-box">
+                                                <Award size={22} className="edu-icon-sub" />
+                                                <div className="edu-stat-details">
+                                                    <div className="edu-stat-val">
+                                                        <span className="edu-stat-label">CGPA:</span>
+                                                        <span className="highlight"> {item.grade} / 10</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

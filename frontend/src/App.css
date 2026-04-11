@@ -3098,13 +3098,42 @@ body {
   width: 80px;
   height: 80px;
   min-width: 80px;
-  border-radius: 20px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(145deg, #111, #1a1a1a);
+  box-shadow: 0 0 20px rgba(255, 115, 0, 0.1);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+.timeline-item:hover .edu-icon-large {
+  transform: scale(1.1) rotate(5deg);
+  border-color: var(--primary);
+  box-shadow: 0 0 30px var(--primary-glow);
+  background: linear-gradient(145deg, #1a1a1a, #252525);
+}
+
+.edu-icon-large::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--primary), transparent, var(--accent-purple));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.timeline-item:hover .edu-icon-large::after {
+  opacity: 1;
 }
 
 .edu-icon-large svg {
@@ -3187,23 +3216,138 @@ body {
   justify-content: flex-end;
 }
 
-.edu-meta {
+.edu-card-layout {
+  margin-top: 25px;
+  margin-bottom: 25px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 15px;
-  color: var(--text-muted);
-  font-size: 13px;
+  gap: 20px;
 }
 
-.edu-date {
+.edu-loc-box {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
-.timeline-item.left .edu-date {
+.edu-icon-main {
+  color: var(--primary);
+  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.2));
+}
+
+.edu-loc-text {
+  font-size: 14px;
+  color: #bbb;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.edu-info-divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
+}
+
+.edu-stats-grid {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.edu-stat-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.edu-icon-sub {
+  color: var(--text-muted);
+}
+
+.edu-stat-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-stat-label {
+  font-size: 18px;
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.edu-stat-val {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.edu-stat-val .highlight {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.edu-v-divider {
+  width: 1px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Timeline Left Alignment Adjustments */
+.timeline-item.left .edu-loc-box,
+.timeline-item.left .edu-stats-grid,
+.timeline-item.left .edu-stat-box {
   justify-content: flex-end;
+  text-align: right;
+}
+
+.timeline-item.left .edu-stat-details {
+  align-items: flex-end;
+}
+
+.timeline-item.left .edu-info-divider {
+  background: linear-gradient(-90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
+}
+
+@media (max-width: 768px) {
+  .edu-card-layout {
+    margin-top: 25px;
+    gap: 15px;
+    max-width: 100%;
+  }
+
+  .edu-loc-text {
+    font-size: 14px;
+  }
+
+  .edu-stats-grid {
+    gap: 15px;
+    flex-wrap: nowrap;
+  }
+
+  .edu-stat-val {
+    font-size: 16px;
+    gap: 6px;
+  }
+
+  .edu-stat-label {
+    font-size: 14px;
+  }
+
+  .edu-stat-val .highlight {
+    font-size: 18px;
+  }
+
+  .edu-v-divider {
+    height: 35px;
+  }
 }
 
 .edu-description {
