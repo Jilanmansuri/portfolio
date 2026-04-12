@@ -1,10 +1,10 @@
-import React, { useState, useRef, memo } from 'react';
+import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { Send, Mail, User, Phone, Briefcase, ChevronRight, CheckCircle2, X } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { motion } from 'framer-motion';
 
-const Contact = memo(() => {
+const Contact = () => {
     const [showToast, setShowToast] = useState(false);
     const [isSending, setIsSending] = useState(false);
     const form = useRef();
@@ -26,7 +26,7 @@ const Contact = memo(() => {
         const API_URL = import.meta.env.VITE_API_URL;
 
         try {
-            await Promise.all([
+            const [emailResult, apiResponse] = await Promise.all([
                 emailjs.sendForm('service_108623', 'template_5t1zekx', formElement, 'd7XlPrJpcnXHA9SHK'),
                 fetch(`${API_URL}/api/contact`, {
                     method: 'POST',
@@ -37,10 +37,18 @@ const Contact = memo(() => {
                 }),
             ]);
 
+            console.log("SUCCESS!", emailResult.text);
+
+            if (!apiResponse.ok) {
+                const errorData = await apiResponse.json().catch(() => ({}));
+                console.error('Failed to save message:', errorData);
+            }
+
             setShowToast(true);
             e.target.reset();
             setTimeout(() => setShowToast(false), 3000);
         } catch (error) {
+            console.log("FAILED...", error);
             alert(`Failed to send message. Please check your internet connection or try again later.`);
         } finally {
             setIsSending(false);
@@ -134,9 +142,6 @@ const Contact = memo(() => {
             )}
         </>
     );
-});
-
-Contact.displayName = 'Contact';
+};
 
 export default Contact;
-

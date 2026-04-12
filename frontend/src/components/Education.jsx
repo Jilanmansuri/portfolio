@@ -1,27 +1,9 @@
-import React, { useRef, useEffect, memo } from "react";
+import React, { useRef, useEffect } from "react";
 import { GraduationCap, Calendar, MapPin, Award } from "lucide-react";
 import { motion, useInView, useAnimation } from "framer-motion";
 
-const educationData = [
-    {
-        id: 1,
-        title: "Computer Engineering",
-        institution: "Swaminaryan University",
-        location: "Kalol, Gujarat, India",
-        date: "2025 - 2029",
-        grade: "9.33",
-        description: [
-            "Pursuing Bachelor of Engineering in Computer Science",
-            "Building a strong foundation in full-stack development and software engineering",
-            "Proficient in HTML, CSS, JavaScript, React, Node.js, and MongoDB",
-            "Focusing on advanced web technologies and problem-solving skills"
-        ],
-        icon: <GraduationCap size={20} />,
-        color: "var(--primary)" // Orange
-    }
-];
 
-const Education = memo(() => {
+const Education = () => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
     const controls = useAnimation();
@@ -31,6 +13,25 @@ const Education = memo(() => {
             controls.start("visible");
         }
     }, [isInView, controls]);
+
+    const educationData = [
+        {
+            id: 1,
+            title: "Computer Engineering",
+            institution: "Swaminaryan University",
+            location: "Kalol, Gujarat, India",
+            date: "2025 - 2029",
+            grade: "9.33",
+            description: [
+                "Pursuing Bachelor of Engineering in Computer Science",
+                "Building a strong foundation in full-stack development and software engineering",
+                "Proficient in HTML, CSS, JavaScript, React, Node.js, and MongoDB",
+                "Focusing on advanced web technologies and problem-solving skills"
+            ],
+            icon: <GraduationCap size={20} />,
+            color: "var(--primary)" // Orange
+        }
+    ];
 
     return (
         <section className="section education-section" id="education" ref={ref}>
@@ -75,15 +76,15 @@ const Education = memo(() => {
                                     <div className="edu-institution">
                                         <span>{item.institution}</span>
                                     </div>
-                                    
+
                                     <div className="edu-card-layout">
                                         <div className="edu-loc-box">
                                             <MapPin size={24} className="edu-icon-main" />
                                             <span className="edu-loc-text">{item.location}</span>
                                         </div>
-                                        
+
                                         <div className="edu-info-divider"></div>
-                                        
+
                                         <div className="edu-stats-grid">
                                             <div className="edu-stat-box">
                                                 <Calendar size={22} className="edu-icon-sub" />
@@ -91,9 +92,9 @@ const Education = memo(() => {
                                                     <span className="edu-stat-val">{item.date}</span>
                                                 </div>
                                             </div>
-                                            
+
                                             <div className="edu-v-divider"></div>
-                                            
+
                                             <div className="edu-stat-box">
                                                 <Award size={22} className="edu-icon-sub" />
                                                 <div className="edu-stat-details">
@@ -119,9 +120,8 @@ const Education = memo(() => {
             </div>
         </section>
     );
-});
-
-Education.displayName = 'Education';
+};
 
 export default Education;
+
 

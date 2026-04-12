@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, memo } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere, MeshDistortMaterial, PointMaterial, Points } from '@react-three/drei';
 import * as THREE from 'three';
@@ -93,7 +93,7 @@ function CelestialBody({ theme }) {
 // --------------------------------------------------------
 // 3. Main Universe Background Wrapper
 // --------------------------------------------------------
-const UniverseBackground = memo(({ theme }) => {
+export default function UniverseBackground({ theme }) {
     return (
         <div
             className="universe-background-container"
@@ -125,9 +125,4 @@ const UniverseBackground = memo(({ theme }) => {
             </Canvas>
         </div>
     );
-});
-
-UniverseBackground.displayName = 'UniverseBackground';
-
-export default UniverseBackground;
-
+}

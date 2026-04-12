@@ -1,9 +1,9 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { Reveal } from './Reveal';
 import { motion } from 'framer-motion';
 import { Code, Laptop, Bot } from 'lucide-react';
 
-const About = memo(() => {
+const About = () => {
     return (
         <section className="section" id="about">
             <motion.h2
@@ -48,9 +48,6 @@ const About = memo(() => {
             </Reveal>
         </section >
     );
-});
-
-About.displayName = 'About';
+};
 
 export default About;
-

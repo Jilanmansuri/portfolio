@@ -1,7 +1,7 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 
-const ScrollToTop = memo(() => {
+const ScrollToTop = () => {
     const [showButton, setShowButton] = useState(false);
 
     useEffect(() => {
@@ -25,9 +25,6 @@ const ScrollToTop = memo(() => {
             <ArrowUp size={24} />
         </button>
     );
-});
-
-ScrollToTop.displayName = 'ScrollToTop';
+};
 
 export default ScrollToTop;
-

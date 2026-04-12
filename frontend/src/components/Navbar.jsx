@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { Sun, Moon } from 'lucide-react';
 
-const Navbar = memo(({ theme, toggleTheme }) => {
+const Navbar = ({ theme, toggleTheme }) => {
     return (
         <header className="header animate-fade-in">
             <div className="logo-container">
@@ -21,9 +21,6 @@ const Navbar = memo(({ theme, toggleTheme }) => {
             </button>
         </header>
     );
-});
-
-Navbar.displayName = 'Navbar';
+};
 
 export default Navbar;
-

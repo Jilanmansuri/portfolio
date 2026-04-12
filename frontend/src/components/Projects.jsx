@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { Github, ExternalLink, Youtube, Users, Target, Lightbulb, Trophy, Calendar, Code } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -191,7 +191,7 @@ const hackathons = [
         certificateImg: "/openpools-cert.png",
         projectTitle: "FreelanceX",
         projectDesc: "A robust freelance marketplace and networking platform built with a focus on seamless connectivity and modern vector-based interactions.",
-        techStack: ["React", "Express", "Node.js", "MongoDB" , "AI API"],
+        techStack: ["React", "Express", "Node.js", "MongoDB", "AI API"],
         github: "https://github.com/abdulhaque2005/vector-minds",
         demo: "https://vector-minds.vercel.app/",
         video: "https://youtu.be/isdwJFdwx0Q?si=V8fTLB0OYzy6Zs9J",
@@ -199,47 +199,44 @@ const hackathons = [
     }
 ];
 
-// Memoized Project Card for better performance in lists
-const ProjectCard = memo(({ project, index }) => (
-    <motion.div
-        className="project-card"
-        initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 30 }}
-        whileInView={{ opacity: 1, x: 0, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ delay: index * 0.1, duration: 0.5 }}
-        style={{ '--theme-color': project.color }}
-    >
-        <div className="card-image-container">
-            <img
-                src={project.img}
-                alt={project.title}
-                className="project-img"
-                loading="lazy"
-            />
-        </div>
-        <div className="card-content">
-            <h3 style={{ color: project.color }}>{project.title}</h3>
-            <p>{project.description}</p>
-            <div className="card-actions">
-                <a href={project.link || '#'} target="_blank" rel="noopener noreferrer" className="link-text">
-                    <ExternalLink size={16} /> Live Demo
-                </a>
-                <a href={project.github || '#'} target="_blank" rel="noopener noreferrer" className="link-text github-link">
-                    <Github size={16} /> Source Code
-                </a>
-                {project.video && (
-                    <a href={project.video} target="_blank" rel="noopener noreferrer" className="link-text video-link">
-                        <Youtube size={16} /> Video
-                    </a>
-                )}
+const Projects = () => {
+    const renderProjectCard = (project, index) => (
+        <motion.div
+            key={project.title}
+            className="project-card"
+            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 30 }}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
+            style={{ '--theme-color': project.color }}
+        >
+            <div className="card-image-container">
+                <img
+                    src={project.img}
+                    alt={project.title}
+                    className="project-img"
+                />
             </div>
-        </div>
-    </motion.div>
-));
+            <div className="card-content">
+                <h3 style={{ color: project.color }}>{project.title}</h3>
+                <p>{project.description}</p>
+                <div className="card-actions">
+                    <a href={project.link || '#'} target="_blank" rel="noopener noreferrer" className="link-text">
+                        <ExternalLink size={16} /> Live Demo
+                    </a>
+                    <a href={project.github || '#'} target="_blank" rel="noopener noreferrer" className="link-text github-link">
+                        <Github size={16} /> Source Code
+                    </a>
+                    {project.video && (
+                        <a href={project.video} target="_blank" rel="noopener noreferrer" className="link-text video-link">
+                            <Youtube size={16} /> Video
+                        </a>
+                    )}
+                </div>
+            </div>
+        </motion.div>
+    );
 
-ProjectCard.displayName = 'ProjectCard';
-
-const Projects = memo(() => {
     return (
         <section className="section" id="work">
             <motion.h2
@@ -252,9 +249,7 @@ const Projects = memo(() => {
             </motion.h2>
 
             <div className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-                {mainProjects.slice(0, 3).map((project, index) => (
-                    <ProjectCard key={project.title} project={project} index={index} />
-                ))}
+                {mainProjects.slice(0, 3).map((project, index) => renderProjectCard(project, index))}
             </div>
 
             <motion.div
@@ -271,9 +266,7 @@ const Projects = memo(() => {
             </motion.div>
 
             <div className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-                {mainProjects.slice(3).map((project, index) => (
-                    <ProjectCard key={project.title} project={project} index={index} />
-                ))}
+                {mainProjects.slice(3).map((project, index) => renderProjectCard(project, index))}
             </div>
 
             {/* GAMES SECTION */}
@@ -303,7 +296,6 @@ const Projects = memo(() => {
                                     src={game.img}
                                     alt={game.title}
                                     className="project-img"
-                                    loading="lazy"
                                     onError={(e) => { e.target.src = 'https://placehold.co/600x400?text=Game+Ref' }}
                                 />
                             </div>
@@ -351,29 +343,29 @@ const Projects = memo(() => {
                                     <Calendar size={14} /> <span>{hack.year}</span>
                                 </div>
                             </div>
-                            
+
                             <p className="hack-main-desc">{hack.description}</p>
 
                             <div className="premium-hack-body">
                                 <div className="premium-hack-image-frame">
-                                    <img src={hack.certificateImg} alt="Certificate" loading="lazy" />
+                                    <img src={hack.certificateImg} alt="Certificate" />
                                 </div>
-                                
+
                                 <div className="premium-hack-project-info">
                                     <div className="project-built-tag">
                                         <Code size={16} color={hack.color} />
                                         <span>PROJECT BUILT</span>
                                     </div>
-                                    
+
                                     <h4>{hack.projectTitle}</h4>
                                     <p>{hack.projectDesc}</p>
-                                    
+
                                     <div className="premium-hack-tech">
                                         {hack.techStack.map((tech, i) => (
                                             <span key={i} className="tech-tag">{tech}</span>
                                         ))}
                                     </div>
-                                    
+
                                     <div className="premium-hack-links">
                                         <a href={hack.github} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-code">
                                             <Github size={18} /> Code
@@ -393,9 +385,6 @@ const Projects = memo(() => {
             </motion.div>
         </section>
     );
-});
-
-Projects.displayName = 'Projects';
+};
 
 export default Projects;
-
