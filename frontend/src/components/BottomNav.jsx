@@ -42,6 +42,7 @@ const BottomNav = () => {
                 <Briefcase size={24} />
                 <span>Work</span>
             </Link>
+
             <a href="/#contact" className="nav-item nav-item-cta">
                 <Mail size={24} />
                 <span>Contact</span>

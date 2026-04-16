@@ -14,6 +14,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                 <a href="/#education">Education</a>
                 <a href="/#skills">Skills</a>
                 <Link to="/projects">Projects</Link>
+                <Link to="/hackathons">Hackathons</Link>
                 <a href="/#certificates">Certificates</a>
                 <a href="/#contact">Contact</a>
             </nav>

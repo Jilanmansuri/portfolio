@@ -1,5 +1,6 @@
 import React from 'react';
-import { Github, ExternalLink, Youtube, Users, Target, Lightbulb, Trophy, Calendar, Code } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Github, ExternalLink, Youtube, Users, Target, Lightbulb, Trophy, Calendar, Code, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const mainProjects = [
@@ -41,16 +42,16 @@ const mainProjects = [
         github: "https://github.com/Jilanmansuri/Projects/tree/main/github-finder",
         color: "#f0f6fc"
     },
-    {
-        title: "Cronos Clone",
-        description: "Global finance on-chain blockchain platform clone.",
-        tags: ["Crypto", "Web3"],
-        img: "/cronos.png",
-        link: "#",
-        github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
-        video: "https://youtu.be/igXTN2i9gVU",
-        color: "#60a5fa"
-    },
+    // {
+    //     title: "Cronos Clone",
+    //     description: "Global finance on-chain blockchain platform clone.",
+    //     tags: ["Crypto", "Web3"],
+    //     img: "/cronos.png",
+    //     link: "#",
+    //     github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
+    //     video: "https://youtu.be/igXTN2i9gVU",
+    //     color: "#60a5fa"
+    // },
     {
         title: "News App",
         description: "Search and read news with API integration.",
@@ -168,36 +169,6 @@ const games = [
     }
 ];
 
-const hackathons = [
-    {
-        title: "ArtPark CodeForge",
-        subtitle: "IISc, Bangalore",
-        year: "2026",
-        description: "Prototype Development Round of the ArtPark CodeForge Hackathon, organized by the Indian Institute of Science (IISc), Bangalore.",
-        certificateImg: "/iis-cert.png",
-        projectTitle: "SkillForge AI",
-        projectDesc: "An AI-powered skill development platform designed to streamline learning paths through intelligent analysis and personalized roadmaps.",
-        techStack: ["React", "Node.js", "AI API", "Tailwind"],
-        github: "https://github.com/Jilanmansuri/Hack-Titans",
-        demo: "https://skill-forge-ai-o8j4.vercel.app/",
-        video: "https://youtu.be/1tZeN9hGZRo",
-        color: "#10b981"
-    },
-    {
-        title: "Doppleganger",
-        subtitle: "OpenPools",
-        year: "2026",
-        description: "A collaborative 30-hour build sprint where teams transformed professional DNA into real-world solutions hosted on OpenPools.",
-        certificateImg: "/openpools-cert.png",
-        projectTitle: "FreelanceX",
-        projectDesc: "A robust freelance marketplace and networking platform built with a focus on seamless connectivity and modern vector-based interactions.",
-        techStack: ["React", "Express", "Node.js", "MongoDB", "AI API"],
-        github: "https://github.com/abdulhaque2005/vector-minds",
-        demo: "https://vector-minds.vercel.app/",
-        video: "https://youtu.be/isdwJFdwx0Q?si=V8fTLB0OYzy6Zs9J",
-        color: "#3b82f6"
-    }
-];
 
 const Projects = () => {
     const renderProjectCard = (project, index) => (
@@ -260,14 +231,51 @@ const Projects = () => {
             >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <h2 className="section-title text-center" style={{ marginBottom: 0, fontSize: '28px', backgroundImage: 'linear-gradient(90deg, #6366f1, #2563eb, #4338ca)' }}>
-                        More Projects
+                        Other Projects
                     </h2>
                 </div>
             </motion.div>
 
             <div className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-                {mainProjects.slice(3).map((project, index) => renderProjectCard(project, index))}
+                {mainProjects.slice(3, 9).map((project, index) => renderProjectCard(project, index))}
             </div>
+
+            <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '30px',
+                    marginBottom: '20px'
+                }}
+            >
+                <Link to="/projects" className="chevron-btn animate-bounce" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '45px',
+                    height: '45px',
+                    borderRadius: '50%',
+                    backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                    border: '2px solid #f97316',
+                    color: '#f97316',
+                    transition: 'all 0.3s ease'
+                }}
+                onMouseOver={(e) => {
+                    e.currentTarget.style.backgroundColor = '#f97316';
+                    e.currentTarget.style.color = '#fff';
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                }}
+                onMouseOut={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(249, 115, 22, 0.1)';
+                    e.currentTarget.style.color = '#f97316';
+                    e.currentTarget.style.transform = 'scale(1)';
+                }}>
+                    <ChevronDown size={28} />
+                </Link>
+            </motion.div>
 
             {/* GAMES SECTION */}
             <motion.div
@@ -313,76 +321,22 @@ const Projects = () => {
                 </div>
             </motion.div>
 
-            {/* HACKATHON SECTION */}
             <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                style={{ marginTop: '100px' }}
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '60px',
+                    marginBottom: '40px'
+                }}
             >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '50px' }}>
-                    <h2 className="section-title text-center" style={{ marginBottom: 0, backgroundImage: 'linear-gradient(90deg, #ef4444, #f43f5e, #ec4899)' }}>Hackathon Participation</h2>
-                </div>
-
-                <div className="premium-hackathon-grid">
-                    {hackathons.map((hack, index) => (
-                        <motion.div
-                            key={index}
-                            className="premium-hackathon-card"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.2, duration: 0.5 }}
-                        >
-                            <div className="premium-hack-header">
-                                <div className="header-left">
-                                    <h3>{hack.title}</h3>
-                                    <span className="subtitle" style={{ color: hack.color }}>{hack.subtitle}</span>
-                                </div>
-                                <div className="year-badge">
-                                    <Calendar size={14} /> <span>{hack.year}</span>
-                                </div>
-                            </div>
-
-                            <p className="hack-main-desc">{hack.description}</p>
-
-                            <div className="premium-hack-body">
-                                <div className="premium-hack-image-frame">
-                                    <img src={hack.certificateImg} alt="Certificate" />
-                                </div>
-
-                                <div className="premium-hack-project-info">
-                                    <div className="project-built-tag">
-                                        <Code size={16} color={hack.color} />
-                                        <span>PROJECT BUILT</span>
-                                    </div>
-
-                                    <h4>{hack.projectTitle}</h4>
-                                    <p>{hack.projectDesc}</p>
-
-                                    <div className="premium-hack-tech">
-                                        {hack.techStack.map((tech, i) => (
-                                            <span key={i} className="tech-tag">{tech}</span>
-                                        ))}
-                                    </div>
-
-                                    <div className="premium-hack-links">
-                                        <a href={hack.github} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-code">
-                                            <Github size={18} /> Code
-                                        </a>
-                                        <a href={hack.demo} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-demo">
-                                            <ExternalLink size={18} /> Live
-                                        </a>
-                                        <a href={hack.video} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-video">
-                                            <Youtube size={18} /> Demo Video
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+                <Link to="/projects" className="btn-explore-projects">
+                    Explore All Projects <ExternalLink size={20} />
+                </Link>
             </motion.div>
+
         </section>
     );
 };
