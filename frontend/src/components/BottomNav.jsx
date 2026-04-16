@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Home, User, Briefcase, Mail, FileText } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const BottomNav = () => {
     const [isVisible, setIsVisible] = useState(true);
@@ -29,19 +30,19 @@ const BottomNav = () => {
 
     return (
         <nav className={`bottom-nav ${isVisible ? 'visible' : 'hidden'}`}>
-            <a href="#home" className="nav-item active">
+            <a href="/#home" className="nav-item active">
                 <Home size={24} />
                 <span>Home</span>
             </a>
-            <a href="#about" className="nav-item">
+            <a href="/#about" className="nav-item">
                 <User size={24} />
                 <span>About</span>
             </a>
-            <a href="#work" className="nav-item">
+            <Link to="/projects" className="nav-item">
                 <Briefcase size={24} />
                 <span>Work</span>
-            </a>
-            <a href="#contact" className="nav-item nav-item-cta">
+            </Link>
+            <a href="/#contact" className="nav-item nav-item-cta">
                 <Mail size={24} />
                 <span>Contact</span>
             </a>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jilan-portfolio-24.vercel.app/sitemap.xml
+Sitemap: https://jilan-mansuri-portfolio.vercel.app/sitemap.xml
