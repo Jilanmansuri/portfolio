@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Github, ExternalLink, Youtube, Calendar, Code } from 'lucide-react';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 const hackathons = [
     {
@@ -40,6 +41,10 @@ const HackathonsPage = () => {
 
     return (
         <div style={{ paddingTop: '80px', minHeight: '100vh', paddingBottom: '60px' }}>
+            <SEO 
+                title="Hackathons | Jilan Mansuri" 
+                description="View my competitive hackathon projects, achievements, certificates, and innovative tech solutions." 
+            />
             <section className="section" id="hackathons-page-content" style={{ paddingTop: '10px' }}>
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

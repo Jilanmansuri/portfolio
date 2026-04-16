@@ -1,5 +1,6 @@
 import React from 'react';
 import { Code2, Linkedin, Github, Youtube } from 'lucide-react';
+import { SiLeetcode } from 'react-icons/si';
 import { Reveal } from './Reveal';
 
 const XPlatformIcon = ({ size = 24, color = "currentColor", ...props }) => (
@@ -31,6 +32,7 @@ const Footer = () => {
                         <a href="https://github.com/Jilanmansuri" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><Github size={16} /></a>
                         <a href="https://x.com/jilan_24" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><XPlatformIcon size={16} /></a>
                         <a href="https://www.youtube.com/@JilanMansuri-b3c" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><Youtube size={16} /></a>
+                        <a href="https://leetcode.com/u/Jilan2410/" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><SiLeetcode size={16} /></a>
                     </div>
                 </div>
             </Reveal>

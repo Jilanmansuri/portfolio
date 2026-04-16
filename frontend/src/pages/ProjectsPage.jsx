@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Github, ExternalLink, Youtube, Users, Target, Lightbulb, Trophy, Calendar, Code } from 'lucide-react';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 const featuredProjects = [
   {
@@ -256,6 +257,10 @@ const games = [
 
 
 const ProjectsPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const renderProjectCard = (project, index, isFigma = false) => (
     <motion.div
       key={project.title}
@@ -305,6 +310,10 @@ const ProjectsPage = () => {
 
   return (
     <div style={{ paddingTop: '80px', minHeight: '100vh', paddingBottom: '60px' }}>
+      <SEO 
+        title="Projects Portfolio | Jilan Mansuri" 
+        description="Explore my complete portfolio of web applications, AI tools, website clones, APIs, and Figma designs." 
+      />
       <section className="section" id="projects-page-content" style={{ paddingTop: '10px' }}>
         {/* FEATURED PROJECTS SECTION */}
         <motion.div

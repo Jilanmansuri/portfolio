@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { Send, Mail, User, Phone, Briefcase, ChevronRight, CheckCircle2, X } from 'lucide-react';
+import { Send, Mail, User, Phone, Briefcase, ChevronRight, CheckCircle2, X, Github, Linkedin, Code } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { motion } from 'framer-motion';
+import { SiLeetcode } from 'react-icons/si';
 
 const Contact = () => {
     const [showToast, setShowToast] = useState(false);
@@ -91,6 +92,30 @@ const Contact = () => {
                                     <Phone size={20} className="text-primary" />
                                     <a href="tel:7984088939" style={{ color: 'inherit', textDecoration: 'none' }}>7984088939</a>
                                 </div>
+                            </div>
+
+                            <div className="social-links" style={{ display: 'flex', gap: '15px', marginTop: '25px' }}>
+                                <a href="https://github.com/Jilanmansuri" target="_blank" rel="noopener noreferrer" style={{ 
+                                    border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                }}
+                                onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                                onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                                    <Github size={22} />
+                                </a>
+                                <a href="https://linkedin.com/in/jilanmansuri" target="_blank" rel="noopener noreferrer" style={{ 
+                                    border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                }}
+                                onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                                onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                                    <Linkedin size={22} />
+                                </a>
+                                <a href="https://leetcode.com/u/Jilan2410/" target="_blank" rel="noopener noreferrer" style={{ 
+                                    border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                }}
+                                onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                                onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                                    <SiLeetcode size={22} />
+                                </a>
                             </div>
                         </div>
                     </Reveal>

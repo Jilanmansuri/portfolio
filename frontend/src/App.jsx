@@ -16,9 +16,14 @@ import BottomNav from "./components/BottomNav";
 import ScrollToTop from "./components/ScrollToTop";
 import ProjectsPage from "./pages/ProjectsPage";
 import HackathonsPage from "./pages/HackathonsPage";
+import SEO from "./components/SEO";
 
 const Home = () => (
   <>
+    <SEO 
+      title="Jilan Mansuri | Full Stack Developer" 
+      description="Portfolio of Jilan Mansuri, exploring top skills in React, Node.js, NextJS, and full stack web development." 
+    />
     {/* ===== HERO ===== */}
     <Hero />
 
