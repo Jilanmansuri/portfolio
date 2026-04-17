@@ -122,6 +122,44 @@ const allProjects = [
         category: "Figma"
     },
     {
+        title: "Hotel LandMark Booking UI",
+        description: "A modern hotel booking application interface featuring intuitive room selection, location browsing, and top-picked destinations.",
+        tags: ["Figma", "UI/UX", "Travel"],
+        img: "/hotel-landmark.png",
+        link: "https://www.figma.com/design/6dAnbHhaC2brOg8hQu9EXb/blacknest?node-id=1-623&t=NNojOHTfmB03y0t2-1",
+        prototype: "https://www.figma.com/proto/6dAnbHhaC2brOg8hQu9EXb/blacknest?node-id=1-623&t=NNojOHTfmB03y0t2-1",
+        color: "#3b82f6",
+        category: "Figma"
+    },
+    {
+        title: "BlankNest LMS Dashboard",
+        description: "A clean and intuitive learning management system dashboard featuring course tracking, upcoming tasks, and a calendar view.",
+        tags: ["Figma", "UI/UX", "Dashboard"],
+        img: "/blanknest-dashboard.png",
+        link: "https://www.figma.com/design/6dAnbHhaC2brOg8hQu9EXb/Untitled?node-id=0-1&t=NNojOHTfmB03y0t2-1",
+        prototype: "https://www.figma.com/proto/6dAnbHhaC2brOg8hQu9EXb/Untitled?node-id=0-1&t=NNojOHTfmB03y0t2-1",
+        color: "#10b981",
+        category: "Figma"
+    },
+    {
+        title: "Level Up Portfolio UI",
+        description: "A gamified, neon-styled portfolio mockup designed for a hackathon. Features 'Boss Level' sections and player stats.",
+        tags: ["Figma", "Gaming", "Portfolio"],
+        img: "/levelup-portfolio.png",
+        link: "https://www.figma.com/design/mlHeak89Jp2ptRJHoef6zw/MockUp-Hackethon?node-id=1-3&t=MoVRH0RiQWmWJOsw-1",
+        color: "#8b5cf6",
+        category: "Figma"
+    },
+    {
+        title: "Codename Analytics Dashboard",
+        description: "A comprehensive analytics and reporting dashboard featuring revenue tracking, sales dynamics charts, and cross-platform metrics.",
+        tags: ["Figma", "UI/UX", "Dashboard"],
+        img: "/codename-dashboard.png",
+        link: "https://www.figma.com/design/7hEGL5YrGcDzBBLUriv6iq/projects?node-id=86-35&t=LtZeQJ2FkrQ7JeoF-1",
+        color: "#ec4899",
+        category: "Figma"
+    },
+    {
         title: "Billcase Invoicing Tool",
         description: "An intuitive all-in-one invoicing platform for small businesses, offering seamless invoice management and financial automation.",
         tags: ["Figma", "UI/UX", "Finance", "SaaS"],
@@ -303,7 +341,7 @@ const Projects = () => {
 
             <motion.div layout className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
                 <AnimatePresence mode='popLayout'>
-                    {filteredProjects.map((project, index) => renderProjectCard(project, index))}
+                    {filteredProjects.slice(0, activeCategory === "All" ? 6 : undefined).map((project, index) => renderProjectCard(project, index))}
                 </AnimatePresence>
             </motion.div>
 

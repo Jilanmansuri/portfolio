@@ -10,7 +10,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             </div>
             <nav className="desktop-nav">
                 <a href="/#home">Home</a>
-                <a href="/#education">Education</a>
+                <a href="/#about">About</a>
                 <a href="/#skills">Skills</a>
                 <Link to="/projects">Projects</Link>
                 <Link to="/hackathons">Hackathons</Link>
