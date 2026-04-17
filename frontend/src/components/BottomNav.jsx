@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, User, Briefcase, Mail, FileText } from 'lucide-react';
+import { Home, MessageCircle, Briefcase, Mail, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const BottomNav = () => {
@@ -34,10 +34,10 @@ const BottomNav = () => {
                 <Home size={24} />
                 <span>Home</span>
             </a>
-            <a href="/#about" className="nav-item">
-                <User size={24} />
-                <span>About</span>
-            </a>
+            <Link to="/chat" className="nav-item">
+                <MessageCircle size={24} />
+                <span>Chat</span>
+            </Link>
             <Link to="/projects" className="nav-item">
                 <Briefcase size={24} />
                 <span>Work</span>

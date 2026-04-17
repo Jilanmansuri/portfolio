@@ -10,13 +10,13 @@ const Navbar = ({ theme, toggleTheme }) => {
             </div>
             <nav className="desktop-nav">
                 <a href="/#home">Home</a>
-                <a href="/#about">About</a>
                 <a href="/#education">Education</a>
                 <a href="/#skills">Skills</a>
                 <Link to="/projects">Projects</Link>
                 <Link to="/hackathons">Hackathons</Link>
                 <a href="/#certificates">Certificates</a>
                 <a href="/#contact">Contact</a>
+                <Link to="/chat">Chat</Link>
             </nav>
             <button onClick={toggleTheme} className="icon-btn theme-toggle">
                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
