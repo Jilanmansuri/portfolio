@@ -19,8 +19,8 @@ const ChatPage = () => {
   return (
     <>
       <SEO 
-        title="Chat | Jilan Mansuri" 
-        description={isAdmin ? "Admin Chat Dashboard" : "Connect directly with Jilan via live chat."} 
+        title={isAdmin ? "Admin Control Panel | Jilan Mansuri" : "Start a Live Chat | Jilan Mansuri"} 
+        description={isAdmin ? "Access the backend chat management system." : "Need help or have a partnership inquiry? Chat with Jilan Mansuri in real-time."} 
       />
       {isAdmin ? (
         <div style={{ paddingTop: '80px', minHeight: '100vh', backgroundColor: '#0b141a' }}>

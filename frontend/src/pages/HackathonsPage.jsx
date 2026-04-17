@@ -10,8 +10,8 @@ const HackathonsPage = () => {
     return (
         <div style={{ paddingTop: '80px', minHeight: '100vh', paddingBottom: '60px' }}>
             <SEO 
-                title="Hackathons | Jilan Mansuri" 
-                description="View my competitive hackathon projects, achievements, certificates, and innovative tech solutions." 
+                title="Hackathons & Achievements | Jilan Mansuri" 
+                description="Explore my competitive hackathon participation, innovative prototypes built under pressure, and technical achievements at IISc Bangalore and beyond." 
             />
             <Hackathons />
         </div>

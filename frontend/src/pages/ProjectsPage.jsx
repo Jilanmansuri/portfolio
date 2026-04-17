@@ -334,8 +334,8 @@ const ProjectsPage = () => {
   return (
     <div style={{ paddingTop: '80px', minHeight: '100vh', paddingBottom: '60px' }}>
       <SEO
-        title="Projects Portfolio | Jilan Mansuri"
-        description="Explore my complete portfolio of web applications, AI tools, website clones, APIs, and Figma designs."
+        title={activeCategory === "All" ? "Projects Portfolio | Jilan Mansuri" : `${activeCategory} Projects | Jilan Mansuri`}
+        description={`Browse my collection of ${activeCategory.toLowerCase()} projects, including full-stack applications, website clones, and UI/UX designs.`}
       />
       <section className="section" id="projects-page-content" style={{ paddingTop: '10px' }}>
 

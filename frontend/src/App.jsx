@@ -23,8 +23,8 @@ import SEO from "./components/SEO";
 const Home = () => (
   <>
     <SEO 
-      title="Jilan Mansuri | Full Stack Developer" 
-      description="Portfolio of Jilan Mansuri, exploring top skills in React, Node.js, NextJS, and full stack web development." 
+      title="Jilan Mansuri | Full Stack Developer " 
+      description="Professional portfolio of Jilan Mansuri. Discover my full-stack projects in React, Node.js, and MongoDB, alongside my UI/UX designs and hackathon achievements." 
     />
     {/* ===== HERO ===== */}
     <Hero />
