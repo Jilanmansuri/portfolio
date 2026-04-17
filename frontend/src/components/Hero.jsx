@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowRight, FileText } from 'lucide-react';
+import { ArrowRight, FileText, Github, Linkedin, Youtube } from 'lucide-react';
+import { SiLeetcode } from 'react-icons/si';
 import Typewriter from 'typewriter-effect';
 import { Reveal } from './Reveal';
 
@@ -48,6 +48,37 @@ const Hero = () => {
                         <p className="hero-subtitle">
                             Aspiring Full-Stack Developer
                         </p>
+
+                        <div className="social-links hero-socials" style={{ display: 'flex', gap: '15px', marginTop: '15px', marginBottom: '30px' }}>
+                            <a href="https://github.com/Jilanmansuri" target="_blank" rel="noopener noreferrer" style={{ 
+                                border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                            }}
+                            onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                            onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                                <Github size={20} />
+                            </a>
+                            <a href="https://linkedin.com/in/jilanmansuri" target="_blank" rel="noopener noreferrer" style={{ 
+                                border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                            }}
+                            onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                            onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                                <Linkedin size={20} />
+                            </a>
+                            <a href="https://www.youtube.com/@JilanMansuri-b3c" target="_blank" rel="noopener noreferrer" style={{ 
+                                border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                            }}
+                            onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                            onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                                <Youtube size={20} />
+                            </a>
+                            <a href="https://leetcode.com/u/Jilan2410/" target="_blank" rel="noopener noreferrer" style={{ 
+                                border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                            }}
+                            onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                            onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                                <SiLeetcode size={20} />
+                            </a>
+                        </div>
 
                         <div className="hero-buttons">
                             <a

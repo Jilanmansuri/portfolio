@@ -273,8 +273,8 @@ const ProjectsPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const filteredProjects = activeCategory === "All" 
-    ? allProjects 
+  const filteredProjects = activeCategory === "All"
+    ? allProjects
     : allProjects.filter(p => p.category === activeCategory);
 
   const renderProjectCard = (project, index) => {
@@ -333,16 +333,16 @@ const ProjectsPage = () => {
 
   return (
     <div style={{ paddingTop: '80px', minHeight: '100vh', paddingBottom: '60px' }}>
-      <SEO 
-        title="Projects Portfolio | Jilan Mansuri" 
-        description="Explore my complete portfolio of web applications, AI tools, website clones, APIs, and Figma designs." 
+      <SEO
+        title="Projects Portfolio | Jilan Mansuri"
+        description="Explore my complete portfolio of web applications, AI tools, website clones, APIs, and Figma designs."
       />
       <section className="section" id="projects-page-content" style={{ paddingTop: '10px' }}>
-        
+
         <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px' }}>
             <h2 className="section-title text-center" style={{ marginBottom: 0, fontSize: '36px', backgroundImage: 'linear-gradient(90deg, #3b82f6, #a855f7, #f97316)' }}>
@@ -353,15 +353,15 @@ const ProjectsPage = () => {
 
         {/* Categories Tab (Skills Design) */}
         <div className="rpg-categories" style={{ marginBottom: '40px' }}>
-            {categories.map(cat => (
-                <button
-                    key={cat}
-                    className={`rpg-tab ${activeCategory === cat ? 'active' : ''}`}
-                    onClick={() => setActiveCategory(cat)}
-                >
-                    {cat}
-                </button>
-            ))}
+          {categories.map(cat => (
+            <button
+              key={cat}
+              className={`rpg-tab ${activeCategory === cat ? 'active' : ''}`}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
 
         {/* Dynamic Filtered Grid */}
