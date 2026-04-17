@@ -23,7 +23,7 @@ const ChatPage = () => {
         description={isAdmin ? "Access the backend chat management system." : "Need help or have a partnership inquiry? Chat with Jilan Mansuri in real-time."} 
       />
       {isAdmin ? (
-        <div style={{ paddingTop: '80px', minHeight: '100vh', backgroundColor: '#0b141a' }}>
+        <div className="admin-page-container">
           <AdminDashboard />
         </div>
       ) : (
