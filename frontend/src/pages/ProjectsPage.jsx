@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Github, ExternalLink, Youtube, Users, Target, Lightbulb, Trophy, Calendar, Code } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../components/SEO';
 
 const featuredProjects = [
@@ -256,57 +256,80 @@ const games = [
 ];
 
 
+const allProjects = [
+  ...featuredProjects.map(p => ({ ...p, category: "Featured" })),
+  ...websiteClones.map(p => ({ ...p, category: "Clones" })),
+  ...apiProjects.map(p => ({ ...p, category: "APIs" })),
+  ...figmaDesigns.map(p => ({ ...p, category: "Figma" })),
+  ...games.map(p => ({ ...p, category: "Games" }))
+];
+
+const categories = ["All", "Featured", "Clones", "APIs", "Figma", "Games"];
+
 const ProjectsPage = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const renderProjectCard = (project, index, isFigma = false) => (
-    <motion.div
-      key={project.title}
-      className="project-card"
-      initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50, y: 30 }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      style={{ '--theme-color': project.color }}
-    >
-      <div className="card-image-container" style={isFigma ? { height: '210px' } : {}}>
-        <img
-          src={project.img}
-          alt={project.title}
-          className="project-img"
-          style={isFigma ? { height: '100%', objectFit: 'cover' } : {}}
-        />
-      </div>
-      <div className="card-content">
-        <h3 style={{ color: project.color }}>{project.title}</h3>
-        <p>{project.description}</p>
-        <div className="card-actions">
-          {project.link && (
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className="link-text">
-              <ExternalLink size={16} /> {project.tags?.includes("Figma") ? "Figma File" : "Live Demo"}
-            </a>
-          )}
-          {project.prototype && (
-            <a href={project.prototype} target="_blank" rel="noopener noreferrer" className="link-text" style={{ color: '#f43f5e' }}>
-              <Target size={16} /> Prototype
-            </a>
-          )}
-          {project.github && project.github !== "#" && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="link-text github-link">
-              <Github size={16} /> Source Code
-            </a>
-          )}
-          {project.video && (
-            <a href={project.video} target="_blank" rel="noopener noreferrer" className="link-text video-link">
-              <Youtube size={16} /> Video
-            </a>
-          )}
+  const filteredProjects = activeCategory === "All" 
+    ? allProjects 
+    : allProjects.filter(p => p.category === activeCategory);
+
+  const renderProjectCard = (project, index) => {
+    const isFigma = project.category === "Figma";
+    const isGame = project.category === "Games";
+
+    return (
+      <motion.div
+        layout
+        key={project.title}
+        className={`project-card ${isGame ? 'game-card' : ''}`}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.3 }}
+        style={{ '--theme-color': project.color }}
+      >
+        <div className={`card-image-container ${isGame ? 'game-img-container' : ''}`} style={isFigma ? { height: '210px' } : {}}>
+          <img
+            src={project.img}
+            alt={project.title}
+            className="project-img"
+            style={isFigma ? { height: '100%', objectFit: 'cover' } : {}}
+            onError={(e) => { if (isGame) e.target.src = 'https://placehold.co/600x400?text=Game+Ref' }}
+          />
         </div>
-      </div>
-    </motion.div>
-  );
+        <div className="card-content">
+          <h3 style={{ color: project.color, fontSize: isGame ? '1.2rem' : undefined }}>{project.title}</h3>
+          <p style={{ fontSize: isGame ? '0.9rem' : undefined }}>{project.description}</p>
+          <div className="card-actions">
+            {project.link && (
+              <a href={project.link} target="_blank" rel="noopener noreferrer" className="link-text" style={isGame ? { fontSize: '0.85rem' } : {}}>
+                <ExternalLink size={isGame ? 14 : 16} /> {isFigma ? "Figma File" : (isGame ? "Play" : "Live Demo")}
+              </a>
+            )}
+            {project.prototype && (
+              <a href={project.prototype} target="_blank" rel="noopener noreferrer" className="link-text" style={{ color: '#f43f5e' }}>
+                <Target size={16} /> Prototype
+              </a>
+            )}
+            {project.github && project.github !== "#" && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer" className="link-text github-link">
+                <Github size={16} /> Source Code
+              </a>
+            )}
+            {project.video && (
+              <a href={project.video} target="_blank" rel="noopener noreferrer" className="link-text video-link">
+                <Youtube size={16} /> Video
+              </a>
+            )}
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
 
   return (
     <div style={{ paddingTop: '80px', minHeight: '100vh', paddingBottom: '60px' }}>
@@ -315,122 +338,38 @@ const ProjectsPage = () => {
         description="Explore my complete portfolio of web applications, AI tools, website clones, APIs, and Figma designs." 
       />
       <section className="section" id="projects-page-content" style={{ paddingTop: '10px' }}>
-        {/* FEATURED PROJECTS SECTION */}
+        
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          style={{ marginBottom: '40px' }}
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <h2 className="section-title text-center" style={{ marginBottom: 0, fontSize: '32px', backgroundImage: 'linear-gradient(90deg, #f97316, #ef4444, #ea580c)' }}>
-              Featured Projects
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '30px' }}>
+            <h2 className="section-title text-center" style={{ marginBottom: 0, fontSize: '36px', backgroundImage: 'linear-gradient(90deg, #3b82f6, #a855f7, #f97316)' }}>
+              {activeCategory === "All" ? "My Projects" : `${activeCategory} Projects`}
             </h2>
           </div>
         </motion.div>
 
-        <div className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-          {featuredProjects.map((project, index) => renderProjectCard(project, index))}
-        </div>
-
-        {/* WEBSITE CLONES SECTION */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          style={{ marginTop: '80px', marginBottom: '40px' }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <h2 className="section-title text-center" style={{ marginBottom: 0, fontSize: '28px', backgroundImage: 'linear-gradient(90deg, #3b82f6, #0ea5e9, #0284c7)' }}>
-              Website Clones
-            </h2>
-          </div>
-        </motion.div>
-
-        <div className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-          {websiteClones.map((project, index) => renderProjectCard(project, index))}
-        </div>
-
-        {/* API PROJECTS SECTION */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          style={{ marginTop: '80px', marginBottom: '40px' }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <h2 className="section-title text-center" style={{ marginBottom: 0, fontSize: '28px', backgroundImage: 'linear-gradient(90deg, #10b981, #059669, #047857)' }}>
-              API Projects
-            </h2>
-          </div>
-        </motion.div>
-
-        <div className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-          {apiProjects.map((project, index) => renderProjectCard(project, index))}
-        </div>
-
-        {/* FIGMA DESIGNS SECTION */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          style={{ marginTop: '80px', marginBottom: '40px' }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <h2 className="section-title text-center" style={{ marginBottom: 0, fontSize: '28px', backgroundImage: 'linear-gradient(90deg, #db2777, #f472b6, #9d174d)' }}>
-              Figma Designs
-            </h2>
-          </div>
-        </motion.div>
-
-        <div className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-          {figmaDesigns.map((project, index) => renderProjectCard(project, index, true))}
-        </div>
-
-        {/* GAMES SECTION */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          style={{ marginTop: '80px' }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', gap: '15px' }}>
-            <h2 className="section-title text-center" style={{ marginBottom: 0, backgroundImage: 'linear-gradient(90deg, #a855f7, #7c3aed, #6b21a8)' }}>Mini Games</h2>
-          </div>
-
-          <div className="games-row">
-            {games.map((game, index) => (
-              <motion.div
-                key={index}
-                className="project-card game-card"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                style={{ '--theme-color': game.color }}
-              >
-                <div className="card-image-container game-img-container">
-                  <img
-                    src={game.img}
-                    alt={game.title}
-                    className="project-img"
-                    onError={(e) => { e.target.src = 'https://placehold.co/600x400?text=Game+Ref' }}
-                  />
-                </div>
-                <div className="card-content">
-                  <h3 style={{ color: game.color, fontSize: '1.2rem' }}>{game.title}</h3>
-                  <p style={{ fontSize: '0.9rem' }}>{game.description}</p>
-                  <div className="card-actions">
-                    <a href={game.link || '#'} target="_blank" rel="noopener noreferrer" className="link-text" style={{ fontSize: '0.85rem' }}>
-                      <ExternalLink size={14} /> Play
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
+        {/* Categories Tab (Skills Design) */}
+        <div className="rpg-categories" style={{ marginBottom: '40px' }}>
+            {categories.map(cat => (
+                <button
+                    key={cat}
+                    className={`rpg-tab ${activeCategory === cat ? 'active' : ''}`}
+                    onClick={() => setActiveCategory(cat)}
+                >
+                    {cat}
+                </button>
             ))}
-          </div>
-        </motion.div>
+        </div>
 
+        {/* Dynamic Filtered Grid */}
+        <motion.div layout className={`projects-grid ${activeCategory === "Games" ? 'games-row' : ''}`} style={activeCategory !== "Games" ? { gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' } : {}}>
+          <AnimatePresence mode='popLayout'>
+            {filteredProjects.map((project, index) => renderProjectCard(project, index))}
+          </AnimatePresence>
+        </motion.div>
 
       </section>
     </div>
