@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import Contact from './models/Contact.js';
+import Message from './models/Message.js';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 
@@ -25,91 +26,127 @@ const io = new Server(httpServer, {
   }
 });
 
-// Map of userId -> socket.id for active users
+// Map of userId -> socket.id for active users only
 const connectedUsers = new Map();
-// Store messages per userId: { "Guest-1234": [msg1, msg2] }
-const messagesMap = new Map();
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
   const { userId, isAdmin } = socket.handshake.query;
 
   console.log(`Socket connected: ${socket.id}, userId: ${userId}, isAdmin: ${isAdmin}`);
 
   if (isAdmin === 'true') {
-    socket.join('admin_room');
-    // Admin needs to see all active users and their chat history
+    const adminPassword = process.env.ADMIN_PASSWORD || 'Jilan@123';
+    const providedPassword = socket.handshake.auth?.password;
     
-    // Build a list of users and their history
-    const allChats = {};
-    for (const [uid, msgs] of messagesMap.entries()) {
-      allChats[uid] = msgs;
+    if (providedPassword !== adminPassword) {
+      console.log(`Admin auth failed for socket ${socket.id}`);
+      socket.emit('admin_error', 'Invalid admin password');
+      socket.disconnect();
+      return;
     }
 
-    const activeUserIds = Array.from(connectedUsers.keys());
+    socket.join('admin_room');
+    
+    // Fetch all chats from MongoDB Database!
+    try {
+      const allMessages = await Message.find().sort({ timestamp: 1 });
+      const allChats = {};
+      allMessages.forEach(msg => {
+        if (!allChats[msg.userId]) allChats[msg.userId] = [];
+        allChats[msg.userId].push({
+          id: msg._id.toString(),
+          text: msg.text,
+          sender: msg.sender,
+          userId: msg.userId,
+          timestamp: msg.timestamp
+        });
+      });
 
-    socket.emit('admin_init', {
-      activeUsers: activeUserIds,
-      chatHistory: allChats
-    });
+      const activeUserIds = Array.from(connectedUsers.keys());
+      socket.emit('admin_init', {
+        activeUsers: activeUserIds,
+        chatHistory: allChats
+      });
+    } catch (err) {
+      console.error('Error fetching admin history:', err);
+    }
+
   } else {
     // Regular user connection
     if (userId) {
       connectedUsers.set(userId, socket.id);
       
-      // Initialize their message history if it doesn't exist
-      if (!messagesMap.has(userId)) {
-        messagesMap.set(userId, []);
+      try {
+        const userMessages = await Message.find({ userId }).sort({ timestamp: 1 });
         
-        // Auto welcome message
-        const welcomeMsg = {
-          id: 'welcome-' + Date.now(),
-          text: 'Hi there 👋! Feel free to ask me any questions about my portfolio or leave a message.',
-          sender: 'admin',
-          userId: userId,
-          timestamp: new Date().toISOString(),
-        };
-        messagesMap.get(userId).push(welcomeMsg);
+        let historyArray = userMessages.map(msg => ({
+          id: msg._id.toString(),
+          text: msg.text,
+          sender: msg.sender,
+          userId: msg.userId,
+          timestamp: msg.timestamp
+        }));
+
+        // If completely new user, generate auto welcome message in MongoDB
+        if (historyArray.length === 0) {
+          const welcomeMsg = new Message({
+            userId: userId,
+            sender: 'admin',
+            text: 'Hi there 👋! Feel free to ask me any questions about my portfolio or leave a message.'
+          });
+          await welcomeMsg.save();
+          
+          historyArray = [{
+            id: welcomeMsg._id.toString(),
+            text: welcomeMsg.text,
+            sender: welcomeMsg.sender,
+            userId: welcomeMsg.userId,
+            timestamp: welcomeMsg.timestamp
+          }];
+        }
+
+        socket.emit('message_history', historyArray);
+        io.to('admin_room').emit('user_connected', userId);
+      } catch (err) {
+        console.error('Error fetching user history:', err);
       }
-
-      // Send the user their specific history
-      socket.emit('message_history', messagesMap.get(userId));
-
-      // Notify admin that a user came online
-      io.to('admin_room').emit('user_connected', userId);
     }
   }
 
-  socket.on('send_message', (data) => {
-    // data: { text, sender: 'user' | 'admin', userId, timestamp }
-    const message = {
-      ...data,
-      id: Date.now().toString() + Math.random().toString(36).substring(2, 9),
-      timestamp: new Date().toISOString()
-    };
-    
-    const targetUserId = message.userId;
+  socket.on('send_message', async (data) => {
+    try {
+      // 1. Permanently save to MongoDB Cluster First
+      const newMessage = new Message({
+        userId: data.userId,
+        sender: data.sender,
+        text: data.text,
+      });
+      await newMessage.save();
 
-    // Save to memory
-    if (!messagesMap.has(targetUserId)) {
-      messagesMap.set(targetUserId, []);
-    }
-    const userHistory = messagesMap.get(targetUserId);
-    if (userHistory.length > 500) userHistory.shift();
-    userHistory.push(message);
+      // 2. Format explicitly with MongoDB _id mappings
+      const emittedMessage = {
+        id: newMessage._id.toString(),
+        text: newMessage.text,
+        sender: newMessage.sender,
+        userId: newMessage.userId,
+        timestamp: newMessage.timestamp
+      };
 
-    if (message.sender === 'user') {
-      // User sending to admin
-      io.to('admin_room').emit('receive_message', message);
-      // Echo back to user
-      socket.emit('receive_message', message);
-    } else if (message.sender === 'admin') {
-      // Admin sending to user
-      const userSocketId = connectedUsers.get(targetUserId);
-      if (userSocketId) {
-        io.to(userSocketId).emit('receive_message', message);
+      // 3. Emit strictly functionally via Sockets
+      if (emittedMessage.sender === 'user') {
+        io.to('admin_room').emit('receive_message', emittedMessage);
+        // Echo back instantly to user
+        socket.emit('receive_message', emittedMessage);
+      } else if (emittedMessage.sender === 'admin') {
+        const userSocketId = connectedUsers.get(emittedMessage.userId);
+        if (userSocketId) {
+          io.to(userSocketId).emit('receive_message', emittedMessage);
+        }
+        // Broadcast back to admin to render in multi-dashboard cases
+        io.to('admin_room').emit('receive_message', emittedMessage);
       }
-      // Broadcast to other admin tabs just in case
-      io.to('admin_room').emit('receive_message', message);
+    } catch (err) {
+      console.error('Failed to save and send message:', err);
     }
   });
   
@@ -143,7 +180,7 @@ io.on('connection', (socket) => {
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB cluster permanently');
   })
   .catch((err) => {
     console.error('MongoDB connection error:', err);
@@ -186,4 +223,3 @@ app.get('/api/health', (req, res) => {
 httpServer.listen(PORT, () => {
   console.log(`Backend server listening on port ${PORT}`);
 });
-

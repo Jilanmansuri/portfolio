@@ -16,6 +16,7 @@ import BottomNav from "./components/BottomNav";
 import ScrollToTop from "./components/ScrollToTop";
 import ProjectsPage from "./pages/ProjectsPage";
 import HackathonsPage from "./pages/HackathonsPage";
+import ChatPage from "./pages/ChatPage";
 import SEO from "./components/SEO";
 
 const Home = () => (
@@ -81,6 +82,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/hackathons" element={<HackathonsPage />} />
+          <Route path="/chat" element={<ChatPage />} />
         </Routes>
       </main>
 
