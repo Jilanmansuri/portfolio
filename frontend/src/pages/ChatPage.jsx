@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import ChatWidget from '../components/ChatWidget';
 import AdminDashboard from '../components/AdminDashboard';
 import SEO from '../components/SEO';
@@ -7,12 +8,13 @@ import './ChatPage.css';
 
 const ChatPage = () => {
   const [isAdmin, setIsAdmin] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(location.search);
     setIsAdmin(urlParams.get('admin') === 'true');
-  }, []);
+  }, [location.search]);
 
   return (
     <>
@@ -46,12 +48,12 @@ const ChatPage = () => {
               <p>
                 To test the admin side of this real-time chat, append <code>?admin=true</code> to the current URL.
               </p>
-              <a 
-                href="/chat?admin=true"
+              <Link 
+                to="/chat?admin=true"
                 className="admin-demo-link"
               >
                 Open Admin View
-              </a>
+              </Link>
             </div>
           </motion.div>
           
