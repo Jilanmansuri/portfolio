@@ -67,11 +67,7 @@ const Hackathons = () => {
                                     <div className="year-badge">
                                         <Calendar size={14} /> <span>{hack.year}</span>
                                     </div>
-                                    {hack.achievement && (
-                                        <div className="achievement-badge" style={{ backgroundColor: `${hack.color}20`, border: `1px solid ${hack.color}`, color: hack.color, padding: '4px 10px', borderRadius: '20px', fontSize: '10px', fontWeight: 'bold' }}>
-                                            ★ {hack.achievement}
-                                        </div>
-                                    )}
+
                                 </div>
                             </div>
 

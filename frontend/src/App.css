@@ -354,8 +354,14 @@ body {
   font-size: 16px;
 }
 
-.desktop-nav a:hover {
+.desktop-nav a:hover,
+.desktop-nav a.active {
   color: var(--primary);
+  text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.desktop-nav a {
+  position: relative;
 }
 
 .icon-btn {
@@ -481,8 +487,10 @@ body {
   transition: color 0.3s;
 }
 
-.mobile-nav-links a:hover {
+.mobile-nav-links a:hover,
+.mobile-nav-links a.active {
   color: var(--primary);
+  padding-left: 10px;
 }
 
 /* ===== HERO ===== */
@@ -4083,15 +4091,8 @@ body {
     transform: scale(1.05);
   }
 
-  .nav-item.active::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    width: 4px;
-    height: 4px;
-    background: var(--primary);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--primary-glow);
+  .nav-item.active svg {
+    transform: scale(1.05);
   }
 
   /* Contact CTA Highlight */

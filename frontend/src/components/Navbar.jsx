@@ -1,22 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import useActiveSection from '../hooks/useActiveSection';
 
 const Navbar = ({ theme, toggleTheme }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const location = useLocation();
+    
+    const sections = useMemo(() => ['home', 'about', 'skills', 'work', 'hackathons', 'certificates', 'contact'], []);
+    const activeSection = useActiveSection(sections);
 
     const navLinks = [
-        { name: 'Home', path: '/#home', isExternal: false },
-        { name: 'About', path: '/#about', isExternal: false },
-        { name: 'Skills', path: '/#skills', isExternal: false },
+        { name: 'Home', path: '/', isExternal: true }, // Set to true to use Link instead of <a>
+        { name: 'About', path: '/', hash: '#about', isExternal: false },
+        { name: 'Skills', path: '/', hash: '#skills', isExternal: false },
         { name: 'Projects', path: '/projects', isExternal: true },
         { name: 'Hackathons', path: '/hackathons', isExternal: true },
-        { name: 'Certificates', path: '/#certificates', isExternal: false },
-        { name: 'Contact', path: '/#contact', isExternal: false },
+        { name: 'Certificates', path: '/', hash: '#certificates', isExternal: false },
+        { name: 'Contact', path: '/', hash: '#contact', isExternal: false },
         { name: 'Chat', path: '/chat', isExternal: true },
     ];
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+    const isLinkActive = (link) => {
+        if (link.isExternal) {
+            if (link.name === 'Home') return location.pathname === '/' && (activeSection === 'home' || !activeSection);
+            return location.pathname === link.path;
+        }
+        return location.pathname === '/' && activeSection === link.hash.replace('#', '');
+    };
 
     return (
         <header className="header animate-fade-in">
@@ -27,9 +40,21 @@ const Navbar = ({ theme, toggleTheme }) => {
             <nav className="desktop-nav">
                 {navLinks.map((link, index) => (
                     link.isExternal ? (
-                        <Link key={index} to={link.path}>{link.name}</Link>
+                        <Link 
+                            key={index} 
+                            to={link.path} 
+                            className={isLinkActive(link) ? 'active' : ''}
+                        >
+                            {link.name}
+                        </Link>
                     ) : (
-                        <a key={index} href={link.path}>{link.name}</a>
+                        <a 
+                            key={index} 
+                            href={link.path + link.hash} 
+                            className={isLinkActive(link) ? 'active' : ''}
+                        >
+                            {link.name}
+                        </a>
                     )
                 ))}
             </nav>
@@ -56,9 +81,23 @@ const Navbar = ({ theme, toggleTheme }) => {
                     <nav className="mobile-nav-links">
                         {navLinks.map((link, index) => (
                             link.isExternal ? (
-                                <Link key={index} to={link.path} onClick={toggleMenu}>{link.name}</Link>
+                                <Link 
+                                    key={index} 
+                                    to={link.path} 
+                                    className={isLinkActive(link) ? 'active' : ''} 
+                                    onClick={toggleMenu}
+                                >
+                                    {link.name}
+                                </Link>
                             ) : (
-                                <a key={index} href={link.path} onClick={toggleMenu}>{link.name}</a>
+                                <a 
+                                    key={index} 
+                                    href={link.path + link.hash} 
+                                    className={isLinkActive(link) ? 'active' : ''} 
+                                    onClick={toggleMenu}
+                                >
+                                    {link.name}
+                                </a>
                             )
                         ))}
                     </nav>

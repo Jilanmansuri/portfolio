@@ -254,7 +254,7 @@ const allProjects = [
 const mainProjectsData = allProjects.filter(p => p.category !== "Games");
 const gamesData = allProjects.filter(p => p.category === "Games");
 
-const categories = ["All", "Featured", "Clones", "APIs", "Figma"];
+const categories = ["All", "Featured", "Clones", "APIs", "Figma", "Games"];
 
 
 const Projects = () => {
@@ -262,7 +262,7 @@ const Projects = () => {
 
     const filteredProjects = activeCategory === "All"
         ? mainProjectsData
-        : mainProjectsData.filter(p => p.category === activeCategory);
+        : allProjects.filter(p => p.category === activeCategory);
 
     const renderProjectCard = (project, index) => {
         const isGame = project.category === "Games";
@@ -300,8 +300,8 @@ const Projects = () => {
                                 <Target size={16} /> Prototype
                             </a>
                         )}
-                        {!isGame && (
-                            <a href={project.github || '#'} target="_blank" rel="noopener noreferrer" className="link-text github-link">
+                        {!isGame && project.category !== "Figma" && project.github && project.github !== "#" && (
+                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="link-text github-link">
                                 <Github size={16} /> Source Code
                             </a>
                         )}
@@ -345,23 +345,21 @@ const Projects = () => {
                 </AnimatePresence>
             </motion.div>
 
-            {activeCategory === "All" && (
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        marginTop: '60px',
-                        marginBottom: '40px'
-                    }}
-                >
-                    <Link to="/projects" className="btn-explore-projects">
-                        Explore All Projects <ExternalLink size={20} />
-                    </Link>
-                </motion.div>
-            )}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '60px',
+                    marginBottom: '40px'
+                }}
+            >
+                <Link to="/projects" className="btn-explore-projects">
+                    Explore All Projects <ExternalLink size={20} />
+                </Link>
+            </motion.div>
 
             {/* GAMES SECTION - ALWAYS VISIBLE ALMOST */}
             <motion.div

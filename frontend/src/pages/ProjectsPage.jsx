@@ -273,8 +273,11 @@ const ProjectsPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const mainProjects = allProjects.filter(p => p.category !== "Games");
+  const gamesData = allProjects.filter(p => p.category === "Games");
+
   const filteredProjects = activeCategory === "All"
-    ? allProjects
+    ? mainProjects
     : allProjects.filter(p => p.category === activeCategory);
 
   const renderProjectCard = (project, index) => {
@@ -315,7 +318,7 @@ const ProjectsPage = () => {
                 <Target size={16} /> Prototype
               </a>
             )}
-            {project.github && project.github !== "#" && (
+            {!isFigma && !isGame && project.github && project.github !== "#" && (
               <a href={project.github} target="_blank" rel="noopener noreferrer" className="link-text github-link">
                 <Github size={16} /> Source Code
               </a>
@@ -365,10 +368,26 @@ const ProjectsPage = () => {
         </div>
 
         {/* Dynamic Filtered Grid */}
-        <motion.div layout className={`projects-grid ${activeCategory === "Games" ? 'games-row' : ''}`} style={activeCategory !== "Games" ? { gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' } : {}}>
+        <motion.div layout className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
           <AnimatePresence mode='popLayout'>
             {filteredProjects.map((project, index) => renderProjectCard(project, index))}
           </AnimatePresence>
+        </motion.div>
+
+        {/* PERSISTENT GAMES SECTION */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          style={{ marginTop: '80px' }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '40px', gap: '15px' }}>
+            <h2 className="section-title text-center" style={{ marginBottom: 0, backgroundImage: 'linear-gradient(90deg, #a855f7, #7c3aed, #6b21a8)' }}>Mini Games</h2>
+          </div>
+
+          <div className="games-row">
+            {gamesData.map((game, index) => renderProjectCard(game, index))}
+          </div>
         </motion.div>
 
       </section>

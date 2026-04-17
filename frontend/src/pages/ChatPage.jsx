@@ -14,6 +14,17 @@ const ChatPage = () => {
     window.scrollTo(0, 0);
     const urlParams = new URLSearchParams(location.search);
     setIsAdmin(urlParams.get('admin') === 'true');
+    
+    // Auto-start chat if 'start=true' is in URL
+    if (urlParams.get('start') === 'true') {
+      const timer = setTimeout(() => {
+        const chatFab = document.querySelector('.chat-fab');
+        if (chatFab) {
+          chatFab.click();
+        }
+      }, 800); // Slight delay for components to mount properly
+      return () => clearTimeout(timer);
+    }
   }, [location.search]);
 
   return (

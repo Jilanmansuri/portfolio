@@ -1,9 +1,27 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { Send, Mail, User, Phone, Briefcase, ChevronRight, CheckCircle2, X, Github, Linkedin, Code } from 'lucide-react';
+import { Send, Mail, User, Phone, Briefcase, ChevronRight, CheckCircle2, X, Github, Linkedin, Code, MessageCircle } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { motion } from 'framer-motion';
-import { SiLeetcode } from 'react-icons/si';
+import { Link } from 'react-router-dom';
+
+const XPlatformIcon = ({ size = 24, color = "currentColor", ...props }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        {...props}
+    >
+        <path d="M4 4l11.733 16h4.267l-11.733 -16z" stroke="none" fill="currentColor" />
+        <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+    </svg>
+);
 
 const Contact = () => {
     const [showToast, setShowToast] = useState(false);
@@ -109,12 +127,19 @@ const Contact = () => {
                                 onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
                                     <Linkedin size={22} />
                                 </a>
-                                <a href="https://leetcode.com/u/Jilan2410/" target="_blank" rel="noopener noreferrer" style={{ 
+                                <Link to="/chat?start=true" style={{ 
                                     border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center'
                                 }}
                                 onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
                                 onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
-                                    <SiLeetcode size={22} />
+                                    <MessageCircle size={22} />
+                                </Link>
+                                <a href="https://x.com/jilan_24" target="_blank" rel="noopener noreferrer" style={{ 
+                                    border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                                }}
+                                onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+                                onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                                    <XPlatformIcon size={22} />
                                 </a>
                             </div>
                         </div>

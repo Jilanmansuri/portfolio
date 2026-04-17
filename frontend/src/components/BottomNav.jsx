@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Home, MessageCircle, Briefcase, Mail, FileText } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Home, MessageCircle, Briefcase, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import useActiveSection from '../hooks/useActiveSection';
 
 const BottomNav = () => {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const location = useLocation();
+    
+    const sections = useMemo(() => ['home', 'contact'], []);
+    const activeSection = useActiveSection(sections);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -30,21 +34,19 @@ const BottomNav = () => {
     }, [lastScrollY]);
 
     const isActive = (path, hash = '') => {
-        // Special case for home links on the main page
-        if (path === '/' && !location.hash && hash === '#home') return location.pathname === '/';
-        
         if (hash) {
-            return location.pathname === path && location.hash === hash;
+            const sectionName = hash.replace('#', '');
+            return location.pathname === '/' && activeSection === sectionName;
         }
-        return location.pathname === path && !location.hash;
+        return location.pathname === path;
     };
 
     return (
         <nav className={`bottom-nav ${isVisible ? 'visible' : 'hidden'}`}>
-            <a href="/#home" className={`nav-item ${isActive('/', '#home') ? 'active' : ''}`}>
+            <Link to="/" className={`nav-item ${isActive('/', 'home') ? 'active' : ''}`}>
                 <Home size={24} />
                 <span>Home</span>
-            </a>
+            </Link>
             <Link to="/chat" className={`nav-item ${isActive('/chat') ? 'active' : ''}`}>
                 <MessageCircle size={24} />
                 <span>Chat</span>
