@@ -283,23 +283,33 @@ body {
 
 /* ===== HEADER ===== */
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--bg-nav);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  max-width: 1200px;
-  margin: auto;
+  padding: 16px 40px;
 }
 
 @media (max-width: 768px) {
-  .header {
-    padding: 15px 20px;
+  .nav-container {
+    padding: 12px 20px;
   }
 }
 
 .light-theme .header {
   background: var(--bg-nav);
-  border-bottom: 1px solid var(--border-color);
 }
 
 .light-theme h1,
@@ -358,6 +368,23 @@ body {
 .desktop-nav a.active {
   color: var(--primary);
   text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.desktop-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary-glow);
+  transition: width 0.3s ease;
+}
+
+.desktop-nav a.active::after,
+.desktop-nav a:hover::after {
+  width: 100%;
 }
 
 .desktop-nav a {
@@ -495,11 +522,11 @@ body {
 
 /* ===== HERO ===== */
 .hero {
-  padding: 80px 40px;
+  padding: 140px 40px 100px 40px;
   max-width: 1200px;
   margin: 0 auto;
-  min-height: calc(100vh - 80px);
-  /* Full screen minus header */
+  min-height: 100vh;
+  /* Full screen */
   display: flex;
   flex-direction: column;
   justify-content: center;

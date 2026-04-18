@@ -13,7 +13,7 @@ const useActiveSection = (sections) => {
 
         const observerOptions = {
             root: null,
-            rootMargin: '-20% 0px -70% 0px',
+            rootMargin: '-45% 0px -45% 0px',
             threshold: 0
         };
 
