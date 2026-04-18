@@ -1,12 +1,18 @@
 .chat-widget-container {
   position: fixed;
-  bottom: 24px;
+  bottom: 32px;
   right: 24px;
   z-index: 50;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   font-family: 'Outfit', sans-serif;
+}
+
+@media (max-width: 599px) {
+  .chat-widget-container {
+    bottom: 95px; /* Clear the BottomNav */
+  }
 }
 
 .chat-window {
