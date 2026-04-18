@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import useActiveSection from '../hooks/useActiveSection';
@@ -9,6 +9,25 @@ const Navbar = ({ theme, toggleTheme }) => {
     
     const sections = useMemo(() => ['home', 'about', 'education', 'skills', 'work', 'hackathons', 'certificates', 'contact'], []);
     const activeSection = useActiveSection(sections);
+    const scrollPosition = React.useRef(0);
+
+    useEffect(() => {
+        if (isMenuOpen) {
+            // Store current scroll position
+            scrollPosition.current = window.pageYOffset;
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollPosition.current}px`;
+            document.body.style.width = '100%';
+        } else {
+            const scrollY = document.body.style.top;
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
+    }, [isMenuOpen]);
 
     const navLinks = [
         { name: 'Home', path: '/', isExternal: true }, // Set to true to use Link instead of <a>
