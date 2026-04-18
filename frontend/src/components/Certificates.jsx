@@ -15,13 +15,13 @@ const Certificates = () => {
                 Certifications
             </motion.h2>
 
-            <div className="certificates-list flex flex-wrap justify-center gap-6 md:gap-8 max-w-[1000px] mx-auto">
+            <div className="certificates-list">
 
                 {/* Cert 1 */}
 
 
 
-                <div className="cert-col w-full max-w-[350px] flex">
+                <div className="cert-col">
                     <Reveal direction="left">
                         <div className="cert-card-large shadow-xl flex flex-col w-full h-full">
                             <div className="cert-image-wrapper h-[180px] md:h-[200px] bg-black/40 flex items-center justify-center p-2 pb-1">
@@ -50,7 +50,7 @@ const Certificates = () => {
                 </div>
 
                 {/* Cert 2 */}
-                <div className="cert-col w-full max-w-[350px] flex">
+                <div className="cert-col">
                     <Reveal direction="right" delay={0.4}>
                         <div className="cert-card-large shadow-xl flex flex-col w-full h-full">
                             <div className="cert-image-wrapper h-[180px] md:h-[200px] bg-black/40 flex items-center justify-center p-2 pb-1">
@@ -79,7 +79,7 @@ const Certificates = () => {
                 </div>
 
                 {/* Cert 3 — centered below */}
-                <div className="cert-col w-full max-w-[350px] flex">
+                <div className="cert-col">
                     <Reveal direction="left">
                         <div className="cert-card-large shadow-xl flex flex-col w-full h-full">
                             <div className="cert-image-wrapper h-[180px] md:h-[200px] bg-black/40 flex items-center justify-center p-2 pb-1">
@@ -111,7 +111,7 @@ const Certificates = () => {
 
 
 
-                <div className="cert-col w-full max-w-[350px] flex">
+                <div className="cert-col">
                     <Reveal direction="right" delay={0.4}>
                         <div className="cert-card-large shadow-xl flex flex-col w-full h-full">
                             <div className="cert-image-wrapper h-[180px] md:h-[200px] bg-black/40 flex items-center justify-center p-2 pb-1">

@@ -28,11 +28,11 @@ const Footer = () => {
                 <div className="footer-bottom">
                     <p>© 2025 Developer. All rights reserved.</p>
                     <div className="footer-social-icons">
-                        <a href="https://www.linkedin.com/in/jilan-mansuri-235b38392/" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><Linkedin size={16} /></a>
-                        <a href="https://github.com/Jilanmansuri" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><Github size={16} /></a>
-                        <a href="https://x.com/jilan_24" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><XPlatformIcon size={16} /></a>
-                        <a href="https://www.youtube.com/@JilanMansuri-b3c" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><Youtube size={16} /></a>
-                        <a href="https://leetcode.com/u/Jilan2410/" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><SiLeetcode size={16} /></a>
+                        <a href="https://www.linkedin.com/in/jilan-mansuri-235b38392/" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><Linkedin size={20} /></a>
+                        <a href="https://github.com/Jilanmansuri" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><Github size={20} /></a>
+                        <a href="https://x.com/jilan_24" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><XPlatformIcon size={20} /></a>
+                        <a href="https://www.youtube.com/@JilanMansuri-b3c" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><Youtube size={20} /></a>
+                        <a href="https://leetcode.com/u/Jilan2410/" target="_blank" rel="noopener noreferrer" className="icon-btn-small"><SiLeetcode size={20} /></a>
                     </div>
                 </div>
             </Reveal>

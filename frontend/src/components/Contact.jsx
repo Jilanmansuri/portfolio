@@ -91,10 +91,12 @@ const Contact = () => {
                     <Reveal direction="left" width="100%">
                         <div className="contact-info">
                             <div className="contact-header-left">
-                                <div className="icon-box">
-                                    <Send size={28} color="#f97316" />
+                                <div className="contact-title-row">
+                                    <div className="icon-box-mini">
+                                        <Send size={24} color="#f97316" />
+                                    </div>
+                                    <h2 className="gradient-text-orange">Get in Touch</h2>
                                 </div>
-                                <h2>Get in Touch</h2>
                                 <p className="sub-text">
                                     Have a project in mind or just want to say hi?
                                     I’m always open to discussing new ideas.
@@ -112,33 +114,17 @@ const Contact = () => {
                                 </div>
                             </div>
 
-                            <div className="social-links" style={{ display: 'flex', gap: '15px', marginTop: '25px' }}>
-                                <a href="https://github.com/Jilanmansuri" target="_blank" rel="noopener noreferrer" style={{ 
-                                    border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center'
-                                }}
-                                onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
-                                onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                            <div className="social-links">
+                                <a href="https://github.com/Jilanmansuri" target="_blank" rel="noopener noreferrer" className="social-icon-btn">
                                     <Github size={22} />
                                 </a>
-                                <a href="https://linkedin.com/in/jilanmansuri" target="_blank" rel="noopener noreferrer" style={{ 
-                                    border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center'
-                                }}
-                                onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
-                                onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                                <a href="https://linkedin.com/in/jilanmansuri" target="_blank" rel="noopener noreferrer" className="social-icon-btn">
                                     <Linkedin size={22} />
                                 </a>
-                                <Link to="/chat?start=true" style={{ 
-                                    border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center'
-                                }}
-                                onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
-                                onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                                <Link to="/chat?start=true" className="social-icon-btn">
                                     <MessageCircle size={22} />
                                 </Link>
-                                <a href="https://x.com/jilan_24" target="_blank" rel="noopener noreferrer" style={{ 
-                                    border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center'
-                                }}
-                                onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
-                                onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                                <a href="https://x.com/jilan_24" target="_blank" rel="noopener noreferrer" className="social-icon-btn">
                                     <XPlatformIcon size={22} />
                                 </a>
                             </div>
