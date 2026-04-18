@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
-import { Send, Shield, Lock, AlertCircle } from 'lucide-react';
+import { Send, Shield, Lock, AlertCircle, ChevronLeft } from 'lucide-react';
 import './AdminDashboard.css';
 
 const SOCKET_URL = import.meta.env.DEV 
@@ -162,7 +162,7 @@ const AdminDashboard = () => {
   const usersList = Object.keys(chatHistory);
 
   return (
-    <div className="admin-dashboard-container">
+    <div className={`admin-dashboard-container ${selectedUserId ? 'user-selected' : ''}`}>
       {/* Sidebar */}
       <div className="admin-sidebar">
         <div className="admin-sidebar-header">
@@ -211,6 +211,12 @@ const AdminDashboard = () => {
       {selectedUserId ? (
         <div className="admin-chat-area">
           <div className="admin-chat-header">
+            <button 
+              className="admin-back-btn"
+              onClick={() => setSelectedUserId(null)}
+            >
+              <ChevronLeft size={24} />
+            </button>
             <div className="user-avatar-container">
               <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${selectedUserId}`} alt="avatar" className="user-list-avatar" style={{width: 40, height: 40}} />
               <span className={`status-indicator ${activeUsers.has(selectedUserId) ? 'status-online' : 'status-offline'}`}></span>

@@ -11,15 +11,28 @@
 
 @media (max-width: 599px) {
   .chat-widget-container {
-    bottom: 95px; /* Clear the BottomNav */
+    bottom: 90px;
+    right: 16px;
+    left: 16px;
+    align-items: center; /* Center on mobile if needed, or keep right-aligned */
+  }
+
+  .chat-window {
+    width: 100% !important; /* Take full width within container */
+    max-width: 100% !important;
+    height: 70vh !important; /* Dynamic height */
+    max-height: 500px;
+    bottom: 0;
+    margin-bottom: 12px;
   }
 }
 
 .chat-window {
   margin-bottom: 16px;
   border-radius: 16px;
-  width: 360px;
-  height: 550px;
+  width: calc(100vw - 32px); /* Responsive default */
+  max-width: 360px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -30,6 +43,7 @@
 @media (min-width: 640px) {
   .chat-window {
     width: 400px;
+    height: 550px;
   }
 }
 

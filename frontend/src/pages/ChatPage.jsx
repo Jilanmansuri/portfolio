@@ -54,36 +54,17 @@ const ChatPage = () => {
             <p className="chat-page-desc">
               Click the "Start Chat" button below or the floating bubble in the bottom right corner to start a private conversation with Jilan.
             </p>
-            <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
+            <div className="chat-page-buttons">
               <button 
                 onClick={() => document.querySelector('.chat-fab')?.click()}
-                className="admin-demo-link"
-                style={{ 
-                  cursor: 'pointer', 
-                  border: 'none', 
-                  backgroundColor: '#25D366', 
-                  color: 'white',
-                  fontWeight: 600,
-                  padding: '12px 32px',
-                  fontSize: '16px',
-                  borderRadius: '12px',
-                  boxShadow: '0 4px 14px rgba(37, 211, 102, 0.4)'
-                }}
+                className="chat-btn-primary"
               >
                 Start Chat
               </button>
 
               <Link 
                 to="/chat?admin=true"
-                className="admin-demo-link"
-                style={{
-                  padding: '12px 32px',
-                  fontSize: '16px',
-                  fontWeight: 600,
-                  borderRadius: '12px',
-                  backgroundColor: '#1f2937',
-                  border: '1px solid #374151'
-                }}
+                className="chat-btn-secondary"
               >
                 Admin Login
               </Link>

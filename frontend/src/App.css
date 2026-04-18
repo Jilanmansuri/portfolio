@@ -4199,6 +4199,32 @@ body {
     padding-left: 55px !important;
     /* More space for icon */
   }
+
+  /* Education: Smaller text for year/grade row */
+  .edu-stat-val {
+    font-size: 13px !important;
+  }
+
+  .edu-stat-label {
+    font-size: 11px !important;
+  }
+
+  .edu-stat-val .highlight {
+    font-size: 15px !important;
+  }
+
+  .edu-icon-sub {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
+  .edu-stat-box {
+    gap: 10px !important;
+  }
+
+  .edu-v-divider {
+    height: 20px !important;
+  }
 }
 
 /* ========================================= */

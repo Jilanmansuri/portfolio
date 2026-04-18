@@ -51,18 +51,26 @@ const Navbar = ({ theme, toggleTheme }) => {
     };
 
     const isLinkActive = (link) => {
+        // If we are on the home page, use section-based highlighting
         if (location.pathname === '/') {
-            // Priority 1: Map based on active Section (Scroll)
             const hash = link.hash?.replace('#', '');
-            if (activeSection === hash) return true;
             
-            // Special cases for external links that have sections on Home
-            if (link.name === 'Projects' && activeSection === 'work') return true;
-            if (link.name === 'Hackathons' && activeSection === 'hackathons') return true;
-            if (link.name === 'Home' && (activeSection === 'home' || !activeSection)) return true;
+            // If the link has a hash (About, Skills, etc.)
+            if (hash) {
+                if (activeSection === hash) return true;
+                // Special mapping logic for Projects/Hackathons sections on Home
+                if (link.name === 'Projects' && activeSection === 'work') return true;
+                if (link.name === 'Hackathons' && activeSection === 'hackathons') return true;
+                return false;
+            }
+
+            // If it's the Home link (no hash)
+            if (link.name === 'Home') {
+                return activeSection === 'home' || !activeSection;
+            }
         }
 
-        // Priority 2: Exact path match (for pages)
+        // If we are on another page (e.g. /projects, /chat), or for external links on root
         return location.pathname === link.path && !link.hash;
     };
 

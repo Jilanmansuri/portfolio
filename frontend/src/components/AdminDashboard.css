@@ -9,6 +9,7 @@
   border: 1px solid #202c33;
   overflow: hidden;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 /* Sidebar */
@@ -162,4 +163,79 @@
   display: flex;
   gap: 12px;
   align-items: center;
+}
+
+.admin-back-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #8696a0;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: 4px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.admin-back-btn:hover {
+  background-color: rgba(255,255,255,0.05);
+}
+@media (max-width: 768px) {
+  .admin-dashboard-container {
+    height: calc(100vh - 70px); /* Height for mobile */
+    min-height: auto;
+    border-radius: 0;
+    border: none;
+    position: relative;
+  }
+
+  /* Master-Detail Flow */
+  .admin-sidebar {
+    width: 100%;
+    height: 100%;
+    border-right: none;
+    display: flex; /* Show by default */
+  }
+
+  .admin-chat-area {
+    display: none; /* Hide by default */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  /* When a user is selected */
+  .admin-dashboard-container.user-selected .admin-sidebar {
+    display: none;
+  }
+
+  .admin-dashboard-container.user-selected .admin-chat-area {
+    display: flex;
+  }
+
+  .admin-back-btn {
+    display: block; /* Show back button on mobile selection */
+  }
+
+  .admin-empty-state {
+    display: none; /* Hide empty state on mobile since we use full screen sidebar */
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-sidebar-header {
+    font-size: 14px;
+    padding: 12px;
+  }
+  
+  .user-name {
+    font-size: 14px;
+  }
+  
+  .user-last-msg {
+    max-width: 140px;
+  }
 }

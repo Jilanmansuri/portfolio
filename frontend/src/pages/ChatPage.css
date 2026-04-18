@@ -37,11 +37,17 @@
 }
 
 .chat-page-title {
-  font-size: 36px;
+  font-size: 32px; /* Scales down on very small mobile */
   font-weight: 700;
   margin-bottom: 24px;
   color: white;
   line-height: 1.2;
+}
+
+@media (min-width: 480px) {
+  .chat-page-title {
+    font-size: 36px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -114,4 +120,68 @@
   .admin-page-container {
     padding-top: 80px;
   }
+}
+
+/* Chat Page Specific Button Styles */
+.chat-page-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .chat-page-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .chat-btn-primary, .chat-btn-secondary {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+.chat-btn-primary {
+  cursor: pointer;
+  border: none;
+  background-color: #25D366;
+  color: white;
+  font-weight: 600;
+  padding: 12px 32px;
+  font-size: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+  transition: transform 0.2s, background-color 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-btn-primary:hover {
+  background-color: #20b858;
+  transform: translateY(-2px);
+}
+
+.chat-btn-secondary {
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  color: white;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-btn-secondary:hover {
+  background-color: #374151;
+  transform: translateY(-2px);
 }
