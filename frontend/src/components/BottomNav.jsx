@@ -1,15 +1,36 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Home, MessageCircle, Briefcase, Mail } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useActiveSection from '../hooks/useActiveSection';
 
 const BottomNav = () => {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
+    const navigate = useNavigate();
     const location = useLocation();
     
     const sections = useMemo(() => ['home', 'contact'], []);
     const activeSection = useActiveSection(sections);
+
+    const goToSection = (sectionId) => {
+        if (location.pathname === '/') {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const offset = 90;
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = element.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        } else {
+            navigate('/', { state: { scrollTo: sectionId } });
+        }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -56,10 +77,14 @@ const BottomNav = () => {
                 <span>Work</span>
             </Link>
 
-            <a href="/#contact" className={`nav-item nav-item-cta ${isActive('/', '#contact') ? 'active' : ''}`}>
+            <button 
+                onClick={() => goToSection('contact')} 
+                className={`nav-item nav-item-cta ${isActive('/', 'contact') ? 'active' : ''}`}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 0 }}
+            >
                 <Mail size={24} />
                 <span>Contact</span>
-            </a>
+            </button>
         </nav>
     );
 };

@@ -107,9 +107,36 @@ const Certificates = () => {
                     </Reveal>
                 </div>
 
+                {/* Cert 4 */}
+                <div className="cert-col">
+                    <Reveal direction="left">
+                        <div className="cert-card-large shadow-xl flex flex-col w-full h-full">
+                            <div className="cert-image-wrapper h-[180px] md:h-[200px] bg-black/40 flex items-center justify-center p-2 pb-1">
+                                <img
+                                    src="/mastercard-cert.png"
+                                    alt="Mastercard Cybersecurity Job Simulation"
+                                    className="cert-img-large object-contain max-h-full"
+                                />
+                            </div>
+                            <div className="cert-details-large flex flex-col">
+                                <div className="cert-row flex flex-col items-start w-full">
+                                    <div className="flex flex-col gap-1.5 min-w-0">
+                                        <div className="cert-header flex items-center gap-2 font-bold text-white">
+                                            <Award size={14} className="text-[#ff5f00] shrink-0" />
+                                            <h3 className="text-[13px] leading-tight truncate">Cybersecurity Simulation</h3>
+                                        </div>
+                                        <div className="pl-[20px]">
+                                            <p className="cert-issuer text-[9px] font-medium text-gray-400 uppercase tracking-wider">Forage / Mastercard • July 2026</p>
+                                        </div>
+                                    </div>
+                                    <button className="btn-link cert-verify-btn">Verify <ExternalLink size={14} /></button>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+
                 {/* Cert 5 */}
-
-
 
                 <div className="cert-col">
                     <Reveal direction="right" delay={0.4}>

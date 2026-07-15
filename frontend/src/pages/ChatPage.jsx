@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import ChatWidget from '../components/ChatWidget';
-import AdminDashboard from '../components/AdminDashboard';
 import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import './ChatPage.css';
 
 const ChatPage = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
     const urlParams = new URLSearchParams(location.search);
-    setIsAdmin(urlParams.get('admin') === 'true');
     
     // Auto-start chat if 'start=true' is in URL
     if (urlParams.get('start') === 'true') {
@@ -22,7 +19,7 @@ const ChatPage = () => {
         if (chatFab) {
           chatFab.click();
         }
-      }, 800); // Slight delay for components to mount properly
+      }, 800);
       return () => clearTimeout(timer);
     }
   }, [location.search]);
@@ -30,52 +27,40 @@ const ChatPage = () => {
   return (
     <>
       <SEO 
-        title={isAdmin ? "Admin Control Panel | Jilan Mansuri" : "Start a Live Chat | Jilan Mansuri"} 
-        description={isAdmin ? "Access the backend chat management system." : "Need help or have a partnership inquiry? Chat with Jilan Mansuri in real-time."} 
+        title="Chat with Jilan | WhatsApp Integration" 
+        description="Need help or have a partnership inquiry? Connect with Jilan Mansuri directly via WhatsApp for a quick response." 
       />
-      {isAdmin ? (
-        <div className="admin-page-container">
-          <AdminDashboard />
-        </div>
-      ) : (
-        <div className="chat-page">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="chat-page-content"
-          >
-            <div className="chat-page-badge">
-              Private Messaging
-            </div>
-            <h1 className="chat-page-title">
-              Let's <span>Connect</span>
-            </h1>
-            <p className="chat-page-desc">
-              Click the "Start Chat" button below or the floating bubble in the bottom right corner to start a private conversation with Jilan.
-            </p>
-            <div className="chat-page-buttons">
-              <button 
-                onClick={() => document.querySelector('.chat-fab')?.click()}
-                className="chat-btn-primary"
-              >
-                Start Chat
-              </button>
-
-              <Link 
-                to="/chat?admin=true"
-                className="chat-btn-secondary"
-              >
-                Admin Login
-              </Link>
-            </div>
-          </motion.div>
-          
-          <ChatWidget />
-        </div>
-      )}
+      <div className="chat-page">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="chat-page-content"
+        >
+          <div className="chat-page-badge">
+            Direct Messaging
+          </div>
+          <h1 className="chat-page-title">
+            Let's <span>Connect</span>
+          </h1>
+          <p className="chat-page-desc">
+            Click the "Open WhatsApp" button below to start a direct conversation with Jilan. You can also use the floating bubble in the bottom right corner.
+          </p>
+          <div className="chat-page-buttons">
+            <button 
+              onClick={() => document.querySelector('.chat-fab')?.click()}
+              className="chat-btn-primary"
+            >
+              Open WhatsApp
+            </button>
+          </div>
+        </motion.div>
+        
+        <ChatWidget />
+      </div>
     </>
   );
 };
 
 export default ChatPage;
+

@@ -5,9 +5,19 @@ import SEO from '../components/SEO';
 
 const featuredProjects = [
   {
+    title: "DealXpress",
+    description: "Built a full-stack B2B/C2C marketplace with real-time price negotiation, secure authentication, and role-based access for seamless transactions.",
+    techStack: "React • Node.js • MongoDB • Tailwind CSS",
+    img: "/dealxpress.png",
+    link: "https://deal-xpress.vercel.app/",
+    github: "https://github.com/jilanmansuri/dealXpress",
+    video: "https://youtu.be/IG5rx7y8UrM",
+    color: "#6366f1"
+  },
+  {
     title: "ScamShield",
-    description: "AI-powered scam detection and analytics platform.",
-    tags: ["React", "AI", "Analytics"],
+    description: "Developed an AI-powered fraud detection system that analyzes messages and links to identify scams in real time.",
+    techStack: "React • Tailwind CSS • Gemini API • Node.js",
     img: "/scamshield.png",
     link: "https://scamshield-xjip.vercel.app/",
     github: "https://github.com/Jilanmansuri/scamshield",
@@ -15,8 +25,8 @@ const featuredProjects = [
   },
   {
     title: "FreelanceX",
-    description: "A robust freelance marketplace and networking platform with seamless connectivity and modern vector-based interactions.",
-    tags: ["React", "Node.js", "MongoDB", "AI API"],
+    description: "Created a freelance marketplace enabling secure project bidding, user profiles, and real-time collaboration between clients and freelancers.",
+    techStack: "React • Node.js • MongoDB • Tailwind CSS",
     img: "/freelancex.png",
     link: "https://vector-minds.vercel.app/",
     github: "https://github.com/Jilanmansuri/FreelanceX",
@@ -32,6 +42,16 @@ const featuredProjects = [
     github: "https://github.com/Jilanmansuri/Hack-Titans",
     video: "https://youtu.be/1tZeN9hGZRo",
     color: "#10b981"
+  },
+  {
+    title: "KrishiSaarthi AI",
+    description: "An intelligent farming assistant that provides precise crop suitability scores and NPK fertilizer recommendations using either soil reports or simple questionnaires.",
+    techStack: "React • Node.js • Express • REST API",
+    img: "/krishisaarthi-preview.png",
+    link: "https://krishi-sarthi-ai.vercel.app",
+    github: "https://github.com/Jilanmansuri/AstraX_Greentech",
+    video: "https://www.youtube.com/watch?v=HOWHKVeituQ",
+    color: "#16a34a"
   }
 ];
 
@@ -39,7 +59,7 @@ const websiteClones = [
   {
     title: "DreamGames Clone",
     description: "Immersive game studio website clone with 3D visuals.",
-    tags: ["Game Dev", "UI/UX"],
+    techStack: "HTML • CSS",
     img: "/dreams.png",
     link: "#",
     github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
@@ -49,7 +69,7 @@ const websiteClones = [
   {
     title: "Cronos Clone",
     description: "Global finance on-chain blockchain platform clone.",
-    tags: ["Crypto", "Web3"],
+    techStack: "HTML • CSS",
     img: "/cronos.png",
     link: "#",
     github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
@@ -59,7 +79,7 @@ const websiteClones = [
   {
     title: "Barista Clone",
     description: "Modern coffee shop website clone with ordering.",
-    tags: ["Coffee Shop"],
+    techStack: "HTML • CSS",
     img: "/barista.png",
     link: "https://barista-web-clone-108623.netlify.app/",
     github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
@@ -69,7 +89,7 @@ const websiteClones = [
   {
     title: "JioTV Clone",
     description: "Live TV streaming platform clone.",
-    tags: ["Streaming"],
+    techStack: "HTML • CSS",
     img: "/jiotv-mockup.png",
     link: "https://jiotv-web2-clone.netlify.app/",
     github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
@@ -79,7 +99,7 @@ const websiteClones = [
   {
     title: "Glean Clone",
     description: "AI-powered enterprise search platform clone.",
-    tags: ["AI Search"],
+    techStack: "HTML • CSS",
     img: "/glean.png",
     link: "https://glean-clone-web5-108623.netlify.app/",
     github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
@@ -89,7 +109,7 @@ const websiteClones = [
   {
     title: "Paxos Gold Clone",
     description: "Digital asset trading platform clone for gold.",
-    tags: ["Crypto"],
+    techStack: "HTML • CSS",
     img: "/paxos.png",
     link: "https://paxos-clone-web4.netlify.app/",
     github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
@@ -114,7 +134,7 @@ const apiProjects = [
     tags: ["API Project"],
     img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=800",
     link: "https://jilan-108623-apiproject.netlify.app/",
-    github: "#",
+    github: "https://github.com/Jilanmansuri/Projects/tree/main/api-project/news-api",
     color: "#ef4444"
   },
   {
@@ -258,13 +278,13 @@ const games = [
 
 const allProjects = [
   ...featuredProjects.map(p => ({ ...p, category: "Featured" })),
-  ...websiteClones.map(p => ({ ...p, category: "Clones" })),
-  ...apiProjects.map(p => ({ ...p, category: "APIs" })),
-  ...figmaDesigns.map(p => ({ ...p, category: "Figma" })),
+  ...websiteClones.map(p => ({ ...p, category: "Frontend" })),
+  ...apiProjects.map(p => ({ ...p, category: "API APPS" })),
+  ...figmaDesigns.map(p => ({ ...p, category: "UI/UX" })),
   ...games.map(p => ({ ...p, category: "Games" }))
 ];
 
-const categories = ["All", "Featured", "Clones", "APIs", "Figma", "Games"];
+const categories = ["All", "Featured", "Frontend", "API APPS", "UI/UX", "Games"];
 
 const ProjectsPage = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -281,7 +301,7 @@ const ProjectsPage = () => {
     : allProjects.filter(p => p.category === activeCategory);
 
   const renderProjectCard = (project, index) => {
-    const isFigma = project.category === "Figma";
+    const isUIUX = project.category === "UI/UX";
     const isGame = project.category === "Games";
 
     return (
@@ -295,22 +315,32 @@ const ProjectsPage = () => {
         transition={{ duration: 0.3 }}
         style={{ '--theme-color': project.color }}
       >
-        <div className={`card-image-container ${isGame ? 'game-img-container' : ''}`} style={isFigma ? { height: '210px' } : {}}>
+        <div className={`card-image-container ${isGame ? 'game-img-container' : ''}`} style={isUIUX ? { height: '210px' } : {}}>
           <img
             src={project.img}
             alt={project.title}
             className="project-img"
-            style={isFigma ? { height: '100%', objectFit: 'cover' } : {}}
+            style={isUIUX ? { height: '100%', objectFit: 'cover' } : {}}
             onError={(e) => { if (isGame) e.target.src = 'https://placehold.co/600x400?text=Game+Ref' }}
           />
         </div>
         <div className="card-content">
           <h3 style={{ color: project.color, fontSize: isGame ? '1.2rem' : undefined }}>{project.title}</h3>
+          <div className="tech-stack-line" style={{
+            fontSize: '0.75rem',
+            color: project.color,
+            opacity: 0.8,
+            marginBottom: '8px',
+            fontWeight: '600',
+            letterSpacing: '0.5px'
+          }}>
+            {project.techStack || (project.tags && project.tags.join(' • '))}
+          </div>
           <p style={{ fontSize: isGame ? '0.9rem' : undefined }}>{project.description}</p>
           <div className="card-actions">
             {project.link && (
               <a href={project.link} target="_blank" rel="noopener noreferrer" className="link-text" style={isGame ? { fontSize: '0.85rem' } : {}}>
-                <ExternalLink size={isGame ? 14 : 16} /> {isFigma ? "Figma File" : (isGame ? "Play" : "Live Demo")}
+                <ExternalLink size={isGame ? 14 : 16} /> {project.category === "UI/UX" ? "Figma File" : (isGame ? "Play" : "Live Demo")}
               </a>
             )}
             {project.prototype && (
@@ -318,7 +348,7 @@ const ProjectsPage = () => {
                 <Target size={16} /> Prototype
               </a>
             )}
-            {!isFigma && !isGame && project.github && project.github !== "#" && (
+            {!isUIUX && !isGame && project.github && project.github !== "#" && (
               <a href={project.github} target="_blank" rel="noopener noreferrer" className="link-text github-link">
                 <Github size={16} /> Source Code
               </a>

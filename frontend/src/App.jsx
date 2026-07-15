@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
+import LoadingScreen from "./components/LoadingScreen";
 import UniverseBackground from "./components/UniverseBackground";
 // import CustomCursor from "./components/CustomCursor";
 import Navbar from "./components/Navbar";
@@ -9,6 +10,7 @@ import About from "./components/About";
 import Skills from "./components/Skills";
 import Education from "./components/Education";
 import Projects from "./components/Projects";
+import CodingActivity from "./components/CodingActivity";
 import Hackathons from "./components/Hackathons";
 import Certificates from "./components/Certificates";
 import Contact from "./components/Contact";
@@ -20,43 +22,83 @@ import HackathonsPage from "./pages/HackathonsPage";
 import ChatPage from "./pages/ChatPage";
 import SEO from "./components/SEO";
 
-const Home = () => (
-  <>
-    <SEO 
-      title="Jilan Mansuri | Full Stack Developer " 
-      description="Professional portfolio of Jilan Mansuri. Discover my full-stack projects in React, Node.js, and MongoDB, alongside my UI/UX designs and hackathon achievements." 
-    />
-    {/* ===== HERO ===== */}
-    <Hero />
+const Home = () => {
+  const { state } = useLocation();
+  const navigate = useNavigate();
 
-    {/* ===== ABOUT ME ===== */}
-    <About />
+  // Unified scroll utility for a natural feel
+  const scrollToSection = (id) => {
+    if (id === 'top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
 
-    {/* ===== EDUCATION ===== */}
-    <Education />
+    const element = document.getElementById(id);
+    if (!element) return;
 
-    {/* ===== SKILLS & TOOLS ===== */}
-    <Skills />
+    // Use native scrollIntoView which respects CSS scroll-margin-top
+    element.scrollIntoView({ behavior: 'smooth' });
+  };
 
-    {/* ===== PROJECTS ===== */}
-    <Projects />
+  useEffect(() => {
+    if (state?.scrollTo) {
+      const sectionId = state.scrollTo;
 
-    {/* ===== HACKATHONS ===== */}
-    <Hackathons />
+      // Delay navigation to ensure DOM is fully rendered and menu cleanup is done
+      const timer = setTimeout(() => {
+        scrollToSection(sectionId);
+      }, 300); // 300ms delay to ensure the mobile menu has finished its transition
 
-    {/* ===== CERTIFICATES ===== */}
-    <Certificates />
+      return () => clearTimeout(timer);
+    }
+  }, [state, navigate]);
 
-    {/* ===== CONTACT Form ===== */}
-    <Contact />
+  return (
+    <div className="home-container">
+      <SEO
+        title="Jilan Mansuri | Full Stack Developer "
+        description="Professional portfolio of Jilan Mansuri. Discover my full-stack projects in React, Node.js, and MongoDB, alongside my UI/UX designs and hackathon achievements."
+      />
+      {/* ===== HERO ===== */}
+      <Hero />
 
-    {/* ===== EXPANDED FOOTER ===== */}
-    <Footer />
-  </>
-);
+      {/* ===== ABOUT ME ===== */}
+      <About />
+
+      {/* ===== EDUCATION ===== */}
+      <Education />
+
+      {/* ===== SKILLS & TOOLS ===== */}
+      <Skills />
+
+      {/* ===== PROJECTS ===== */}
+      <Projects />
+
+      {/* ===== CODING ACTIVITY ===== */}
+      <CodingActivity />
+
+      {/* ===== HACKATHONS ===== */}
+      <Hackathons isHomePage={true} />
+
+      {/* ===== CERTIFICATES ===== */}
+      <Certificates />
+
+      {/* ===== CONTACT Form ===== */}
+      <Contact />
+
+      {/* ===== EXPANDED FOOTER ===== */}
+      <Footer />
+    </div>
+  );
+};
+
+
 
 export default function App() {
   const [theme, setTheme] = useState('dark');
+  const [isLoading, setIsLoading] = useState(() => {
+    return !sessionStorage.getItem('visited');
+  });
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -68,12 +110,31 @@ export default function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  // Ping backend to wake up free Render instance
+  useEffect(() => {
+    const wakeUpBackend = async () => {
+      try {
+        const API_URL = import.meta.env.VITE_API_URL;
+        if (API_URL) {
+          await fetch(`${API_URL}/api/health`);
+          console.log("Backend pinged successfully");
+        }
+      } catch (error) {
+        console.error("Failed to ping backend:", error);
+      }
+    };
+    wakeUpBackend();
+  }, []);
+
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-  };
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark')
+  }
+
+
 
   return (
     <div className="app">
+      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       {/* <CustomCursor /> */}
       {/* Background Animation */}
       <UniverseBackground theme={theme} />

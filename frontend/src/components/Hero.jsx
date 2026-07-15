@@ -75,7 +75,7 @@ const Hero = () => {
                             onMouseOut={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 0.2)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}>
                                 <Github size={20} />
                             </a>
-                            <a href="https://linkedin.com/in/jilanmansuri" target="_blank" rel="noopener noreferrer" style={{ 
+                            <a href="https://www.linkedin.com/in/jilan-mansuri-235b38392/" target="_blank" rel="noopener noreferrer" style={{ 
                                 border: '1.5px solid rgba(249, 115, 22, 0.2)', borderRadius: '12px', color: '#f97316', transition: 'all 0.3s ease', backgroundColor: 'transparent', width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center'
                             }}
                             onMouseOver={(e) => { e.currentTarget.style.border = '1.5px solid rgba(249, 115, 22, 1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(249, 115, 22, 0.4)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}

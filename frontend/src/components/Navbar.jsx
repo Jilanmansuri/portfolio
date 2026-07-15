@@ -1,51 +1,72 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useActiveSection from '../hooks/useActiveSection';
 
 const Navbar = ({ theme, toggleTheme }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
     const location = useLocation();
     
-    const sections = useMemo(() => ['home', 'about', 'education', 'skills', 'work', 'hackathons', 'certificates', 'contact'], []);
+    const sections = useMemo(() => ['home', 'about', 'education', 'skills', 'work', 'coding-activity', 'hackathons', 'certificates', 'contact'], []);
     const activeSection = useActiveSection(sections);
-    const scrollPosition = React.useRef(0);
-
     useEffect(() => {
+        const html = document.documentElement;
         if (isMenuOpen) {
-            // Store current scroll position
-            scrollPosition.current = window.pageYOffset;
             document.body.style.overflow = 'hidden';
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${scrollPosition.current}px`;
-            document.body.style.width = '100%';
+            html.style.overflow = 'hidden';
         } else {
-            const scrollY = document.body.style.top;
             document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            html.style.overflow = '';
         }
+        
+        return () => {
+            document.body.style.overflow = '';
+            html.style.overflow = '';
+        };
     }, [isMenuOpen]);
 
     const navLinks = [
-        { name: 'Home', path: '/', isExternal: true }, // Set to true to use Link instead of <a>
-        { name: 'About', path: '/', hash: '#about', isExternal: false },
-        { name: 'Skills', path: '/', hash: '#skills', isExternal: false },
-        { name: 'Projects', path: '/projects', isExternal: true },
-        { name: 'Hackathons', path: '/hackathons', isExternal: true },
-        { name: 'Certificates', path: '/', hash: '#certificates', isExternal: false },
-        { name: 'Contact', path: '/', hash: '#contact', isExternal: false },
-        { name: 'Chat', path: '/chat', isExternal: true },
+        { name: 'Home', path: '/', type: 'page' },
+        { name: 'About', sectionId: 'about', type: 'section' },
+        { name: 'Skills', sectionId: 'skills', type: 'section' },
+        { name: 'Projects', path: '/projects', type: 'page' },
+        { name: 'Community', sectionId: 'coding-activity', type: 'section' },
+        { name: 'Hackathons', path: '/hackathons', type: 'page' },
+        { name: 'Certificates', sectionId: 'certificates', type: 'section' },
+        { name: 'Contact', sectionId: 'contact', type: 'section' },
+        { name: 'Chat', path: '/chat', type: 'page' },
     ];
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+    const goToSection = (sectionId) => {
+        if (isMenuOpen || location.pathname !== '/') {
+            // When menu is open or we're on a different page, use state-based navigation
+            // Adding a timestamp ensures the state is always unique, triggering the effect in App.jsx
+            setIsMenuOpen(false);
+            navigate('/', { state: { scrollTo: sectionId, _t: Date.now() } });
+        } else {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
+
     const handleNavLinkClick = (link, e) => {
-        if (link.name === 'Home' && location.pathname === '/') {
+        if (link.type === 'section') {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            goToSection(link.sectionId);
+        } else if (link.name === 'Home' && location.pathname === '/') {
+            e.preventDefault();
+            if (isMenuOpen) {
+                setIsMenuOpen(false);
+                // Use unique state to scroll to top after menu closes
+                navigate('/', { state: { scrollTo: 'top', _t: Date.now() } });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
         if (isMenuOpen) setIsMenuOpen(false);
     };
@@ -53,11 +74,9 @@ const Navbar = ({ theme, toggleTheme }) => {
     const isLinkActive = (link) => {
         // If we are on the home page, use section-based highlighting
         if (location.pathname === '/') {
-            const hash = link.hash?.replace('#', '');
-            
-            // If the link has a hash (About, Skills, etc.)
-            if (hash) {
-                if (activeSection === hash) return true;
+            // If the link has a sectionId (About, Skills, etc.)
+            if (link.sectionId) {
+                if (activeSection === link.sectionId) return true;
                 // Special mapping logic for Projects/Hackathons sections on Home
                 if (link.name === 'Projects' && activeSection === 'work') return true;
                 if (link.name === 'Hackathons' && activeSection === 'hackathons') return true;
@@ -66,13 +85,15 @@ const Navbar = ({ theme, toggleTheme }) => {
 
             // If it's the Home link (no hash)
             if (link.name === 'Home') {
-                return activeSection === 'home' || !activeSection;
+                // Return false to disable permanent highlight/hover effect for Home
+                return false;
             }
         }
 
         // If we are on another page (e.g. /projects, /chat), or for external links on root
-        return location.pathname === link.path && !link.hash;
+        return location.pathname === link.path && !link.sectionId;
     };
+
 
     return (
         <header className="header animate-fade-in">
@@ -83,25 +104,14 @@ const Navbar = ({ theme, toggleTheme }) => {
                 
                 <nav className="desktop-nav">
                     {navLinks.map((link, index) => (
-                        link.isExternal ? (
-                            <Link 
-                                key={index} 
-                                to={link.path} 
-                                className={isLinkActive(link) ? 'active' : ''}
-                                onClick={(e) => handleNavLinkClick(link, e)}
-                            >
-                                {link.name}
-                            </Link>
-                        ) : (
-                            <a 
-                                key={index} 
-                                href={link.path + link.hash} 
-                                className={isLinkActive(link) ? 'active' : ''}
-                                onClick={(e) => handleNavLinkClick(link, e)}
-                            >
-                                {link.name}
-                            </a>
-                        )
+                        <Link 
+                            key={index} 
+                            to={link.path || '#'}
+                            className={isLinkActive(link) ? 'active' : ''}
+                            onClick={(e) => handleNavLinkClick(link, e)}
+                        >
+                            {link.name}
+                        </Link>
                     ))}
                 </nav>
 
@@ -127,25 +137,14 @@ const Navbar = ({ theme, toggleTheme }) => {
                     </div>
                     <nav className="mobile-nav-links">
                         {navLinks.map((link, index) => (
-                            link.isExternal ? (
-                                <Link 
-                                    key={index} 
-                                    to={link.path} 
-                                    className={isLinkActive(link) ? 'active' : ''} 
-                                    onClick={(e) => handleNavLinkClick(link, e)}
-                                >
-                                    {link.name}
-                                </Link>
-                            ) : (
-                                <a 
-                                    key={index} 
-                                    href={link.path + link.hash} 
-                                    className={isLinkActive(link) ? 'active' : ''} 
-                                    onClick={(e) => handleNavLinkClick(link, e)}
-                                >
-                                    {link.name}
-                                </a>
-                            )
+                            <Link 
+                                key={index} 
+                                to={link.path || '#'}
+                                className={isLinkActive(link) ? 'active' : ''} 
+                                onClick={(e) => handleNavLinkClick(link, e)}
+                            >
+                                {link.name}
+                            </Link>
                         ))}
                     </nav>
                 </div>

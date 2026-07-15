@@ -1,70 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { io } from 'socket.io-client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send } from 'lucide-react';
 import './ChatWidget.css';
 
-const SOCKET_URL = import.meta.env.DEV 
-  ? `http://${window.location.hostname}:5001` 
-  : import.meta.env.VITE_API_URL || 'http://localhost:5001';
-
-let socket;
+const WHATSAPP_NUMBER = "917984088939";
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    {
+      id: 'welcome',
+      text: "Hi there! 👋 How can I help you today?",
+      sender: 'admin',
+      timestamp: new Date().toISOString()
+    }
+  ]);
   const [inputMessage, setInputMessage] = useState('');
-  const [userId, setUserId] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const [adminTyping, setAdminTyping] = useState(false);
   
   const messagesEndRef = useRef(null);
-  const typingTimeoutRef = useRef(null);
 
   useEffect(() => {
-    let id = localStorage.getItem('guestChatId');
-    if (!id) {
-      id = `Guest-${Math.floor(Math.random() * 100000)}`;
-      localStorage.setItem('guestChatId', id);
-    }
-    setUserId(id);
-
-    socket = io(SOCKET_URL, {
-      query: { userId: id, isAdmin: 'false' },
-      transports: ['websocket', 'polling'],
-    });
-
-    socket.on('connect', () => {
-      console.log('Connected to socket server:', socket.id);
-    });
-
-    socket.on('message_history', (history) => {
-      if (history) {
-        setMessages(history);
-        setTimeout(scrollToBottom, 100);
-      }
-    });
-
-    socket.on('receive_message', (message) => {
-      setMessages((prev) => {
-        if (prev.find(m => m.id === message.id)) return prev;
-        return [...prev, message];
-      });
+    if (isOpen) {
       setTimeout(scrollToBottom, 100);
-    });
-
-    socket.on('user_typing', (data) => {
-      if (data.senderId !== id) setAdminTyping(true);
-    });
-
-    socket.on('user_stop_typing', (data) => {
-      if (data.senderId !== id) setAdminTyping(false);
-    });
-
-    return () => {
-      if (socket) socket.disconnect();
-    };
-  }, []);
+    }
+  }, [isOpen, messages]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -72,36 +31,23 @@ const ChatWidget = () => {
 
   const handleSendMessage = (e) => {
     e.preventDefault();
-    if (!inputMessage.trim() || !socket) return;
+    if (!inputMessage.trim()) return;
 
-    const messageData = {
+    // Add user message to local state for visual feedback
+    const userMsg = {
+      id: Date.now(),
       text: inputMessage,
       sender: 'user',
-      userId: userId
+      timestamp: new Date().toISOString()
     };
-
-    socket.emit('send_message', messageData);
-    socket.emit('stop_typing', { senderId: userId });
+    
+    setMessages(prev => [...prev, userMsg]);
+    
+    // Open WhatsApp
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(inputMessage)}`;
+    window.open(url, '_blank');
     
     setInputMessage('');
-    setIsTyping(false);
-    clearTimeout(typingTimeoutRef.current);
-  };
-
-  const handleTyping = (e) => {
-    setInputMessage(e.target.value);
-
-    if (!isTyping) {
-      setIsTyping(true);
-      socket.emit('typing', { senderId: userId });
-    }
-
-    if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
-
-    typingTimeoutRef.current = setTimeout(() => {
-      setIsTyping(false);
-      socket.emit('stop_typing', { senderId: userId });
-    }, 1500);
   };
 
   return (
@@ -129,7 +75,7 @@ const ChatWidget = () => {
                 </div>
                 <div className="chat-header-text">
                   <h3>Jilan Mansuri</h3>
-                  <p>{adminTyping ? `Online (typing...)` : 'Online'}</p>
+                  <p>Online</p>
                 </div>
               </div>
               <button onClick={() => setIsOpen(false)} className="chat-close-btn">
@@ -186,7 +132,7 @@ const ChatWidget = () => {
                   <input
                     type="text"
                     value={inputMessage}
-                    onChange={handleTyping}
+                    onChange={(e) => setInputMessage(e.target.value)}
                     placeholder={`Type a message...`}
                     className="chat-input"
                   />
@@ -224,3 +170,4 @@ const ChatWidget = () => {
 };
 
 export default ChatWidget;
+

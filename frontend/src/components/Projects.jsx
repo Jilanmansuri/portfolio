@@ -5,19 +5,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const allProjects = [
     {
-        title: "ScamShield",
-        description: "AI-powered scam detection and analytics platform.",
-        tags: ["React", "AI", "Analytics"],
-        img: "/scamshield.png",
-        link: "https://scamshield-xjip.vercel.app/",
-        github: "https://github.com/Jilanmansuri/scamshield",
-        color: "#4f46e5",
+        title: "DealXpress",
+        description: "Built a full-stack B2B/C2C marketplace with real-time price negotiation, secure authentication, and role-based access for seamless transactions.",
+        techStack: "React • Node.js • MongoDB • Tailwind CSS",
+        img: "/dealxpress.png",
+        link: "https://deal-xpress.vercel.app/",
+        github: "https://github.com/jilanmansuri/dealXpress",
+        video: "https://youtu.be/IG5rx7y8UrM",
+        color: "#6366f1",
         category: "Featured"
     },
     {
         title: "FreelanceX",
-        description: "A robust freelance marketplace and networking platform with seamless connectivity and modern vector-based interactions.",
-        tags: ["React", "Node.js", "MongoDB", "AI API"],
+        description: "Created a freelance marketplace enabling secure project bidding, user profiles, and real-time collaboration between clients and freelancers.",
+        techStack: "React • Node.js • MongoDB • Tailwind CSS",
         img: "/freelancex.png",
         link: "https://vector-minds.vercel.app/",
         github: "https://github.com/Jilanmansuri/FreelanceX",
@@ -39,13 +40,13 @@ const allProjects = [
     {
         title: "DreamGames Clone",
         description: "Immersive game studio website clone with 3D visuals.",
-        tags: ["Game Dev", "UI/UX"],
+        techStack: "HTML • CSS",
         img: "/dreams.png",
         link: "#",
         github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
         video: "https://youtu.be/OsPK9A-OZRU",
         color: "#3b82f6",
-        category: "Clones"
+        category: "Frontend"
     },
     {
         title: "Github Finder",
@@ -55,71 +56,7 @@ const allProjects = [
         link: "https://github-finder-7655.netlify.app/",
         github: "https://github.com/Jilanmansuri/Projects/tree/main/github-finder",
         color: "#f0f6fc",
-        category: "APIs"
-    },
-    {
-        title: "News App",
-        description: "Search and read news with API integration.",
-        tags: ["API Project"],
-        img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=800",
-        link: "https://jilan-108623-apiproject.netlify.app/",
-        github: "#",
-        color: "#ef4444",
-        category: "APIs"
-    },
-    {
-        title: "Barista Clone",
-        description: "Modern coffee shop website clone with ordering.",
-        tags: ["Coffee Shop"],
-        img: "/barista.png",
-        link: "https://barista-web-clone-108623.netlify.app/",
-        github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
-        video: "https://youtu.be/MaxuwgmfpDA",
-        color: "#d97706",
-        category: "Clones"
-    },
-    {
-        title: "JioTV Clone",
-        description: "Live TV streaming platform clone.",
-        tags: ["Streaming"],
-        img: "/jiotv-mockup.png",
-        link: "https://jiotv-web2-clone.netlify.app/",
-        github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
-        video: "https://youtu.be/q0Vrh8M2Yp0",
-        color: "#0078d7",
-        category: "Clones"
-    },
-    {
-        title: "Glean Clone",
-        description: "AI-powered enterprise search platform clone.",
-        tags: ["AI Search"],
-        img: "/glean.png",
-        link: "https://glean-clone-web5-108623.netlify.app/",
-        github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
-        video: "https://youtu.be/ePT3Pho75ic",
-        color: "#6366f1",
-        category: "Clones"
-    },
-    {
-        title: "Paxos Gold Clone",
-        description: "Digital asset trading platform clone for gold.",
-        tags: ["Crypto"],
-        img: "/paxos.png",
-        link: "https://paxos-clone-web4.netlify.app/",
-        github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
-        video: "https://youtu.be/fCNuwqJAkJ0",
-        color: "#facc15",
-        category: "Clones"
-    },
-    {
-        title: "SAFAL Hospital UI/UX",
-        description: "A comprehensive UI/UX design and interactive prototype for a hospital and medical excellence platform.",
-        tags: ["Figma", "UI/UX", "Healthcare"],
-        img: "/safal-hospital.png",
-        link: "https://www.figma.com/design/7hEGL5YrGcDzBBLUriv6iq/Untitled?node-id=254-398&p=f&t=OcdWhPxFQX1t2ZIo-0",
-        prototype: "https://www.figma.com/proto/7hEGL5YrGcDzBBLUriv6iq/Untitled?page-id=254%3A398&node-id=439-570&viewport=150%2C137%2C0.24&t=PZFXB5KyiLaqC036-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=439%3A570",
-        color: "#2563eb",
-        category: "Figma"
+        category: "API APPS"
     },
     {
         title: "Hotel LandMark Booking UI",
@@ -129,7 +66,81 @@ const allProjects = [
         link: "https://www.figma.com/design/6dAnbHhaC2brOg8hQu9EXb/blacknest?node-id=1-623&t=NNojOHTfmB03y0t2-1",
         prototype: "https://www.figma.com/proto/6dAnbHhaC2brOg8hQu9EXb/blacknest?node-id=1-623&t=NNojOHTfmB03y0t2-1",
         color: "#3b82f6",
-        category: "Figma"
+        category: "UI/UX"
+    },
+    {
+        title: "ScamShield",
+        description: "Developed an AI-powered fraud detection system that analyzes messages and links to identify scams in real time.",
+        techStack: "React • Tailwind CSS • Gemini API • Node.js",
+        img: "/scamshield.png",
+        link: "https://scamshield-xjip.vercel.app/",
+        github: "https://github.com/Jilanmansuri/scamshield",
+        color: "#4f46e5",
+        category: "Featured"
+    },
+    {
+        title: "Barista Clone",
+        description: "Modern coffee shop website clone with ordering.",
+        techStack: "HTML • CSS",
+        img: "/barista.png",
+        link: "https://barista-web-clone-108623.netlify.app/",
+        github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
+        video: "https://youtu.be/MaxuwgmfpDA",
+        color: "#d97706",
+        category: "Frontend"
+    },
+    {
+        title: "JioTV Clone",
+        description: "Live TV streaming platform clone.",
+        techStack: "HTML • CSS",
+        img: "/jiotv-mockup.png",
+        link: "https://jiotv-web2-clone.netlify.app/",
+        github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
+        video: "https://youtu.be/q0Vrh8M2Yp0",
+        color: "#0078d7",
+        category: "Frontend"
+    },
+    {
+        title: "Glean Clone",
+        description: "AI-powered enterprise search platform clone.",
+        techStack: "HTML • CSS",
+        img: "/glean.png",
+        link: "https://glean-clone-web5-108623.netlify.app/",
+        github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
+        video: "https://youtu.be/ePT3Pho75ic",
+        color: "#6366f1",
+        category: "Frontend"
+    },
+    {
+        title: "Paxos Gold Clone",
+        description: "Digital asset trading platform clone for gold.",
+        techStack: "HTML • CSS",
+        img: "/paxos.png",
+        link: "https://paxos-clone-web4.netlify.app/",
+        github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
+        video: "https://youtu.be/fCNuwqJAkJ0",
+        color: "#facc15",
+        category: "Frontend"
+    },
+    {
+        title: "SAFAL Hospital UI/UX",
+        description: "A comprehensive UI/UX design and interactive prototype for a hospital and medical excellence platform.",
+        tags: ["Figma", "UI/UX", "Healthcare"],
+        img: "/safal-hospital.png",
+        link: "https://www.figma.com/design/7hEGL5YrGcDzBBLUriv6iq/Untitled?node-id=254-398&p=f&t=OcdWhPxFQX1t2ZIo-0",
+        prototype: "https://www.figma.com/proto/7hEGL5YrGcDzBBLUriv6iq/Untitled?page-id=254%3A398&node-id=439-570&viewport=150%2C137%2C0.24&t=PZFXB5KyiLaqC036-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=439%3A570",
+        color: "#2563eb",
+        category: "UI/UX"
+    },
+    {
+        title: "News App",
+        description: "Search and read news with API integration.",
+        tags: ["API Project"],
+        img: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&q=80&w=800",
+        link: "https://jilan-108623-apiproject.netlify.app/",
+        github: "https://github.com/Jilanmansuri/Projects/tree/main/api-project/news-api",
+        color: "#ef4444",
+        category: "API APPS"
     },
     {
         title: "BlankNest LMS Dashboard",
@@ -139,7 +150,7 @@ const allProjects = [
         link: "https://www.figma.com/design/6dAnbHhaC2brOg8hQu9EXb/Untitled?node-id=0-1&t=NNojOHTfmB03y0t2-1",
         prototype: "https://www.figma.com/proto/6dAnbHhaC2brOg8hQu9EXb/Untitled?node-id=0-1&t=NNojOHTfmB03y0t2-1",
         color: "#10b981",
-        category: "Figma"
+        category: "UI/UX"
     },
     {
         title: "Level Up Portfolio UI",
@@ -148,7 +159,7 @@ const allProjects = [
         img: "/levelup-portfolio.png",
         link: "https://www.figma.com/design/mlHeak89Jp2ptRJHoef6zw/MockUp-Hackethon?node-id=1-3&t=MoVRH0RiQWmWJOsw-1",
         color: "#8b5cf6",
-        category: "Figma"
+        category: "UI/UX"
     },
     {
         title: "Codename Analytics Dashboard",
@@ -157,7 +168,7 @@ const allProjects = [
         img: "/codename-dashboard.png",
         link: "https://www.figma.com/design/7hEGL5YrGcDzBBLUriv6iq/projects?node-id=86-35&t=LtZeQJ2FkrQ7JeoF-1",
         color: "#ec4899",
-        category: "Figma"
+        category: "UI/UX"
     },
     {
         title: "Billcase Invoicing Tool",
@@ -166,7 +177,7 @@ const allProjects = [
         img: "/billcase-invoicing.png",
         link: "https://www.figma.com/design/7hEGL5YrGcDzBBLUriv6iq/projects?node-id=30-139&t=LtZeQJ2FkrQ7JeoF-1",
         color: "#22c55e",
-        category: "Figma"
+        category: "UI/UX"
     },
     {
         title: "Click Counter",
@@ -231,13 +242,13 @@ const allProjects = [
     {
         title: "Cronos Clone",
         description: "Global finance on-chain blockchain platform clone.",
-        tags: ["Crypto", "Web3"],
+        techStack: "HTML • CSS",
         img: "/cronos.png",
         link: "#",
         github: "https://github.com/Jilanmansuri/Projects/tree/main/six%20website%20clone",
         video: "https://youtu.be/igXTN2i9gVU",
         color: "#60a5fa",
-        category: "Clones"
+        category: "Frontend"
     },
     {
         title: "Weather App",
@@ -247,14 +258,14 @@ const allProjects = [
         link: "https://lucent-cascaron-a72951.netlify.app/",
         github: "https://github.com/Jilanmansuri/Projects/tree/main/api-project/api-whether",
         color: "#38bdf8",
-        category: "APIs"
+        category: "API APPS"
     }
 ];
 
 const mainProjectsData = allProjects.filter(p => p.category !== "Games");
 const gamesData = allProjects.filter(p => p.category === "Games");
 
-const categories = ["All", "Featured", "Clones", "APIs", "Figma", "Games"];
+const categories = ["All", "Featured", "Frontend", "API APPS", "UI/UX", "Games"];
 
 
 const Projects = () => {
@@ -288,11 +299,21 @@ const Projects = () => {
                 </div>
                 <div className="card-content">
                     <h3 style={{ color: project.color, fontSize: isGame ? '1.2rem' : undefined }}>{project.title}</h3>
+                    <div className="tech-stack-line" style={{
+                        fontSize: '0.75rem',
+                        color: project.color,
+                        opacity: 0.8,
+                        marginBottom: '8px',
+                        fontWeight: '600',
+                        letterSpacing: '0.5px'
+                    }}>
+                        {project.techStack || (project.tags && project.tags.join(' • '))}
+                    </div>
                     <p style={{ fontSize: isGame ? '0.9rem' : undefined }}>{project.description}</p>
                     <div className="card-actions">
                         {project.link && (
                             <a href={project.link || '#'} target="_blank" rel="noopener noreferrer" className="link-text" style={isGame ? { fontSize: '0.85rem' } : {}}>
-                                <ExternalLink size={isGame ? 14 : 16} /> {project.category === "Figma" ? "Figma File" : (isGame ? 'Play' : 'Live Demo')}
+                                <ExternalLink size={isGame ? 14 : 16} /> {project.category === "UI/UX" ? "Figma File" : (isGame ? 'Play' : 'Live Demo')}
                             </a>
                         )}
                         {project.prototype && (
@@ -300,7 +321,7 @@ const Projects = () => {
                                 <Target size={16} /> Prototype
                             </a>
                         )}
-                        {!isGame && project.category !== "Figma" && project.github && project.github !== "#" && (
+                        {!isGame && project.category !== "UI/UX" && project.github && project.github !== "#" && (
                             <a href={project.github} target="_blank" rel="noopener noreferrer" className="link-text github-link">
                                 <Github size={16} /> Source Code
                             </a>

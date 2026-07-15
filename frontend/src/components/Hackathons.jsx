@@ -32,10 +32,29 @@ const hackathons = [
         video: "https://youtu.be/isdwJFdwx0Q?si=V8fTLB0OYzy6Zs9J",
         color: "#3b82f6",
         achievement: "Collaborative Build Sprint"
+    },
+    {
+        title: "Crafthon",
+        subtitle: "Gandhinagar University",
+        year: "2026",
+        description: "A 36-hour national level university hackathon bringing together builders and innovators. Developed KrishiSaarthi AI to assist farmers with smart decisions.",
+        certificateImg: "/krishisaarthi-preview.png",
+        projectTitle: "KrishiSaarthi AI",
+        projectDesc: "An intelligent farming assistant providing precise crop and fertilizer recommendations based on soil reports or simple questionnaires.",
+        techStack: ["React", "Node.js", "Express", "CORS"],
+        github: "https://github.com/Jilanmansuri/AstraX_Greentech",
+        demo: "https://krishi-sarthi-ai.vercel.app",
+        video: "https://www.youtube.com/watch?v=HOWHKVeituQ",
+        color: "#16a34a",
+        achievement: "Agriculture Tech Track"
     }
 ];
 
-const Hackathons = () => {
+const Hackathons = ({ isHomePage = false }) => {
+    const displayHackathons = isHomePage
+        ? hackathons.filter(hack => hack.title !== "Crafthon")
+        : hackathons;
+
     return (
         <section className="section" id="hackathons">
             <motion.div
@@ -49,7 +68,7 @@ const Hackathons = () => {
                 </div>
 
                 <div className="premium-hackathon-grid">
-                    {hackathons.map((hack, index) => (
+                    {displayHackathons.map((hack, index) => (
                         <motion.div
                             key={index}
                             className="premium-hackathon-card"
@@ -73,10 +92,12 @@ const Hackathons = () => {
 
                             <p className="hack-main-desc">{hack.description}</p>
 
-                            <div className="premium-hack-body">
-                                <div className="premium-hack-image-frame">
-                                    <img src={hack.certificateImg} alt="Certificate" />
-                                </div>
+                            <div className={`premium-hack-body ${!hack.certificateImg ? 'no-image' : ''}`}>
+                                {hack.certificateImg && (
+                                    <div className="premium-hack-image-frame">
+                                        <img src={hack.certificateImg} alt="Certificate" />
+                                    </div>
+                                )}
 
                                 <div className="premium-hack-project-info">
                                     <div className="project-built-tag">
@@ -94,15 +115,21 @@ const Hackathons = () => {
                                     </div>
 
                                     <div className="premium-hack-links">
-                                        <a href={hack.github} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-code">
-                                            <Github size={18} /> Code
-                                        </a>
-                                        <a href={hack.demo} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-demo">
-                                            <ExternalLink size={18} /> Live
-                                        </a>
-                                        <a href={hack.video} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-video">
-                                            <Youtube size={18} /> Demo Video
-                                        </a>
+                                        {hack.github && (
+                                            <a href={hack.github} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-code">
+                                                <Github size={18} /> Code
+                                            </a>
+                                        )}
+                                        {hack.demo && (
+                                            <a href={hack.demo} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-demo">
+                                                <ExternalLink size={18} /> Live
+                                            </a>
+                                        )}
+                                        {hack.video && (
+                                            <a href={hack.video} target="_blank" rel="noopener noreferrer" className="hack-link hack-link-video">
+                                                <Youtube size={18} /> Demo Video
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
                             </div>

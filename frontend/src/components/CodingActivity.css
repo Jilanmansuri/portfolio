@@ -1,0 +1,391 @@
+.coding-activity-section {
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ca-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+@media (min-width: 1024px) {
+  .ca-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.ca-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.ca-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.ca-card.github:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.15), inset 0 0 20px rgba(139, 92, 246, 0.05);
+}
+
+.ca-card.leetcode:hover {
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 0 0 40px rgba(249, 115, 22, 0.15), inset 0 0 20px rgba(249, 115, 22, 0.05);
+}
+
+.ca-card:hover::before {
+  opacity: 1;
+}
+
+.ca-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.ca-header h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(to right, #fff, #a1a1aa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ca-icon-wrapper {
+  padding: 12px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.github .ca-icon-wrapper {
+  background: rgba(139, 92, 246, 0.15);
+  color: #a78bfa;
+}
+
+.leetcode .ca-icon-wrapper {
+  background: rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+}
+
+.ca-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.leetcode .ca-stats-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.ca-stat-item {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.leetcode .ca-stat-item {
+  padding: 15px 12px;
+  align-items: center;
+  text-align: center;
+}
+
+.ca-stat-item:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ca-stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.github .ca-stat-value {
+  color: #ddd6fe;
+  text-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+}
+
+.leetcode .ca-stat-value {
+  color: #fed7aa;
+  text-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
+}
+
+.leetcode .ca-stat-value {
+  font-size: 1.6rem;
+}
+
+.ca-stat-label {
+  font-size: 0.85rem;
+  color: #a1a1aa;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Simulated Heatmap Graph */
+.ca-graph-container {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  margin-bottom: 30px;
+}
+
+.ca-graph-title {
+  font-size: 0.9rem;
+  color: #d4d4d8;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.ca-grid {
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-auto-flow: column;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.ca-grid::-webkit-scrollbar {
+  height: 4px;
+}
+
+.ca-grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.ca-square {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.ca-square:hover {
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+/* Difficulty Breakdown Bars */
+.ca-progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.ca-progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ca-progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #d4d4d8;
+  font-weight: 500;
+}
+
+.ca-progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ca-progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.easy .ca-progress-bar-fill {
+  background: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.medium .ca-progress-bar-fill {
+  background: #eab308;
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.5);
+}
+
+.hard .ca-progress-bar-fill {
+  background: #ef4444;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+/* Links */
+.ca-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.github .ca-link {
+  background: rgba(139, 92, 246, 0.1);
+  color: #c4b5fd;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.github .ca-link:hover {
+  background: rgba(139, 92, 246, 0.2);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  transform: translateY(-2px);
+}
+
+.leetcode .ca-link {
+  background: rgba(249, 115, 22, 0.1);
+  color: #fed7aa;
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.leetcode .ca-link:hover {
+  background: rgba(249, 115, 22, 0.2);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE STYLES FOR MOBILE ===== */
+@media (max-width: 768px) {
+  .coding-activity-section {
+    padding: 60px 15px;
+  }
+
+  .ca-container {
+    gap: 30px;
+  }
+
+  .ca-card {
+    padding: 25px;
+    border-radius: 20px;
+  }
+
+  .ca-header {
+    margin-bottom: 20px;
+  }
+
+  .ca-header h3 {
+    font-size: 1.5rem;
+  }
+
+  .ca-stats-grid {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .ca-stat-value {
+    font-size: 1.6rem;
+  }
+
+  .leetcode .ca-stat-value {
+    font-size: 1.3rem;
+  }
+
+  .ca-stat-item {
+    padding: 15px;
+  }
+
+  .leetcode .ca-stats-grid {
+    gap: 8px;
+  }
+
+  .leetcode .ca-stat-item {
+    padding: 12px 8px;
+  }
+
+  .ca-graph-container {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .ca-link {
+    width: 100%;
+    justify-content: center;
+    padding: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .coding-activity-section {
+    padding: 40px 15px;
+  }
+
+  .ca-card {
+    padding: 20px;
+  }
+
+  .ca-stats-grid, .leetcode .ca-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .ca-stat-item, .leetcode .ca-stat-item {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    text-align: left;
+  }
+
+  .ca-stat-value, .leetcode .ca-stat-value {
+    font-size: 1.4rem;
+  }
+
+  .ca-stat-label, .leetcode .ca-stat-label {
+    font-size: 0.85rem;
+  }
+}

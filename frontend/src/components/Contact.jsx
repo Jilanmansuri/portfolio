@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { Send, Mail, User, Phone, Briefcase, ChevronRight, CheckCircle2, X, Github, Linkedin, Code, MessageCircle } from 'lucide-react';
+import { Send, Mail, User, Phone, MapPin, Briefcase, ChevronRight, CheckCircle2, X, Github, Linkedin, Code, MessageCircle } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+
 
 const XPlatformIcon = ({ size = 24, color = "currentColor", ...props }) => (
     <svg
@@ -112,18 +113,23 @@ const Contact = () => {
                                     <Phone size={20} className="text-primary" />
                                     <a href="tel:7984088939" style={{ color: 'inherit', textDecoration: 'none' }}>7984088939</a>
                                 </div>
+                                <div className="contact-item">
+                                    <MapPin size={20} className="text-primary" />
+                                    <span>Gujarat, India</span>
+                                </div>
                             </div>
 
                             <div className="social-links">
                                 <a href="https://github.com/Jilanmansuri" target="_blank" rel="noopener noreferrer" className="social-icon-btn">
                                     <Github size={22} />
                                 </a>
-                                <a href="https://linkedin.com/in/jilanmansuri" target="_blank" rel="noopener noreferrer" className="social-icon-btn">
+                                <a href="https://www.linkedin.com/in/jilan-mansuri-235b38392/" target="_blank" rel="noopener noreferrer" className="social-icon-btn">
                                     <Linkedin size={22} />
                                 </a>
-                                <Link to="/chat?start=true" className="social-icon-btn">
+                               
+                                <a href="https://wa.me/917984088939" target="_blank" rel="noopener noreferrer" className="social-icon-btn">
                                     <MessageCircle size={22} />
-                                </Link>
+                                </a>
                                 <a href="https://x.com/jilan_24" target="_blank" rel="noopener noreferrer" className="social-icon-btn">
                                     <XPlatformIcon size={22} />
                                 </a>
