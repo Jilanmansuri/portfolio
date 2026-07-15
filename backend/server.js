@@ -6,10 +6,13 @@ import Contact from './models/Contact.js';
 import Message from './models/Message.js';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import crypto from 'crypto';
+import Visitor from './models/Visitor.js';
 
 dotenv.config();
 
 const app = express();
+app.set('trust proxy', true);
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI =
   process.env.MONGODB_URI ||
@@ -213,6 +216,83 @@ app.post('/api/contact', async (req, res) => {
     return res
       .status(500)
       .json({ success: false, error: 'Failed to save message.' });
+  }
+});
+
+// Helper to generate a secure SHA-256 fingerprint from request information
+const getFingerprint = (req) => {
+  const forwarded = req.headers['x-forwarded-for'];
+  const ip = forwarded ? forwarded.split(',')[0].trim() : req.ip || req.socket.remoteAddress || '';
+  const userAgent = req.headers['user-agent'] || '';
+  const acceptLanguage = req.headers['accept-language'] || '';
+  const rawString = `${ip}|${userAgent}|${acceptLanguage}`;
+  return crypto.createHash('sha256').update(rawString).digest('hex');
+};
+
+// Middleware to authenticate admin requests for REST endpoints
+const adminAuth = (req, res, next) => {
+  const adminPassword = process.env.ADMIN_PASSWORD || 'Jilan@123';
+  const providedPassword = req.headers['x-admin-password'];
+  
+  if (!providedPassword || providedPassword !== adminPassword) {
+    return res.status(401).json({
+      success: false,
+      error: 'Unauthorized: Invalid admin password.'
+    });
+  }
+  next();
+};
+
+// Route to track visitor (automatic on load)
+app.post('/api/visitor/track', async (req, res) => {
+  try {
+    const fingerprint = getFingerprint(req);
+    
+    // Atomically find & update or insert (upsert) the visitor record.
+    const result = await Visitor.findOneAndUpdate(
+      { fingerprint },
+      {
+        $inc: { totalVisits: 1 },
+        $set: { lastVisit: new Date() }
+      },
+      {
+        new: true,
+        upsert: true,
+        setDefaultsOnInsert: true
+      }
+    );
+    
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error('Visitor tracking error:', error);
+    res.status(500).json({ success: false, error: 'Internal server error during tracking' });
+  }
+});
+
+// Route to retrieve visitor stats (admin only)
+app.get('/api/visitor/stats', adminAuth, async (req, res) => {
+  try {
+    const uniqueVisitors = await Visitor.countDocuments();
+    
+    const aggregateResult = await Visitor.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalVisits: { $sum: '$totalVisits' }
+        }
+      }
+    ]);
+    
+    const totalVisits = aggregateResult.length > 0 ? aggregateResult[0].totalVisits : 0;
+    
+    res.status(200).json({
+      success: true,
+      uniqueVisitors,
+      totalVisits
+    });
+  } catch (error) {
+    console.error('Visitor stats retrieval error:', error);
+    res.status(500).json({ success: false, error: 'Internal server error fetching stats' });
   }
 });
 

@@ -110,20 +110,34 @@ export default function App() {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  // Ping backend to wake up free Render instance
+  // Ping backend to wake up free Render instance and track visitor automatically
   useEffect(() => {
-    const wakeUpBackend = async () => {
+    const initApp = async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL;
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
         if (API_URL) {
+          // 1. Wake up/ping backend
           await fetch(`${API_URL}/api/health`);
           console.log("Backend pinged successfully");
+          
+          // 2. Track unique visitor automatically
+          const trackRes = await fetch(`${API_URL}/api/visitor/track`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+          if (trackRes.ok) {
+            console.log("Visitor tracking registered successfully");
+          } else {
+            console.warn(`Visitor tracking backend responded with status: ${trackRes.status}`);
+          }
         }
       } catch (error) {
-        console.error("Failed to ping backend:", error);
+        console.error("Failed to initialize app / ping backend:", error);
       }
     };
-    wakeUpBackend();
+    initApp();
   }, []);
 
   const toggleTheme = () => {
