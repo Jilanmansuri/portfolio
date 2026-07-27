@@ -284,6 +284,13 @@ const allProjects = [
   ...games.map(p => ({ ...p, category: "Games" }))
 ];
 
+const sectionsConfig = [
+  { key: "Featured", title: "Featured Projects", color: "#818cf8" },
+  { key: "Frontend", title: "Frontend & Website Clones", color: "#60a5fa" },
+  { key: "API APPS", title: "API Applications", color: "#38bdf8" },
+  { key: "UI/UX", title: "UI/UX & Figma Designs", color: "#c084fc" }
+];
+
 const categories = ["All", "Featured", "Frontend", "API APPS", "UI/UX", "Games"];
 
 const ProjectsPage = () => {
@@ -398,11 +405,51 @@ const ProjectsPage = () => {
         </div>
 
         {/* Dynamic Filtered Grid */}
-        <motion.div layout className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-          <AnimatePresence mode='popLayout'>
-            {filteredProjects.map((project, index) => renderProjectCard(project, index))}
-          </AnimatePresence>
-        </motion.div>
+        {activeCategory === "All" ? (
+          <div>
+            {sectionsConfig.map(section => {
+              const categoryProjects = allProjects.filter(p => p.category === section.key);
+              if (categoryProjects.length === 0) return null;
+
+              return (
+                <div key={section.key} style={{ marginBottom: '55px' }}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    style={{
+                      textAlign: 'center',
+                      marginBottom: '24px'
+                    }}
+                  >
+                    <h3 style={{
+                      fontSize: '22px',
+                      fontWeight: '700',
+                      color: section.color,
+                      textAlign: 'center',
+                      margin: 0,
+                      letterSpacing: '0.5px'
+                    }}>
+                      {section.title}
+                    </h3>
+                  </motion.div>
+
+                  <div className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+                    <AnimatePresence mode='popLayout'>
+                      {categoryProjects.map((project, index) => renderProjectCard(project, index))}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <motion.div layout className="projects-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+            <AnimatePresence mode='popLayout'>
+              {filteredProjects.map((project, index) => renderProjectCard(project, index))}
+            </AnimatePresence>
+          </motion.div>
+        )}
 
         {/* PERSISTENT GAMES SECTION */}
         <motion.div

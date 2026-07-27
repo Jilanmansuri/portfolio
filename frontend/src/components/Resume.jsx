@@ -56,6 +56,7 @@ const Resume = () => {
                             <h4 className="resume-sidebar-title">Core Skills</h4>
                             <div className="resume-skill-tags">
                                 <span>React.js</span>
+                                <span>React Native</span>
                                 <span>Node.js</span>
                                 <span>Express.js</span>
                                 <span>MongoDB</span>

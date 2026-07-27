@@ -64,7 +64,7 @@ const Hero = () => {
                             />
                         </h1>
                         <p className="hero-subtitle">
-                            Aspiring Full-Stack Developer
+                            Full-Stack Developer
                         </p>
 
                         <div className="social-links hero-socials" style={{ display: 'flex', gap: '15px', marginTop: '15px', marginBottom: '30px' }}>

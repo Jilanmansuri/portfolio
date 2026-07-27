@@ -17,7 +17,7 @@ const About = () => {
             <Reveal direction="right">
                 <div className="about-content">
                     <p className="about-text">
-                        I am a driven <span className="text-highlight">1st Year Computer Engineering Student</span> at <strong className="text-primary">Coding Gita x Swaminarayan University</strong>, passionate about translating logic into creative digital experiences.
+                        I am a driven <span className="text-highlight">2nd Year Computer Engineering Student</span> at <strong className="text-primary">Coding Gita x Swaminarayan University</strong>, passionate about translating logic into creative digital experiences.
                     </p>
                     <p className="about-text">
                         I focus more on <strong>building things</strong> than just learning theory. I work with <span className="text-highlight">HTML, CSS, JavaScript, React, and MongoDB</span>, and I enjoy turning simple ideas into functional web applications. I’ve built multiple projects while learning <strong>Full-Stack Development</strong>, where I focused on clean code, proper structure, and real-world use cases rather than just UI.

@@ -106,15 +106,98 @@ const CodingActivity = () => {
     });
 
     const [leetcodeData, setLeetcodeData] = useState({
-        solved: 175,
-        active: 82,
-        streak: 15,
+        solved: 187,
+        active: 90,
+        streak: 1,
         contributionsList: []
     });
 
     useEffect(() => {
         const fetchLeetcodeData = async () => {
             try {
+                // Primary fast live API endpoint for LeetCode
+                const response = await fetch('https://leetcode-api-faisalshohag.vercel.app/Jilan2410');
+                let data = null;
+
+                if (response.ok) {
+                    data = await response.json();
+                }
+
+                if (data && (data.totalSolved !== undefined || data.submissionCalendar)) {
+                    const calObj = data.submissionCalendar || {};
+                    const activeDates = new Set();
+                    const calMap = {};
+
+                    Object.entries(calObj).forEach(([timestamp, count]) => {
+                        const ts = parseInt(timestamp, 10);
+                        if (!isNaN(ts) && count > 0) {
+                            const date = new Date(ts * 1000);
+                            const year = date.getFullYear();
+                            const month = String(date.getMonth() + 1).padStart(2, '0');
+                            const day = String(date.getDate()).padStart(2, '0');
+                            const dateStr = `${year}-${month}-${day}`;
+                            calMap[dateStr] = (calMap[dateStr] || 0) + count;
+                            activeDates.add(dateStr);
+                        }
+                    });
+
+                    const activeDays = activeDates.size;
+
+                    // Calculate live streak dynamically
+                    let streak = 0;
+                    const today = new Date();
+                    const formatDate = (d) => {
+                        const y = d.getFullYear();
+                        const m = String(d.getMonth() + 1).padStart(2, '0');
+                        const dayStr = String(d.getDate()).padStart(2, '0');
+                        return `${y}-${m}-${dayStr}`;
+                    };
+
+                    let checkDate = new Date(today);
+                    let checkStr = formatDate(checkDate);
+                    // If today has no submission yet, start checking from yesterday
+                    if (!activeDates.has(checkStr)) {
+                        checkDate.setDate(checkDate.getDate() - 1);
+                        checkStr = formatDate(checkDate);
+                    }
+
+                    while (activeDates.has(checkStr)) {
+                        streak++;
+                        checkDate.setDate(checkDate.getDate() - 1);
+                        checkStr = formatDate(checkDate);
+                    }
+
+                    // Build real heatmap contribution grid (130 days)
+                    const contributions = [];
+                    for (let i = 129; i >= 0; i--) {
+                        const d = new Date(today);
+                        d.setDate(today.getDate() - i);
+                        const dateStr = formatDate(d);
+                        const count = calMap[dateStr] || 0;
+                        let level = 0;
+                        if (count > 0) {
+                            if (count >= 10) level = 4;
+                            else if (count >= 5) level = 3;
+                            else if (count >= 3) level = 2;
+                            else level = 1;
+                        }
+                        contributions.push({
+                            date: dateStr,
+                            count,
+                            level
+                        });
+                    }
+
+                    setLeetcodeData({
+                        solved: data.totalSolved || 187,
+                        active: activeDays || 90,
+                        streak: streak || 1,
+                        contributionsList: contributions
+                    });
+                    return;
+                }
+
+                // Fallback API if primary is unavailable
                 const [solvedRes, calendarRes] = await Promise.all([
                     fetch('https://alfa-leetcode-api.onrender.com/Jilan2410/solved'),
                     fetch('https://alfa-leetcode-api.onrender.com/Jilan2410/calendar')
@@ -123,17 +206,19 @@ const CodingActivity = () => {
                 const calendarData = await calendarRes.json();
 
                 if (solvedData && calendarData) {
-                    const cal = JSON.parse(calendarData.submissionCalendar || '{}');
+                    const cal = typeof calendarData.submissionCalendar === 'string'
+                        ? JSON.parse(calendarData.submissionCalendar || '{}')
+                        : calendarData.submissionCalendar || {};
                     const calMap = {};
                     Object.entries(cal).forEach(([timestamp, count]) => {
-                        const date = new Date(parseInt(timestamp) * 1000);
+                        const date = new Date(parseInt(timestamp, 10) * 1000);
                         const dateStr = date.toISOString().split('T')[0];
                         calMap[dateStr] = (calMap[dateStr] || 0) + count;
                     });
 
                     const contributions = [];
                     const today = new Date();
-                    for (let i = 130; i >= 0; i--) {
+                    for (let i = 129; i >= 0; i--) {
                         const d = new Date(today);
                         d.setDate(today.getDate() - i);
                         const dateStr = d.toISOString().split('T')[0];
@@ -153,9 +238,9 @@ const CodingActivity = () => {
                     }
 
                     setLeetcodeData({
-                        solved: solvedData.solvedProblem || 175,
-                        active: calendarData.totalActiveDays || 82,
-                        streak: calendarData.streak || 15,
+                        solved: solvedData.solvedProblem || 187,
+                        active: calendarData.totalActiveDays || 90,
+                        streak: calendarData.streak || 1,
                         contributionsList: contributions
                     });
                 }

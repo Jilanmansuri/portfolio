@@ -37,6 +37,14 @@ const skillsData = [
         desc: "Building highly interactive user interfaces using hooks, state management, and reusable components." 
     },
     { 
+        name: "React Native", 
+        icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4IiB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJybkdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2MURBRkIiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDg4Q0MiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIyMiIgeT0iOCIgd2lkdGg9Ijg0IiBoZWlnaHQ9IjExMiIgcng9IjE0IiBmaWxsPSJub25lIiBzdHJva2U9InVybCgjcm5HcmFkKSIgc3Ryb2tlLXdpZHRoPSI0LjUiLz48cmVjdCB4PSI1MiIgeT0iMTUiIHdpZHRoPSIyNCIgaGVpZ2h0PSIzLjUiIHJ4PSIyIiBmaWxsPSJ1cmwoI3JuR3JhZCkiLz48ZyBmaWxsPSJub25lIiBzdHJva2U9InVybCgjcm5HcmFkKSIgc3Ryb2tlLXdpZHRoPSIzLjUiPjxlbGxpcHNlIGN4PSI2NCIgY3k9IjY0IiByeD0iMjUiIHJ5PSI5LjUiLz48ZWxsaXBzZSBjeD0iNjQiIGN5PSI2NCIgcng9IjI1IiByeT0iOS41IiB0cmFuc2Zvcm09InJvdGF0ZSg2MCA2NCA2NCkiLz48ZWxsaXBzZSBjeD0iNjQiIGN5PSI2NCIgcng9IjI1IiByeT0iOS41IiB0cmFuc2Zvcm09InJvdGF0ZSgxMjAgNjQgNjQpIi8+PC9nPjxjaXJjbGUgY3g9IjY0IiBjeT0iNjQiIHI9IjYiIGZpbGw9InVybCgjcm5HcmFkKSIvPjxyZWN0IHg9IjUyIiB5PSIxMTAiIHdpZHRoPSIyNCIgaGVpZ2h0PSIzIiByeD0iMS41IiBmaWxsPSJ1cmwoI3JuR3JhZCkiIG9wYWNpdHk9IjAuOSIvPjwvc3ZnPg==", 
+        category: "Frontend", 
+        level: "Advanced", 
+        useCase: "Mobile",
+        desc: "Developing cross-platform mobile applications for iOS and Android using React Native and Expo." 
+    },
+    { 
         name: "Tailwind", 
         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", 
         category: "Frontend", 
