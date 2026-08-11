@@ -4,9 +4,39 @@ import { motion } from 'framer-motion';
 
 const hackathons = [
     {
+        title: "CodingGita HackSprint '26",
+        subtitle: "CodingGita",
+        year: "July 2026",
+        description: "Secured 2nd Position out of numerous teams in this competitive hackathon. Built as part of TEAM RUNTIME REBELS.",
+        certificateImg: "/hackspirit certificate 2nd-rank.png",
+        projectTitle: "Digital Twin Autopilot 🚀",
+        projectDesc: "A personal AI clone integrating with Telegram, Discord, and Gmail to automatically reply mimicking personal voice texture and slang using LangGraph and Temporal RAG.",
+        techStack: ["Python", "Node.js", "React", "whatsapp-web.js"],
+        github: "https://github.com/codinggita/runtimerebels",
+        demo: "https://whatsapp-ai-murex.vercel.app/",
+        video: "https://drive.google.com/drive/folders/14Nanf2SA5Y45Y4PFqpzxNu7honILnY1u?usp=sharing",
+        color: "#eab308",
+        achievement: "2nd Position"
+    },
+    {
+        title: "Crafthon",
+        subtitle: "Gandhinagar University",
+        year: "April 2026",
+        description: "A 36-hour national level university hackathon bringing together builders and innovators. Developed KrishiSaarthi AI to assist farmers with smart decisions.",
+        certificateImg: "/crafthon.png",
+        projectTitle: "KrishiSaarthi AI",
+        projectDesc: "An intelligent farming assistant providing precise crop and fertilizer recommendations based on soil reports or simple questionnaires.",
+        techStack: ["React", "Node.js", "Express", "CORS"],
+        github: "https://github.com/Jilanmansuri/AstraX_Greentech",
+        demo: "https://krishi-sarthi-ai.vercel.app",
+        video: "https://www.youtube.com/watch?v=HOWHKVeituQ",
+        color: "#16a34a",
+        achievement: "Agriculture Tech Track"
+    },
+    {
         title: "ArtPark CodeForge",
         subtitle: "IISc, Bangalore",
-        year: "2026",
+        year: "March 2026",
         description: "Prototype Development Round of the ArtPark CodeForge Hackathon, organized by the Indian Institute of Science (IISc), Bangalore.",
         certificateImg: "/iis-cert.png",
         projectTitle: "SkillForge AI",
@@ -21,7 +51,7 @@ const hackathons = [
     {
         title: "Doppleganger",
         subtitle: "OpenPools",
-        year: "2026",
+        year: "December 2025",
         description: "A collaborative 30-hour build sprint where teams transformed professional DNA into real-world solutions hosted on OpenPools.",
         certificateImg: "/openpools-cert.png",
         projectTitle: "FreelanceX",
@@ -32,27 +62,12 @@ const hackathons = [
         video: "https://youtu.be/isdwJFdwx0Q?si=V8fTLB0OYzy6Zs9J",
         color: "#3b82f6",
         achievement: "Collaborative Build Sprint"
-    },
-    {
-        title: "Crafthon",
-        subtitle: "Gandhinagar University",
-        year: "2026",
-        description: "A 36-hour national level university hackathon bringing together builders and innovators. Developed KrishiSaarthi AI to assist farmers with smart decisions.",
-        certificateImg: "/krishisaarthi-preview.png",
-        projectTitle: "KrishiSaarthi AI",
-        projectDesc: "An intelligent farming assistant providing precise crop and fertilizer recommendations based on soil reports or simple questionnaires.",
-        techStack: ["React", "Node.js", "Express", "CORS"],
-        github: "https://github.com/Jilanmansuri/AstraX_Greentech",
-        demo: "https://krishi-sarthi-ai.vercel.app",
-        video: "https://www.youtube.com/watch?v=HOWHKVeituQ",
-        color: "#16a34a",
-        achievement: "Agriculture Tech Track"
     }
 ];
 
 const Hackathons = ({ isHomePage = false }) => {
     const displayHackathons = isHomePage
-        ? hackathons.filter(hack => hack.title !== "Crafthon")
+        ? hackathons.filter(hack => hack.title !== "CodingGita HackSprint '26")
         : hackathons;
 
     return (

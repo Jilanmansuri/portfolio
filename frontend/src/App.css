@@ -945,7 +945,8 @@ section,
   margin-bottom: 30px;
 }
 
-.section h2, .coding-activity-section h2 {
+.section h2,
+.coding-activity-section h2 {
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 24px;
@@ -959,7 +960,8 @@ section,
   width: 100%;
 }
 
-.light-theme .section h2, .light-theme .coding-activity-section h2 {
+.light-theme .section h2,
+.light-theme .coding-activity-section h2 {
   background: linear-gradient(90deg, var(--text-main), var(--text-main));
   -webkit-background-clip: text;
   background-clip: text;
@@ -5018,8 +5020,8 @@ html {
 .premium-hack-image-frame img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 0;
+  object-fit: fill;
+  border-radius: 12px;
   opacity: 0.8;
   transition: opacity 0.3s;
 }
