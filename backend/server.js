@@ -296,6 +296,78 @@ app.get('/api/visitor/stats', adminAuth, async (req, res) => {
   }
 });
 
+// Proxy route for LeetCode API to bypass CORS
+app.get('/api/leetcode/:username', async (req, res) => {
+  try {
+    const { username } = req.params;
+    
+    const profileQuery = `
+      query getUserProfile($username: String!) {
+        matchedUser(username: $username) {
+          submitStats {
+            acSubmissionNum {
+              difficulty
+              count
+            }
+          }
+        }
+      }
+    `;
+    
+    const calendarQuery = `
+      query userProfileCalendar($username: String!) {
+        matchedUser(username: $username) {
+          userCalendar {
+            streak
+            totalActiveDays
+            submissionCalendar
+          }
+        }
+      }
+    `;
+
+    const fetchGraphQL = async (query) => {
+      const response = await fetch('https://leetcode.com/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'User-Agent': 'Mozilla/5.0'
+        },
+        body: JSON.stringify({
+          query,
+          variables: { username }
+        })
+      });
+      if (!response.ok) throw new Error('LeetCode API error');
+      return response.json();
+    };
+
+    const [profileData, calendarData] = await Promise.all([
+      fetchGraphQL(profileQuery),
+      fetchGraphQL(calendarQuery)
+    ]);
+
+    if (profileData.errors || calendarData.errors || !profileData.data.matchedUser || !calendarData.data.matchedUser) {
+      return res.status(404).json({ error: 'User not found or API error' });
+    }
+
+    const matchedUser = profileData.data.matchedUser;
+    const userCalendar = calendarData.data.matchedUser.userCalendar;
+
+    const allSolved = matchedUser.submitStats.acSubmissionNum.find(x => x.difficulty === 'All')?.count || 0;
+
+    res.json({
+      solvedProblem: allSolved,
+      totalActiveDays: userCalendar.totalActiveDays,
+      streak: userCalendar.streak,
+      submissionCalendar: userCalendar.submissionCalendar
+    });
+  } catch (error) {
+    console.error('LeetCode proxy error:', error);
+    res.status(500).json({ error: 'Failed to fetch LeetCode data' });
+  }
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
