@@ -107,7 +107,8 @@ const Hero = () => {
 
                         <div className="hero-buttons">
                             <a
-                                href="/resume.htmlx"
+                                // href="/resume.html"
+                                href="/projects"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn btn-primary"
