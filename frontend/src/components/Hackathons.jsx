@@ -19,7 +19,7 @@ const hackathons = [
         achievement: "2nd Position"
     },
     {
-        title: "Crafthon",
+        title: "Craftathon",
         subtitle: "Gandhinagar University",
         year: "April 2026",
         description: "A 36-hour national level university hackathon bringing together builders and innovators. Developed KrishiSaarthi AI to assist farmers with smart decisions.",
